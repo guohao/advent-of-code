@@ -21,13 +21,12 @@ def f(s: int):
 profits = defaultdict(int)
 for line in ls:
     ps = [x % 10 for x in f(next(map(int, re.findall(r'-?\d+', line))))]
-    changes = [ps[i + 1] - ps[i] for i in range(len(ps) - 1)]
+    cs = [ps[i + 1] - ps[i] for i in range(len(ps) - 1)]
     seen = {}
-    for i in range(len(changes) - 3):
-        s4 = tuple(changes[i:i + 4])
+    for i in range(len(cs) - 3):
+        s4 = tuple(cs[i:i + 4])
         if s4 not in seen:
-            current_price = ps[i + 4]
-            seen[s4] = current_price
+            seen[s4] = ps[i + 4]
     for s4, price in seen.items():
         profits[s4] += price
 

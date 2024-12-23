@@ -2,8 +2,4 @@ import sys
 
 import networkx as nx
 
-ls = [l.strip() for l in sys.stdin.readlines()]
-G = nx.Graph()
-for l in ls:
-    G.add_edge(*l.split('-'))
-print(','.join(sorted(max(nx.find_cliques(G), key=len))))
+print(','.join(sorted(max(nx.find_cliques(nx.Graph(l.strip().split('-') for l in sys.stdin.readlines())), key=len))))

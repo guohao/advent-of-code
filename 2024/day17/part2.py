@@ -24,4 +24,4 @@ for i in range(len(outs)):
     a_vars.append(a_next)
 s.minimize(a)
 s.check()
-print(s.model().evaluate(a).as_long())
+print(s.model()[a])

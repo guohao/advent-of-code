@@ -1,8 +1,7 @@
-import sys
 import re
+import sys
 from itertools import combinations
 
-import sys
 
 ls = [line.strip() for line in sys.stdin.readlines()]
 

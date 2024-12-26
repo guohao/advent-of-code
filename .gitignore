@@ -167,3 +167,5 @@ config.ini
 # Data
 data
 run
+
+input.txt

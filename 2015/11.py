@@ -9,7 +9,7 @@ def increase(s: str):
     for i in range(len(s) - 1, -1, -1):
         idx = lts.index(s[i])
         if idx != 25:
-            return s[:i] + string.ascii_lowercase[idx + 1] + ('a' * (len(s) - i - 1))
+            return s[:i] + lts[idx + 1] + ('a' * (len(s) - i - 1))
 
 
 increasings = set(lts[i] + lts[i + 1] + lts[i + 2] for i in range(24))
@@ -28,5 +28,5 @@ def f(s):
         return s
 
 
-print(f(raw()))
-print(f(f(raw())))
+print(f(D))
+print(f(f(D)))

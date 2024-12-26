@@ -1,6 +1,6 @@
-from util import *
 import string
-import re
+
+from util import *
 
 
 def f(s: str) -> bool:

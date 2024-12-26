@@ -1,16 +1,15 @@
-import re
-from collections import Counter
+from util import *
 
 n = 2503
+
 dist = [[] for _ in range(n)]
 
-import sys
-
-lines = [line.strip() for line in sys.stdin.readlines()]
-for line in lines:
-    s, d, r = map(int, re.findall(r'\d+', line))
+for ns in NS:
+    s, d, r = ns
     for i in range(n):
         dist[i].append(((i + 1) // (d + r) * d + min(d, (i + 1) % (d + r))) * s)
+
+print(max(dist[n - 1]))
 
 c = Counter()
 for i in range(n):

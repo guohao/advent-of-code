@@ -2,7 +2,7 @@ from util import *
 
 dist = {}
 nodes = set()
-for line in lines():
+for line in L:
     f, t, d = line.split()[0::2]
     nodes |= {f, t}
     dist[f, t] = int(d)
@@ -12,7 +12,7 @@ min_cost = math.inf
 max_cost = -math.inf
 
 for path in permutations(nodes):
-    cost = sum(dist[u, v] for u, v in nb_pair(path))
+    cost = sum(dist[p] for p in nb_pair(path))
     min_cost = min(min_cost, cost)
     max_cost = max(max_cost, cost)
 

@@ -1,32 +1,37 @@
+import hashlib
+import heapq
+import math
 import re
+import sys
+from collections import defaultdict, deque, Counter
+from itertools import count, permutations, combinations, product, combinations_with_replacement
 from typing import Tuple
 
-import math
-import hashlib
-import sys
-from itertools import combinations, count, product, permutations
-from collections import deque
-
-_raw = open('input.txt').read().strip()
 # (r,c)
 _arrow_dirs = {'>': (0, 1), '<': (0, -1), 'v': (1, 0), '^': (-1, 0)}
 
 
-def raw():
-    return _raw
+def _holder():
+    defaultdict()
+    deque()
+    Counter()
+    heapq.heapify([])
+    math.prod([])
+    combinations_with_replacement([], 2)
+    permutations([])
+    combinations([], 2)
+    product([])
 
 
 def ints(l: str):
     return list(map(int, re.findall(r'-?\d+', l)))
 
 
-def nums():
-    return list(map(ints, lines()))
+def nums(l: list[str]):
+    return list(map(ints, l))
 
 
-def lines(s=None):
-    if not s:
-        s = _raw
+def lines(s: str):
     return [l.strip() for l in s.splitlines()]
 
 
@@ -51,10 +56,6 @@ def tuple_add_2(_a, _b) -> tuple[int, int]:
     return _a[0] + _b[0], _a[1] + _b[1]
 
 
-counts = lambda f: sum(map(f, lines()))
-count_nums = lambda f: sum(map(f, nums()))
-
-
 def md5(s: str):
     return hashlib.md5(s.encode()).hexdigest()
 
@@ -68,14 +69,18 @@ def first(f) -> int:
 def nb_pair(l):
     return zip(l[:-1], l[1:])
 
+
 def c2i(c: str):
     return ord(c) - ord('a')
+
 
 def i2c(i: int):
     return chr(i + ord('a'))
 
+
 def join(l):
     return ''.join(map(str, l))
+
 
 class Graph2D:
 
@@ -150,3 +155,30 @@ class Graph2D:
 
 def graph2d():
     return Graph2D()
+
+
+class UnorderedDict:
+    def __init__(self):
+        self.g = {}
+
+    def __setitem__(self, key, value):
+        self.g[tuple(sorted(key))] = value
+
+    def __getitem__(self, item):
+        return self.g[tuple(sorted(item))]
+
+
+input_file = 'input.txt'
+if len(sys.argv) > 1:
+    input_file = sys.argv[1]
+D = open(input_file).read().strip()
+L = lines(D)
+I = ints(D)
+NS = nums(L)
+R = len(L)
+C = len(L[0])
+N = len(NS[0])
+
+counts = lambda f: sum(map(f, L))
+count_nums = lambda f: sum(map(f, NS))
+max_nums = lambda f: max(map(f, NS))

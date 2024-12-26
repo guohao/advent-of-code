@@ -7,5 +7,5 @@ def run(s: str, n: int):
     return len(s)
 
 
-print(run(raw(), 40))
-print(run(raw(), 50))
+print(run(D, 40))
+print(run(D, 50))

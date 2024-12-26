@@ -2,8 +2,8 @@ from util import *
 
 g = Graph2D(rows=1000, cols=1000, default_val=0)
 
-for line in lines():
-    xs, ys, xe, ye = map(int, re.findall(r'\d+', line))
+for line in L:
+    xs, ys, xe, ye = ints(line)
     for i in range(xs, xe + 1):
         for j in range(ys, ye + 1):
             if 'turn on' in line:
@@ -17,8 +17,8 @@ print(sum(g.values()))
 
 g = Graph2D(rows=1000, cols=1000, default_val=0)
 
-for line in lines():
-    xs, ys, xe, ye = map(int, re.findall(r'\d+', line))
+for line in L:
+    xs, ys, xe, ye = ints(line)
     for i in range(xs, xe + 1):
         for j in range(ys, ye + 1):
             if 'turn on' in line:

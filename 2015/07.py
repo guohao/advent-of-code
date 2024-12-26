@@ -12,7 +12,7 @@ def parse(s: str) -> str:
 
 
 def run(b=None):
-    q = deque(map(parse, lines()))
+    q = deque(map(parse, L))
     scope = {}
     while q:
         line = q.popleft()

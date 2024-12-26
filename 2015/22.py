@@ -1,5 +1,6 @@
-import copy
+from util import *
 import math
+from copy import copy
 
 
 class Spell:
@@ -38,8 +39,7 @@ class Player:
             effect.lasts -= 1
             if effect.lasts == 0:
                 del self.effects[effect.name]
-        if self.effects:
-            self.armor = max(e.armor for e in self.effects.values())
+        self.armor = max(e.armor for e in self.effects.values()) if self.effects else 0
 
 
 class Boss:
@@ -48,14 +48,18 @@ class Boss:
         self.damage = damage
 
 
-def fight() -> int:
+def fight(p2=None):
     ans = math.inf
-    states = [(Player(hp=50, mana=500), Boss(int(input().split()[-1]), int(input().split()[-1])))]
+    states = [(Player(hp=50, mana=500), Boss(*I))]
     while states:
         new_states = []
         for player, boss in states:
             if player.cost >= ans:
                 continue
+            if p2:
+                player.hp -= 1
+                if player.hp <= 0:
+                    continue
             player.take_effects(boss)
             if boss.hp <= 0:
                 ans = min(ans, player.cost)
@@ -65,18 +69,20 @@ def fight() -> int:
                     continue
                 if spell.name in player.effects:
                     continue
-                new_player = copy.deepcopy(player)
-                new_boss = copy.deepcopy(boss)
+                new_player = copy(player)
+                new_player.effects = {k: copy(v) for k, v in player.effects.items()}
+                new_boss = copy(boss)
                 new_player.cost += spell.cost
                 new_player.mana -= spell.cost
                 if spell.lasts > 0:
-                    new_player.effects[spell.name] = copy.copy(spell)
+                    new_player.effects[spell.name] = copy(spell)
                 else:
                     new_boss.hp -= spell.damage
                     new_player.hp += spell.heals
                 if new_boss.hp <= 0:
                     ans = min(ans, new_player.cost)
                     continue
+
                 new_player.take_effects(new_boss)
 
                 if new_boss.hp <= 0:
@@ -90,4 +96,5 @@ def fight() -> int:
     print(ans)
 
 
-print(fight())
+fight()
+fight(1)

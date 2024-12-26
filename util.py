@@ -82,11 +82,61 @@ def join(l):
     return ''.join(map(str, l))
 
 
+def nb9(p, _g=None):
+    if not _g:
+        _g = IG
+    for i in range(p[0] - 1, p[0] + 2):
+        for j in range(p[1] - 1, p[1] + 2):
+            if (i, j) != p and (i, j) in _g:
+                yield i, j
+
+
+def nb4(p):
+    for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+        yield p[0] + i, p[1] + j
+
+
+def nb9_v(p, _g=None):
+    if not _g:
+        _g = IG
+    return list(map(_g.get, nb9(p)))
+
+
+def nb4_v(p, _g=None):
+    if not _g:
+        _g = IG
+    return list(map(_g.get, nb4(p)))
+
+
+def count_9(p, value, _g=None):
+    return sum(v == value for v in nb9_v(p, _g))
+
+
+def count_4(p, value, _g=None):
+    return sum(v == value for v in nb4_v(p, _g))
+
+
+def pairs(ls: list[str], sep: str, reverse=False):
+    ps = [(l.strip(), r.strip()) for l, r in [line.split(sep) for line in ls]]
+    if reverse:
+        return [(r, l) for l, r in ps]
+    else:
+        return ps
+
+
+def parts(s: str):
+    return s.split('\n\n')
+
+
 class Graph2D:
 
-    def __init__(self, rows: int = None, cols: int = None, default_val=None, start=(0, 0)):
+    def __init__(self, from_input=False, rows: int = None, cols: int = None, default_val=None, start=(0, 0)):
         self.start = start
         self.grid = {}
+        if from_input:
+            self.grid = {(i, j): c for i, line in enumerate(lines(D)) for j, c in enumerate(line)}
+            self.rows = len(L)
+            self.cols = len(L[0])
         if any([rows, cols]) and not all([rows, cols]):
             raise ValueError("Rows and cols must be provided")
         if rows and cols:
@@ -178,6 +228,8 @@ NS = nums(L)
 R = len(L)
 C = len(L[0])
 N = len(NS[0])
+IG = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line)}
+PS = parts(D)
 
 counts = lambda f: sum(map(f, L))
 count_nums = lambda f: sum(map(f, NS))

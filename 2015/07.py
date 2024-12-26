@@ -18,6 +18,7 @@ def run(b=None):
         line = q.popleft()
         if b and line.startswith('B='):
             scope['B'] = b
+            continue
         try:
             exec(line, {}, scope)
         except:

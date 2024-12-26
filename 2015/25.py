@@ -1,3 +1,6 @@
+from util import *
+
+I, J = I
 c = 20151125
 i = j = 1
 while True:
@@ -5,7 +8,7 @@ while True:
         j += 1
         i -= 1
         c = c * 252533 % 33554393
-        if i == 3010 and j == 3019:
+        if i == I and j == J:
             print(c)
             exit()
     i = j

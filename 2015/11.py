@@ -1,47 +1,32 @@
+import string
+
 from util import *
 
+lts = string.ascii_lowercase
 
-def p1():
-    s = list(map(c2i, raw()))
+
+def increase(s: str):
+    for i in range(len(s) - 1, -1, -1):
+        idx = lts.index(s[i])
+        if idx != 25:
+            return s[:i] + string.ascii_lowercase[idx + 1] + ('a' * (len(s) - i - 1))
+
+
+increasings = set(lts[i] + lts[i + 1] + lts[i + 2] for i in range(24))
+pairs = set(c + c for c in lts)
+
+
+def f(s):
     while True:
-        for i in reversed(range(len(s))):
-            s[i] += 1
-            if s[i] != 26:
-                break
-            else:
-                s[i] = 0
-        if len(set(s[i] for i in range(len(s) - 1) if s[i] == s[i + 1])) < 2:
+        s = increase(s)
+        if any(c in s for c in 'iol'):
             continue
-        if any(chr(x + ord('a')) in 'iol' for x in s):
+        if not any(c in s for c in increasings):
             continue
-        for i in range(len(s) - 2):
-            if s[i] == s[i + 1] - 1 == s[i + 2] - 2:
-                print(join(chr(x + ord('a')) for x in s))
-                return
+        if sum(p in s for p in pairs) < 2:
+            continue
+        return s
 
 
-def p2():
-    s = list(map(c2i, raw()))
-    skip = True
-    while True:
-        for i in reversed(range(len(s))):
-            s[i] += 1
-            if s[i] != 26:
-                break
-            else:
-                s[i] = 0
-        if len(set(s[i] for i in range(len(s) - 1) if s[i] == s[i + 1])) < 2:
-            continue
-        if any(chr(x + ord('a')) in 'iol' for x in s):
-            continue
-        for i in range(len(s) - 2):
-            if s[i] == s[i + 1] - 1 == s[i + 2] - 2:
-                if not skip:
-                    print(''.join(chr(x + ord('a')) for x in s))
-                    exit()
-                else:
-                    skip = False
-
-
-p1()
-p2()
+print(f(raw()))
+print(f(f(raw())))

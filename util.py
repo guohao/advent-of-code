@@ -4,11 +4,13 @@ import math
 import re
 import sys
 from collections import defaultdict, deque, Counter
-from itertools import count, permutations, combinations, product, combinations_with_replacement
+from itertools import count, permutations, combinations, product, combinations_with_replacement,chain
 from typing import Tuple
 
 # (r,c)
 _arrow_dirs = {'>': (0, 1), '<': (0, -1), 'v': (1, 0), '^': (-1, 0)}
+LRDU = 'LRDU'
+LDRU_DIRS = {'L': (0, -1), 'D': (1, 0), 'R': (0, 1), 'U': (-1, 0)}
 
 
 def _holder():
@@ -21,6 +23,7 @@ def _holder():
     permutations([])
     combinations([], 2)
     product([])
+    chain()
 
 
 def ints(l: str):
@@ -31,8 +34,11 @@ def nums(l: list[str]):
     return list(map(ints, l))
 
 
-def lines(s: str):
-    return [l.strip() for l in s.splitlines()]
+def lines(s: str,strip=True):
+    if strip:
+        return [l.strip() for l in s.splitlines()]
+    else:
+        return s.splitlines()
 
 
 def list_add(_a, _b):
@@ -124,8 +130,35 @@ def pairs(ls: list[str], sep: str, reverse=False):
         return ps
 
 
+def move(p, d):
+    if d in _arrow_dirs:
+        return tuple_add(p, _arrow_dirs[d])
+    elif d in LDRU_DIRS:
+        return tuple_add(p, LDRU_DIRS[d])
+
+
 def parts(s: str):
     return s.split('\n\n')
+
+
+def turn(d: tuple[int, int], t: str) -> tuple[int, int]:
+    if t == 'L':
+        return turn_left(d)
+    elif t == 'R':
+        return turn_right(d)
+    else:
+        raise ValueError(f"Invalid turn: {t}")
+
+
+def turn_left(d: tuple[int, int]) -> tuple[int, int]:
+    return -d[1], d[0]
+
+
+def turn_right(d: tuple[int, int]) -> tuple[int, int]:
+    return d[1], -d[0]
+
+def grid(s:str):
+    return {(i, j): c for i, line in enumerate(lines(s,False)) for j, c in enumerate(line)}
 
 
 class Graph2D:
@@ -228,7 +261,7 @@ NS = nums(L)
 R = len(L)
 C = len(L[0])
 N = len(NS[0])
-IG = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line)}
+IG = grid(D)
 PS = parts(D)
 
 counts = lambda f: sum(map(f, L))

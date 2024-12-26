@@ -1,12 +1,8 @@
-import math
-import re
-import sys
-from collections import defaultdict, deque
+from util import *
 
 bots = defaultdict(list)
 tos = defaultdict(list)
-lines = [line.strip() for line in sys.stdin.readlines()]
-for line in lines:
+for line in L:
     if 'value' in line:
         v, b = re.findall(r'\d+', line)
         bots[f'bot {b}'].append(int(v))
@@ -16,7 +12,9 @@ for line in lines:
 q = deque(bot for bot, bag in bots.items() if len(bag) == 2)
 while q:
     bot = q.pop()
-    bag = bots[bot]
+    bag = sorted(bots[bot])
+    if bag == [17, 61]:
+        print(bot[-2:])
     bots[bot] = []
     bots[tos[bot][0]].append(min(bag))
     bots[tos[bot][1]].append(max(bag))

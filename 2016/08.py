@@ -1,15 +1,12 @@
-import itertools
-import re
-import sys
+from util import *
 
 R = 6
 C = 50
 g = [['.'] * C for _ in range(R)]
-lines = [line.strip() for line in sys.stdin.readlines()]
-for line in lines:
-    pos, offset = list(map(int, re.findall(r'-?\d+', line)))
+for line in L:
+    pos, offset = ints(line)
     if 'rect' in line:
-        for i, j in itertools.product(range(offset), range(pos)):
+        for i, j in product(range(offset), range(pos)):
             g[i][j] = '#'
     elif 'row' in line:
         pos %= R
@@ -22,3 +19,6 @@ for line in lines:
             g[i][pos] = col[i]
 
 print(sum(a.count('#') for a in g))
+
+for i in range(R):
+    print(''.join(g[i][j] for j in range(C)))

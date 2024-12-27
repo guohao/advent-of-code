@@ -11,8 +11,7 @@ def f(ns):
 print(count_nums(f))
 
 t = 0
-rows = NS
-columns = list(itertools.chain.from_iterable(zip(*rows)))
+columns = list(itertools.chain.from_iterable(zip(*NS)))
 for i in range(0, len(columns), 3):
     nums = sorted(columns[i:i + 3])
     t += sum(nums[:2]) > nums[2]

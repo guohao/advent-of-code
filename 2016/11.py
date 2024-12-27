@@ -1,95 +1,54 @@
 from util import *
 
-HEIGHT = 4
+
+def tuple_state(_state: list[tuple]):
+    ret = []
+    idx = {e: i for i, fl in enumerate(_state) for e in fl}
+    for fl in _state:
+        pair = set(a for a in fl if any(b[0] == a[0] for b in fl if a != b))
+        single = set(fl) - pair
+        ms = set(a for a in single if a[-1] == 'M')
+        gs = set(a for a in single if a[-1] == 'G')
+        msg = frozenset(idx[m[0] + 'G'] for m in ms)
+        gsm = frozenset(idx[g[0] + 'M'] for g in gs)
+        ret.append((len(pair) // 2, len(ms), len(gs), msg, gsm))
+    return tuple(ret)
 
 
-def p1():
-    q = deque([(0, 0, tuple(tuple(re.findall(r'\S+ microchip|\S+ generator', line)) for line in L))])
-
-    def safe(floor_state: list[list[str]]) -> bool:
-        for floor in floor_state:
-            gc = sum('generator' in x for x in floor)
-            if gc == 0:
-                continue
-            for x in floor:
-                name, type = x.split()
-                name = name.replace('-compatible', '')
-                if 'microchip' == type and name + ' generator' not in floor:
-                    return False
-        return True
-
-    seen = set()
-    while q:
-        step, e, state = q.popleft()
-
-        if state in seen:
-            continue
-        seen.add(state)
-        if all(not a for a in state[:HEIGHT - 1]):
-            print(step)
-            break
-        for ne in [e - 1, e + 1]:
-            if ne not in range(HEIGHT):
-                continue
-            for c in chain(combinations(state[e], 1), combinations(state[e], 2)):
-                n_state = [set(l) for l in state]
-                n_state[e] = {x for x in state[e] if x not in c}
-                n_state[ne] = set(c + state[ne])
-                if safe(n_state):
-                    n_state = tuple(tuple(l) for l in n_state)
-                    q.append((step + 1, ne, n_state))
-
-
-def p2():
+def f(l: list[str]):
+    height = len(l)
     init_state = []
-    for line in L:
-        line = line.replace('-compatible', '')
-        line = line.replace('microchip', 'M')
-        line = line.replace('generator', 'G')
-        items = []
-        for item in re.findall(r'\S+ M|\S+ G', line):
-            name, type = item.split()
-            items.append(name[0].upper() + ' ' + type)
-        init_state.append(items)
-    init_state[0] += ['E M', 'E G', 'D G', 'D M']
-    q = deque([(0, 0, tuple(tuple(l) for l in init_state))])
-
-    def safe(floor_state: list[list[str]]) -> bool:
-        for floor in floor_state:
-            gc = sum('G' in x for x in floor)
-            if gc == 0:
-                continue
-            for x in floor:
-                name, type = x.split()
-                if 'M' == type and name + ' G' not in floor:
-                    return False
-        return True
-
+    for line in l:
+        cur_fl = []
+        for mg in re.findall(r'\S+ microchip|\S+ generator', line):
+            n, t = mg.split()
+            cur_fl.append(f'{n[0].upper()}{t[0].upper()}')
+        init_state.append(tuple(sorted(cur_fl)))
+    hp = [(0, 0, *init_state)]
     seen = set()
-    while q:
-        step, e, state = q.popleft()
-        if (e, state) in seen:
+    while hp:
+        step, cur_fl, *state = heapq.heappop(hp)
+        k = (cur_fl, tuple_state(state))
+        if k in seen:
             continue
-        seen.add((e, state))
-        if all(not a for a in state[:HEIGHT - 1]):
+        seen.add(k)
+        if sum(map(len, state[:-1])) == 0:
             print(step)
             break
-        candidate = state[e]
-        visit = []
-        if e - 1 in range(HEIGHT) and state[e - 1]:
-            visit.append((e - 1, combinations(candidate, 1)))
-        visit.append((e + 1, combinations(candidate, 2)))
-        for ne, select in visit:
-            if ne not in range(HEIGHT):
-                continue
-            for c in select:
-                n_state = list(state)
-                n_state[e] = {x for x in state[e] if x not in c}
-                n_state[ne] = set(c + state[ne])
-                if safe([n_state[e], n_state[ne]]):
-                    n_state = tuple(tuple(sorted(l)) for l in n_state)
-                    q.append((step + 1, ne, n_state))
+        for fl in state:
+            ms = set(m[0] for m in fl if m[1] == 'M')
+            gs = set(g[0] for g in fl if g[1] == 'G')
+            if gs and any(x not in gs for x in ms):
+                break
+        else:
+            for next_fl in {cur_fl + 1, cur_fl - 1} & set(range(height)):
+                for c in chain(combinations(state[cur_fl], 1), combinations(state[cur_fl], 2)):
+                    next_state = list(state)
+                    next_state[cur_fl] = tuple(e for e in state[cur_fl] if e not in c)
+                    next_state[next_fl] = tuple(sorted(state[next_fl] + c))
+                    heapq.heappush(hp, (step + 1, next_fl, *next_state))
 
 
-p1()
-p2()
+f(L)
+L[0] += ' elerium generator elerium-compatible microchip dilithium generator dilithium-compatible microchip'
+f(L)

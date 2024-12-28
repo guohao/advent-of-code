@@ -1,99 +1,54 @@
 from util import *
-import math
-from copy import copy
 
-
-class Spell:
-    def __init__(self, name, cost=0, damage=0, heals=0, armor=0, mana=0, lasts=0):
-        self.name = name
-        self.cost = cost
-        self.damage = damage
-        self.heals = heals
-        self.armor = armor
-        self.mana = mana
-        self.lasts = lasts
-
-
-spells = {
-    Spell("Magic Missile", cost=53, damage=4),
-    Spell("Drain", cost=73, damage=2, heals=2),
-    Spell("Shield", cost=113, armor=7, lasts=6),
-    Spell("Poison", cost=173, damage=3, lasts=6),
-    Spell("Recharge", cost=229, mana=101, lasts=5),
-}
-
-
-class Player:
-    def __init__(self, hp=0, mana=0, armor=0, cost=0):
-        self.hp = hp
-        self.mana = mana
-        self.armor = armor
-        self.cost = cost
-        self.effects = {}
-
-    def take_effects(self, boss):
-        for effect in list(self.effects.values()):
-            self.hp += effect.heals
-            self.mana += effect.mana
-            boss.hp -= effect.damage
-            effect.lasts -= 1
-            if effect.lasts == 0:
-                del self.effects[effect.name]
-        self.armor = max(e.armor for e in self.effects.values()) if self.effects else 0
-
-
-class Boss:
-    def __init__(self, hp, damage):
-        self.hp = hp
-        self.damage = damage
+spells = [
+    (53, 4, 0, 0, 0, 0),
+    (73, 2, 2, 0, 0, 0),
+    (113, 0, 0, 7, 0, 6),
+    (173, 3, 0, 0, 0, 6),
+    (229, 0, 0, 0, 101, 5),
+]
 
 
 def fight(p2=None):
-    ans = math.inf
-    states = [(Player(hp=50, mana=500), Boss(*I))]
-    while states:
-        new_states = []
-        for player, boss in states:
-            if player.cost >= ans:
-                continue
-            if p2:
-                player.hp -= 1
-                if player.hp <= 0:
+    boss_hp, boss_damage = I
+    heap = [(0, 50, 500, (), boss_hp, False)]
+    while heap:
+        cost, hp, mana, effects, boss_hp, boss_turn = heapq.heappop(heap)
+        if p2 and not boss_turn:
+            hp -= 1
+        if hp <= 0:
+            continue
+        armor = 0
+        n_effects = []
+        for i, heal, add_mana, damage, add_armor, lasts in effects:
+            hp += heal
+            mana += add_mana
+            armor += add_armor
+            boss_hp -= damage
+            if lasts > 1:
+                n_effects.append((i, heal, add_mana, damage, add_armor, lasts - 1))
+        effects = n_effects
+        if boss_hp <= 0:
+            print(cost)
+            break
+        if boss_turn:
+            heapq.heappush(heap, (cost, hp - boss_damage + armor, mana, tuple(effects), boss_hp, False))
+        else:
+            for j, (cost_mana, damage, heal, add_armor, add_mana, lasts) in enumerate(spells):
+                if j in {e[0] for e in effects}:
                     continue
-            player.take_effects(boss)
-            if boss.hp <= 0:
-                ans = min(ans, player.cost)
-                continue
-            for spell in spells:
-                if player.mana < spell.cost:
+                if cost_mana > mana:
                     continue
-                if spell.name in player.effects:
-                    continue
-                new_player = copy(player)
-                new_player.effects = {k: copy(v) for k, v in player.effects.items()}
-                new_boss = copy(boss)
-                new_player.cost += spell.cost
-                new_player.mana -= spell.cost
-                if spell.lasts > 0:
-                    new_player.effects[spell.name] = copy(spell)
+                new_effects = effects.copy()
+                if lasts == 0:
+                    new_boss_hp = boss_hp - damage
+                    new_player_hp = hp + heal
                 else:
-                    new_boss.hp -= spell.damage
-                    new_player.hp += spell.heals
-                if new_boss.hp <= 0:
-                    ans = min(ans, new_player.cost)
-                    continue
-
-                new_player.take_effects(new_boss)
-
-                if new_boss.hp <= 0:
-                    ans = min(ans, new_player.cost)
-                    continue
-                new_player.hp -= max(1, new_boss.damage - new_player.armor)
-                if new_player.hp <= 0:
-                    continue
-                new_states.append((new_player, new_boss))
-        states = new_states
-    print(ans)
+                    new_player_hp = hp
+                    new_boss_hp = boss_hp
+                    new_effects += ((j, heal, add_mana, damage, add_armor, lasts),)
+                ps = (cost + cost_mana, new_player_hp, mana - cost_mana, new_effects)
+                heapq.heappush(heap, (*ps, new_boss_hp, True))
 
 
 fight()

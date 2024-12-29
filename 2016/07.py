@@ -1,4 +1,4 @@
-from regex import regex
+import regex
 
 from util import *
 

@@ -1,8 +1,7 @@
 from util import *
 
 ans = ''
-for i in count():
-    d = md5(D + str(i))
+for d in md5_seq(D):
     if d[:5] == '0' * 5:
         ans += d[5]
         if len(ans) == 8:
@@ -10,8 +9,7 @@ for i in count():
             break
 
 ans = ['x'] * 8
-for i in count():
-    d = md5(D + str(i))
+for d in md5_seq(D):
     if d[:5] == '0' * 5:
         p = int(d[5], 16)
         if p < 8 and ans[p] == 'x':

@@ -65,12 +65,14 @@ def tuple_add_2(_a, _b) -> tuple[int, int]:
 def md5(s: str):
     return hashlib.md5(s.encode()).hexdigest()
 
+def md5_seq(s: str):
+    for i in count():
+        yield md5(f'{s}{i}')
 
 def first(f) -> int:
     for i in count():
         if f(i):
             return i
-
 
 def nb_pair(l):
     return zip(l[:-1], l[1:])

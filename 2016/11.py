@@ -17,13 +17,10 @@ def tuple_state(_state: list[tuple]):
 
 def f(l: list[str]):
     height = len(l)
-    init_state = []
-    for line in l:
-        cur_fl = []
-        for mg in re.findall(r'\S+ microchip|\S+ generator', line):
-            n, t = mg.split()
-            cur_fl.append(f'{n[0].upper()}{t[0].upper()}')
-        init_state.append(tuple(sorted(cur_fl)))
+    init_state = [
+        tuple(sorted(f'{n[0].upper()}{t[0].upper()}' for n, t in
+                     (mg.split() for mg in re.findall(r'\S+ microchip|\S+ generator', line)))) for line in l
+    ]
     hp = [(0, 0, *init_state)]
     seen = set()
     while hp:

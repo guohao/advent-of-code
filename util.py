@@ -27,8 +27,11 @@ def _holder():
     cycle([0,1])
 
 
-def ints(l: str):
-    return list(map(int, re.findall(r'-?\d+', l)))
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r'-?\d+', l)))
+    else:
+        return list(map(int, re.findall(r'\d+', l)))
 
 
 def nums(l: list[str]):

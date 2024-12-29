@@ -23,9 +23,9 @@ def solve(data: str, boost=0):
                 if m.group(3):
                     for cell in m.group(3).split('; '):
                         if cell.startswith('weak'):
-                            weak = cell.replace(',', '').split()[2:]
+                            weak = cell.subf(',', '').split()[2:]
                         else:
-                            immune = cell.replace(',', '').split()[2:]
+                            immune = cell.subf(',', '').split()[2:]
                 damage = int(m.group(4))
                 if i == 0:
                     damage += boost

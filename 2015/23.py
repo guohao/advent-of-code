@@ -9,26 +9,30 @@ def f(p2=None):
     if p2:
         r['a'] = 1
     while pc < len(prog):
-        i = prog[pc]
-        if 'hlf' in i:
-            r[i.split()[-1]] //= 2
-        elif 'tpl' in i:
-            r[i.split()[-1]] *= 3
-        elif 'inc' in i:
-            r[i.split()[-1]] += 1
-        elif 'jmp' in i:
-            pc += int(i.split()[-1])
-            continue
-        elif 'jie' in i:
-            if r[i[4]] % 2 == 0:
-                pc += int(i.split()[-1])
-                continue
-        elif 'jio' in i:
-            if r[i[4]] == 1:
-                pc += int(i.split()[-1])
-                continue
+        op, *opr = prog[pc].replace(',', '').split()
+        if len(opr) == 1:
+            a = opr[0]
+            b = None
         else:
-            raise Exception(i)
+            a, b = opr
+        match op:
+            case 'hlf':
+                r[a] //= 2
+            case 'tpl':
+                r[a] *= 3
+            case 'inc':
+                r[a] += 1
+            case 'jmp':
+                pc += int(a)
+                continue
+            case 'jie':
+                if r[a] % 2 == 0:
+                    pc += int(b)
+                    continue
+            case 'jio':
+                if r[a] == 1:
+                    pc += int(b)
+                    continue
         pc += 1
     print(r['b'])
 

@@ -4,7 +4,7 @@ import math
 import re
 import sys
 from collections import defaultdict, deque, Counter
-from itertools import count, permutations, combinations, product, combinations_with_replacement,chain
+from itertools import count, permutations, combinations, product, combinations_with_replacement,chain,cycle
 from typing import Tuple
 
 # (r,c)
@@ -24,6 +24,7 @@ def _holder():
     combinations([], 2)
     product([])
     chain()
+    cycle([0,1])
 
 
 def ints(l: str):

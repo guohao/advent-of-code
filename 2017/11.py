@@ -1,5 +1,6 @@
-from collections import Counter
+from util import *
 
+d = D.split(',')
 ds = ['s', 'se', 'ne', 'n', 'nw', 'sw']
 pairs = {'s': 'n', 'se': 'nw', 'ne': 'sw'}
 
@@ -25,8 +26,5 @@ def distance(path: list[str]) -> int:
                 c[r] -= diff
 
 
-d = input().split(',')
-ans = 0
-for i in range(len(d)):
-    ans = max(ans, distance(d[:i]))
-print(ans)
+print(distance(d))
+print(max(distance(d[:i]) for i in range(len(d))))

@@ -1,13 +1,10 @@
-import re
 import string
 
-ans = string.ascii_lowercase[:16]
-
-cmds = input().split(',')
+from util import *
 
 
 def dance(s: str) -> str:
-    for cmd in cmds:
+    for cmd in D.split(','):
         if 's' in cmd:
             x = int(cmd[1:])
             s = s[-x:] + s[:-x]
@@ -21,6 +18,8 @@ def dance(s: str) -> str:
     return s
 
 
+ans = string.ascii_lowercase[:16]
+print(dance(ans))
 i = 0
 seen = {}
 N = 1000000000

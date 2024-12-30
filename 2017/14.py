@@ -1,8 +1,9 @@
-d = input()
+import networkx as nx
+
+from util import *
 
 
 def knot_hash(s: str):
-    from collections import deque
     nums = list(map(ord, s)) + [17, 31, 73, 47, 23]
     q = deque(range(256))
     skip_size = 0
@@ -28,9 +29,18 @@ def knot_hash(s: str):
     return h
 
 
-ans = 0
-for i in range(128):
-     for c in knot_hash(f'{d}-{i}'):
-         ans +=int(c,16).bit_count()
+print(sum(int(c, 16).bit_count() for i in range(128) for c in knot_hash(f'{D}-{i}')))
 
-print(ans)
+g = nx.Graph()
+for i in range(128):
+    for j, c in enumerate(knot_hash(f'{D}-{i}')):
+        for k, used in enumerate(f'{int(c, 16):04b}'):
+            if used == '1':
+                u = i, j * 4 + k
+                g.add_node(u)
+                for dx, dy in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+                    v = u[0] + dx, u[1] + dy
+                    if v in g:
+                        g.add_edge(u, v)
+
+print(len(list(nx.connected_components(g))))

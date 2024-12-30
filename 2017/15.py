@@ -1,13 +1,18 @@
-import sys
-import re
 from functools import cache
 
-lines = [line.strip() for line in sys.stdin.readlines()]
-AB = []
-for line in lines:
-    nums = list(map(int, re.findall(r'-?\d+', line)))
-    AB.append(nums[0])
-a, b = AB
+from util import *
+
+a, b = I
+i = 0
+ans = 0
+N = 40000000
+while i < N:
+    a = (a * 16807) % 2147483647
+    b = (b * 48271) % 2147483647
+    if a & 0xFFFF == b & 0xFFFF:
+        ans += 1
+    i += 1
+print(ans)
 
 
 @cache
@@ -27,6 +32,7 @@ def gen_next_b(prev: int) -> int:
 
 
 ans = 0
+a, b = I
 N = 5000000
 for i in range(N):
     a = gen_next_a(a)

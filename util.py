@@ -4,7 +4,7 @@ import math
 import re
 import sys
 from collections import defaultdict, deque, Counter
-from itertools import count, permutations, combinations, product, combinations_with_replacement,chain,cycle
+from itertools import count, permutations, combinations, product, combinations_with_replacement, chain, cycle
 from typing import Tuple
 
 # (r,c)
@@ -24,7 +24,7 @@ def _holder():
     combinations([], 2)
     product([])
     chain()
-    cycle([0,1])
+    cycle([0, 1])
 
 
 def ints(l: str, neg=True):
@@ -38,7 +38,7 @@ def nums(l: list[str]):
     return list(map(ints, l))
 
 
-def lines(s: str,strip=True):
+def lines(s: str, strip=True):
     if strip:
         return [l.strip() for l in s.splitlines()]
     else:
@@ -69,14 +69,17 @@ def tuple_add_2(_a, _b) -> tuple[int, int]:
 def md5(s: str):
     return hashlib.md5(s.encode()).hexdigest()
 
+
 def md5_seq(s: str):
     for i in count():
         yield md5(f'{s}{i}')
+
 
 def first(f) -> int:
     for i in count():
         if f(i):
             return i
+
 
 def nb_pair(l):
     return zip(l[:-1], l[1:])
@@ -95,7 +98,7 @@ def join(l):
 
 
 def nb9(p, _g=None):
-    if not _g:
+    if _g is None:
         _g = IG
     for i in range(p[0] - 1, p[0] + 2):
         for j in range(p[1] - 1, p[1] + 2):
@@ -109,9 +112,9 @@ def nb4(p):
 
 
 def nb9_v(p, _g=None):
-    if not _g:
+    if _g is None:
         _g = IG
-    return list(map(_g.get, nb9(p)))
+    return list(map(_g.get, nb9(p, _g)))
 
 
 def nb4_v(p, _g=None):
@@ -163,8 +166,9 @@ def turn_left(d: tuple[int, int]) -> tuple[int, int]:
 def turn_right(d: tuple[int, int]) -> tuple[int, int]:
     return d[1], -d[0]
 
-def grid(s:str):
-    return {(i, j): c for i, line in enumerate(lines(s,False)) for j, c in enumerate(line)}
+
+def grid(s: str):
+    return {(i, j): c for i, line in enumerate(lines(s, False)) for j, c in enumerate(line)}
 
 
 class Graph2D:

@@ -1,14 +1,15 @@
-from itertools import count
-
-import re
-
-nums = list(map(int, re.findall(r'-?\d+', input())))
+from util import *
 
 seen = set()
+nums = I
+pc = 0
 for _ in count(1):
     if tuple(nums) in seen:
         print(len(seen))
-        break
+        pc += 1
+        if pc == 2:
+            break
+        seen.clear()
     seen.add(tuple(nums))
     most = max(nums)
     t = -1

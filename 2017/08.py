@@ -1,10 +1,8 @@
-import sys
-from collections import defaultdict
+from util import *
 
-lines = [line.strip() for line in sys.stdin.readlines()]
 rs = defaultdict(int)
 ans = 0
-for line in lines:
+for line in L:
     line = line.replace('dec', '-=')
     line = line.replace('inc', '+=')
     cells = line.split()
@@ -12,6 +10,6 @@ for line in lines:
     cells[-3] = f'rs["{cells[-3]}"]'
     line = ' '.join(cells) + ' else 0'
     exec(line)
-    ans = max(ans,max(rs.values()))
-
+    ans = max(ans, max(rs.values()))
+print(max(rs.values()))
 print(ans)

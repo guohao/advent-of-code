@@ -1,15 +1,17 @@
-import sys
 from functools import cache
 
 import networkx as nx
 
-lines = [line.strip() for line in sys.stdin.readlines()]
+from util import *
+
 g = nx.DiGraph()
-for line in lines:
+for line in L:
     cells = line.replace(',', '').split()
     g.add_node(cells[0], v=int(cells[1][1:-1]))
     if '->' in line:
-        for c in cells[3:]: g.add_edge(cells[0], c);
+        cells = line.replace(',', '').split()
+        for c in cells[3:]:  g.add_edge(cells[0], c);
+print(next(nx.topological_sort(g)))
 
 
 @cache
@@ -30,14 +32,10 @@ def need_to_be(es: int, root: str) -> int:
             return need_to_be(ue, up)
 
 
-def solve():
-    bottom = next(nx.topological_sort(g))
-    vs = list(g[bottom].keys())
-    for i, v in enumerate(vs):
-        l, m, r = [tw(vs[(i + j) % len(vs)]) for j in range(-1, 2)]
-        if l == r != m:
-            print(need_to_be(l, v))
-            break
-
-
-solve()
+bottom = next(nx.topological_sort(g))
+vs = list(g[bottom].keys())
+for i, v in enumerate(vs):
+    l, m, r = [tw(vs[(i + j) % len(vs)]) for j in range(-1, 2)]
+    if l == r != m:
+        print(need_to_be(l, v))
+        break

@@ -1,13 +1,29 @@
-import sys
-import networkx as nx
+from util import *
 
-g = nx.Graph()
-lines = [line.strip() for line in sys.stdin.readlines()]
+x, y = R // 2, R // 2
+dx, dy = -1, 0
+
+ans = 0
+for _ in range(10000):
+    u = x, y
+    s = IG.get(u, '.')
+    if s == '#':
+        dx, dy = dy, -dx
+        IG[u] = '.'
+    else:
+        dx, dy = -dy, dx
+        IG[u] = '#'
+        ans += 1
+    x, y = x + dx, y + dy
+
+print(ans)
+
+
 nodes = {}
-n = len(lines)
+n = len(L)
 for i in range(n):
     for j in range(n):
-        nodes[i, j] ='infected' if  lines[i][j] =='#' else 'clean'
+        nodes[i, j] = 'infected' if L[i][j] == '#' else 'clean'
 
 x, y = n // 2, n // 2
 dx, dy = -1, 0
@@ -19,10 +35,10 @@ for _ in range(10000000):
     if s == 'clean':
         dx, dy = -dy, dx
         nodes[u] = 'weakened'
-    elif s=='weakened':
+    elif s == 'weakened':
         nodes[u] = 'infected'
         ans += 1
-    elif s=='infected':
+    elif s == 'infected':
         dx, dy = dy, -dx
         nodes[u] = 'flagged'
     else:

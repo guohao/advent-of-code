@@ -264,7 +264,8 @@ class UnorderedDict:
 input_file = 'input.txt'
 if len(sys.argv) > 1:
     input_file = sys.argv[1]
-D = open(input_file).read().strip()
+RAW = open(input_file).read()
+D = RAW.strip()
 L = lines(D)
 I = ints(D)
 NS = nums(L)

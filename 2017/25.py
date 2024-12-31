@@ -1,13 +1,11 @@
-import sys
-from collections import deque
+from  util import *
 
-parts = sys.stdin.read().split('\n\n')
-p0 = parts[0].splitlines()
+p0 = PS[0].splitlines()
 state = p0[0][-2]
 total = int(p0[1].split()[-2])
 
 states = {}
-for p in parts[1:]:
+for p in PS[1:]:
     lines = [x.split()[-1][:-1] for x in p.splitlines()]
     states[lines[0]] = lines[2:5] + lines[6:]
 q = deque(['0'] * total)

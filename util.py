@@ -261,19 +261,22 @@ class UnorderedDict:
         return self.g[tuple(sorted(item))]
 
 
-input_file = 'input.txt'
-if len(sys.argv) > 1:
-    input_file = sys.argv[1]
-RAW = open(input_file).read()
-D = RAW.strip()
-L = lines(D)
-I = ints(D)
-NS = nums(L)
-R = len(L)
-C = len(L[0])
-N = len(NS[0])
-IG = grid(D)
-PS = parts(D)
+try:
+    input_file = 'input.txt'
+    if len(sys.argv) > 1:
+        input_file = sys.argv[1]
+    RAW = open(input_file).read()
+    D = RAW.strip()
+    L = lines(D)
+    I = ints(D)
+    NS = nums(L)
+    R = len(L)
+    C = len(L[0])
+    N = len(NS[0])
+    IG = grid(D)
+    PS = parts(D)
+except:
+    pass
 
 counts = lambda f: sum(map(f, L))
 count_nums = lambda f: sum(map(f, NS))

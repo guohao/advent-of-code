@@ -44,10 +44,6 @@ def drop(x, y):
 
 drop(500, 0)
 print(sum(v in '~|' for v in G.values()))
-import re
-from util import *
-
-sys.setrecursionlimit(10000)
 
 G = {}
 
@@ -62,9 +58,6 @@ for line in L:
 
 MIN_X, MAX_X = min(x for x, _ in G), max(x for x, _ in G)
 MIN_Y, MAX_Y = min(y for _, y in G), max(y for _, y in G)
-
-print(MIN_Y, MAX_Y)
-
 
 def drop(x, y):
     if y > MAX_Y:

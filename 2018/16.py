@@ -1,4 +1,3 @@
-import re
 from util import *
 
 op_all = {
@@ -19,45 +18,51 @@ op_all = {
     'eqri': lambda r, a, b: int(r[a] == b),
     'eqrr': lambda r, a, b: int(r[a] == r[b])}
 
-t = 0
-parts = D.split('\n\n\n')
-for p in parts[0].split('\n\n'):
-    b, c, a = [list(map(int, re.findall(r'-?\d+', l))) for l in p.splitlines()]
-    cnt = 0
-    for op in op_all.values():
-        r = b.copy()
-        r[c[3]] = op(r, c[1], c[2])
-        cnt += r == a
-    t += cnt >= 3
 
-print(t)
-opd = defaultdict(set)
+def ints(line):
+    return list(map(int, re.findall(r'-?\d+', line)))
 
-for p in parts[0].split('\n\n'):
-    b, c, a = [list(map(int, re.findall(r'-?\d+', l))) for l in p.splitlines()]
-    for name, op in op_all.items():
-        r = b.copy()
-        r[c[3]] = op(r, c[1], c[2])
-        if r == a:
-            opd[c[0]].add(name)
 
-while True:
-    if all(len(v) == 1 for v in opd.values()):
-        opd = {k: list(v)[0] for k, v in opd.items()}
-        break
-    for k, v in opd.copy().items():
-        if len(v) == 1:
-            vv = list(v)[0]
-            for k2, v2 in opd.items():
-                if k2 == k:
-                    continue
-                if vv in v2:
-                    v2.remove(vv)
+def opcs(before, op, after):
+    ret = set()
+    for name, action in op_all.items():
+        curr = before.copy()
+        curr[op[3]] = action(curr, op[1], op[2])
+        if curr == after:
+            ret.add(name)
+    return ret
 
-R = defaultdict(int)
-for line in parts[1].splitlines():
-    line = line.strip()
-    c = list(map(int, re.findall(r'-?\d+', line)))
-    op = op_all[opd[c[0]]]
-    R[c[3]] = op(R, c[1], c[2])
-print(R[0])
+
+def p1(data: str):
+    ans = 0
+    for part in data.split('\n\n\n')[0].split('\n\n'):
+        if len(opcs(*list(map(ints, part.splitlines())))) > 2:
+            ans += 1
+    return ans
+
+
+def p2(data: str):
+    sample, test = data.split('\n\n\n')
+    opm = defaultdict(lambda: set(op_all.keys()))
+    for part in sample.split('\n\n'):
+        before, ops, after = list(map(ints, part.splitlines()))
+        opm[ops[0]] = opm[ops[0]].intersection(opcs(before, ops, after))
+    nto = {}
+    while len(nto) != len(opm):
+        for k in opm:
+            for found in nto.values():
+                if found in opm[k]:
+                    opm[k].remove(found)
+            if len(opm[k]) == 1:
+                nto[k] = list(opm[k])[0]
+    assert len(nto) == 16
+
+    r = [0] * 4
+    for part in test.splitlines():
+        if not part:
+            continue
+        op = ints(part)
+        r[op[3]] = op_all[nto[op[0]]](r, op[1], op[2])
+    return r[0]
+print(p1(D))
+print(p2(D))

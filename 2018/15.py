@@ -1,171 +1,112 @@
-import math
 from util import *
-from itertools import count, product
-
 import networkx as nx
 
 
-def p1():
-    g = nx.Graph()
+def solve(data: str, elf_ap: int):
+    G = nx.Graph()
+    units = {}
+    neighbor_directions = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+    elf_deaths = set()
 
-    gs = {}
-    es = {}
+    def free_node(k):
+        if k in units:
+            del units[k]
+        i, j = k
+        G.add_node(k)
+        for nb in [(dx + i, dy + j) for dx, dy in neighbor_directions]:
+            if G.has_node(nb):
+                G.add_edge(nb, k)
 
-    def add_empty(_y, _x):
-        for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
-            nb = _y + dy, _x + dx
-            g.add_node((_y, _x))
-            if nb in g:
-                g.add_edge(nb, (_y, _x))
+    def build_graph():
+        for i, line in enumerate(data.splitlines()):
+            for j, c in enumerate(line):
+                k = (i, j)
+                if c == '.':
+                    free_node(k)
+                elif c == 'E':
+                    units[k] = (c, elf_ap, 200)
+                elif c == 'G':
+                    units[k] = (c, 3, 200)
 
-    for y, line in enumerate(L):
-        units = {'G': gs, 'E': es}
-        for x, c in enumerate(line):
-            if c == '#':
+    def enemies(c):
+        return [x for x, (uc, _, _) in units.items() if uc != c]
+
+    def fewest_hp_nb(k, enemies_pos):
+        i, j = k
+        ans = None
+        min_hp = 201
+        for ek in [(i + dx, j + dy) for dx, dy in neighbor_directions]:
+            if ek not in enemies_pos:
                 continue
-            elif c in 'GE':
-                units[c][y, x] = 200
-            elif c == '.':
-                add_empty(y, x)
+            _, _, ehp = units[ek]
+            if min_hp > ehp:
+                ans = ek
+                min_hp = ehp
+        return ans
 
-    for turn in count():
-        for y, x in sorted(gs | es):
-            if (y, x) not in gs | es:
+    def move(k, enemies_pos):
+        if fewest_hp_nb(k, enemies_pos):
+            return k
+        free_node(k)
+        i, j = k
+        nbs = [(dx + x, dy + y) for (x, y), (dx, dy) in product(enemies_pos, neighbor_directions)]
+        squares = [nb for nb in nbs if G.has_node(nb) and nx.has_path(G, (i, j), nb)]
+        squares.sort(key=lambda x: (len(nx.shortest_path(G, k, x)), x))
+        if not squares:
+            G.remove_node(k)
+            return k
+        nearest = squares[0]
+        paths = sorted(nx.all_shortest_paths(G, (i, j), nearest))
+        k = paths[0][1]
+        G.remove_node(k)
+        return k
+
+    def attack(k, ap, enemies_pos):
+        ek = fewest_hp_nb(k, enemies_pos)
+        if ek:
+            ec, eap, ehp = units[ek]
+            ehp -= ap
+            if ehp <= 0:
+                if ec == 'E':
+                    elf_deaths.add(k)
+                free_node(ek)
+            else:
+                units[ek] = (ec, eap, ehp)
+
+    def fight() -> bool:
+        for k in [(i, j) for i, j in sorted(units.keys())]:
+            if k not in units:
                 continue
-            mates, enemies = (gs, es) if (y, x) in gs else (es, gs)
-            if not enemies:
-                print(turn * sum((gs | es).values()))
-                exit()
-            neighbors = [(dy + y, dx + x) for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]]
-            if all(nb not in enemies for nb in neighbors):
-                sources = [nb for nb in neighbors if nb in g]
-                targets = []
-                for ey, ex in enemies:
-                    for nb in [(dy + ey, dx + ex) for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]]:
-                        if nb in g:
-                            targets.append(nb)
-                min_len = math.inf
-                target = -1, -1
-                for u, v in product(sources, targets):
-                    if nx.has_path(g, u, v):
-                        pl = nx.shortest_path_length(g, u, v)
-                        if pl < min_len:
-                            min_len = pl
-                            target = u
-                        elif pl == min_len:
-                            target = min(u, target)
-                if target != (-1, -1):
-                    if (y, x) not in mates:
-                        print(mates)
-                        print(y, x)
-                    mates[target] = mates[y, x]
-                    del mates[y, x]
-                    g.remove_node(target)
-                    add_empty(y, x)
-                    y, x = target
-            neighbors = [(dy + y, dx + x) for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]]
-            min_hp = math.inf
-            attack_target = -1, -1
-            for nb in sorted(neighbors):
-                if nb in enemies:
-                    if enemies[nb] < min_hp:
-                        min_hp = enemies[nb]
-                        attack_target = nb
-                    elif enemies[nb] == min_hp:
-                        attack_target = min(nb, attack_target)
-            if attack_target != (-1, -1):
-                enemies[attack_target] -= 3
-                if enemies[attack_target] <= 0:
-                    del enemies[attack_target]
-                    add_empty(*attack_target)
+            c, ap, hp = units[k]
+            es = enemies(c)
+            if not es:
+                return False
+            k = move(k, es)
+            attack(k, ap, es)
+            units[k] = (c, ap, hp)
+        return True
+
+    build_graph()
+    t = 0
+    while fight():
+        t += 1
+    return len(elf_deaths) == 0, t * sum(hp for _, (_, _, hp) in units.items())
 
 
-def p2():
-    def fight(ep: int) -> int:
-        g = nx.Graph()
-        gs = {}
-        es = {}
-
-        def add_empty(_y, _x):
-            for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
-                nb = _y + dy, _x + dx
-                g.add_node((_y, _x))
-                if nb in g:
-                    g.add_edge(nb, (_y, _x))
-
-        for y, line in enumerate(lines):
-            units = {'G': gs, 'E': es}
-            for x, c in enumerate(line):
-                if c == '#':
-                    continue
-                elif c in 'GE':
-                    units[c][y, x] = 200
-                elif c == '.':
-                    add_empty(y, x)
-
-        for turn in count():
-            for y, x in sorted(gs | es):
-                if (y, x) not in gs | es:
-                    continue
-                mates, enemies = (gs, es) if (y, x) in gs else (es, gs)
-                if not enemies:
-                    print(turn * sum((gs | es).values()))
-                    return True
-                neighbors = [(dy + y, dx + x) for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]]
-                if all(nb not in enemies for nb in neighbors):
-                    sources = [nb for nb in neighbors if nb in g]
-                    targets = []
-                    for ey, ex in enemies:
-                        for nb in [(dy + ey, dx + ex) for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]]:
-                            if nb in g:
-                                targets.append(nb)
-                    min_len = math.inf
-                    target = -1, -1
-                    for u, v in product(sources, targets):
-                        if nx.has_path(g, u, v):
-                            pl = nx.shortest_path_length(g, u, v)
-                            if pl < min_len:
-                                min_len = pl
-                                target = u
-                            elif pl == min_len:
-                                target = min(u, target)
-                    if target != (-1, -1):
-                        if (y, x) not in mates:
-                            print(mates)
-                            print(y, x)
-                        mates[target] = mates[y, x]
-                        del mates[y, x]
-                        g.remove_node(target)
-                        add_empty(y, x)
-                        y, x = target
-                neighbors = [(dy + y, dx + x) for dy, dx in [(-1, 0), (1, 0), (0, 1), (0, -1)]]
-                min_hp = math.inf
-                attack_target = -1, -1
-                for nb in sorted(neighbors):
-                    if nb in enemies:
-                        if enemies[nb] < min_hp:
-                            min_hp = enemies[nb]
-                            attack_target = nb
-                        elif enemies[nb] == min_hp:
-                            attack_target = min(nb, attack_target)
-                if attack_target != (-1, -1):
-                    if enemies == gs:
-                        enemies[attack_target] -= ep
-                    else:
-                        enemies[attack_target] -= 3
-                    if enemies[attack_target] <= 0:
-                        if es == enemies:
-                            return -1
-                        del enemies[attack_target]
-                        add_empty(*attack_target)
-
-    lines = L
-    for p in count(4):
-        outcome = fight(p)
-        if outcome != -1:
-            print(outcome)
-            break
+def p1(data: str):
+    return solve(data, 3)[1]
 
 
-p1()
-p2()
+def p2(data: str):
+    l, r = 10, 50
+    while l <= r:
+        m = (l + r) // 2
+        all_alive, ans = solve(data, m)
+        if l == r:
+            return ans
+        if all_alive:
+            r = m - 1
+        else:
+            l = m + 1
+print(p1(D))
+print(p2(D))

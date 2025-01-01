@@ -20,10 +20,12 @@ def f(p2=None):
         for cnt, color in map(str.split, re.findall(pattern, cells[1])):
             if p2:
                 c_max[color] = max(c_max[color], int(cnt))
-            if c_max[color] < int(cnt):
-                break
+            else:
+                if c_max[color] < int(cnt):
+                    break
         else:
-            t += i
+            if not p2:
+                t += i
         if p2:
             t += math.prod(c_max.values())
     print(t)

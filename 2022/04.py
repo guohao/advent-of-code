@@ -1,11 +1,10 @@
 from util import *
 
-t = 0
-for a, b, c, d in NS:
-    t += (c - a) * (d - b) <= 0
-print(t)
-
-t = 0
-for a, b, c, d in NS:
-    t += (d - a) * (c - b) <= 0
-print(t)
+t0 = 0
+t1 = 0
+for line in L:
+    a, b, c, d = ints(line, False)
+    t0 += (c - a) * (d - b) <= 0
+    t1 += (d - a) * (c - b) <= 0
+print(t0)
+print(t1)

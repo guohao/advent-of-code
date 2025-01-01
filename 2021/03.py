@@ -1,19 +1,15 @@
 from util import *
 
-lines = L
-
-seq = [Counter(l).most_common(1)[0][0] for l in zip(*lines)]
+seq = [Counter(l).most_common(1)[0][0] for l in zip(*L)]
 
 seq = ''.join(seq)
 a = int(seq, 2)
 b = ~a & ((1 << len(seq)) - 1)
 print(a * b)
-from util import *
-from collections import Counter
 
-obc = lines
-co2bc = lines
-for i in range(len(lines[0])):
+obc = L
+co2bc = L
+for i in range(len(L[0])):
     if len(obc) != 1:
         c = Counter(x[i] for x in obc)
         mo = '1' if c['1'] >= c['0'] else '0'

@@ -45,5 +45,3 @@ for i in range(1, xr + 1):
         if my != -1:
             ans.add((i, j))
 print(len(ans))
-sns = list(map(t, data.splitlines()))
-print(max(magnitude(merge(*p)) for p in itertools.permutations(sns, 2)))

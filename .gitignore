@@ -167,6 +167,8 @@ config.ini
 # Data
 data
 run
+*.txt
 
 input.txt
 */util.py
+

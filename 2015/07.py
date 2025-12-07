@@ -1,31 +1,34 @@
-from util import *
-
-
-def parse(s: str) -> str:
-    s = s.upper().strip()
-    s = s.replace('AND', '&')
-    s = s.replace('OR', '|')
-    s = s.replace('NOT ', '~')
-    s = s.replace('LSHIFT ', '<<')
-    s = s.replace('RSHIFT ', '>>')
-    return '='.join(reversed(s.split(" -> ")))
-
-
-def run(b=None):
-    q = deque(map(parse, L))
-    scope = {}
-    while q:
-        line = q.popleft()
-        if b and line.startswith('B='):
-            scope['B'] = b
+import sys
+ls = sys.stdin.readlines()
+def run(part2,b):
+    ws = {}
+    cmds = []
+    for l in ls:
+        left,right = l.strip().split('->')[::-1]
+        if left.strip() =='b' and part2:
+            ws['B'] = b
             continue
-        try:
-            exec(line, {}, scope)
-        except:
-            q.append(line)
-    return eval('A', scope)
-
-
-a = run()
+        right = '(' + right +")&0xffff"
+        l = left +'='+ right
+        l = l.strip().upper()
+        l = l.replace('AND','&')
+        l = l.replace('OR','|')
+        l = l.replace('LSHIFT','<<')
+        l = l.replace('RSHIFT','>>')
+        l = l.replace('NOT','~')
+        cmds.append(l)
+    while cmds:
+        nc = []
+        for c in cmds:
+            try:
+                exec(c,ws)
+            except Exception as e:
+                nc.append(c)
+                pass
+        cmds = nc
+    return ws['A']
+a = run(False,-1)
 print(a)
-print(run(a))
+print(run(True,a))
+
+

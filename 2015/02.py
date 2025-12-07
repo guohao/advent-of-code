@@ -1,12 +1,13 @@
-from util import *
+import sys
+import re
+ls = sys.stdin.readlines()
+r1 = 0
+r2 = 0
+for l in ls:
+    a,b,c =list(map(int,re.findall(r'\d+',l)))
+    areas = [a*b,b*c,a*c]
+    r2 += ((a+b+c)- max(a,b,c))*2 + a*b*c
+    r1 +=sum(areas)*2 + min(areas)
+print(r1)
+print(r2)
 
-
-def f(ns):
-    p = list(map(math.prod, combinations(ns, 2)))
-    return min(p) + sum(p) * 2
-
-
-f2 = lambda ns: 2 * min(map(sum, combinations(ns, 2))) + math.prod(ns)
-
-print(count_nums(f))
-print(count_nums(f2))

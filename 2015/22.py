@@ -3,6 +3,7 @@ import re
 import math
 from itertools import product
 import heapq
+
 spells = [
     (53, 4, 0, 0, 0, 0),
     (73, 2, 2, 0, 0, 0),
@@ -11,10 +12,11 @@ spells = [
     (229, 0, 0, 0, 101, 5),
 ]
 
-boss_hp, boss_damage = list(map(int,re.findall(r'-?\d+',sys.stdin.read())))
+boss_hp, boss_damage = list(map(int, re.findall(r"-?\d+", sys.stdin.read())))
+
 
 def fight(p2=None):
-    b_hp, b_damage = boss_hp,boss_damage
+    b_hp, b_damage = boss_hp, boss_damage
     heap = [(0, 50, 500, (), b_hp, False)]
     while heap:
         cost, hp, mana, effects, b_hp, boss_turn = heapq.heappop(heap)

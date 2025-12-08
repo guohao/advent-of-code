@@ -1,6 +1,7 @@
 import sys
 import re
-I, J = list(map(int,re.findall(r'-?\d+',sys.stdin.read())))
+
+I, J = list(map(int, re.findall(r"-?\d+", sys.stdin.read())))
 c = 20151125
 i = j = 1
 while True:

@@ -2,7 +2,8 @@ from itertools import product
 import re
 import math
 import sys
-boss_hp, boss_damage, boss_armor = map(int,re.findall(r'-?\d+',sys.stdin.read()))
+
+boss_hp, boss_damage, boss_armor = map(int, re.findall(r"-?\d+", sys.stdin.read()))
 shop = """Weapons:    Cost  Damage  Armor
 Dagger        8     4       0
 Shortsword   10     5       0

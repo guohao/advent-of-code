@@ -1,4 +1,5 @@
-from util import *
+import sys
+import re
 
 tt = """children: 3
 cats: 7
@@ -9,34 +10,33 @@ vizslas: 0
 goldfish: 5
 trees: 3
 cars: 2
-perfumes: 1
-"""
+perfumes: 1"""
+ttm = {}
+for l in tt.split("\n"):
+    i, c = l.split(":")
+    ttm[i] = int(c)
 
-e = {}
-for line in tt.splitlines():
-    l, v = line.split(": ")
-    e[l] = int(v)
-
-a = {}
-for line in L:
-    vs = ints(line)
-    a[vs[0]] = dict(zip(re.findall(r"([a-z]+):", line), vs[1:]))
-
-for i, v in a.items():
-    if all(e[k] == v[k] for k in v):
-        print(i)
+greaters = ["trees", "cats"]
+fewers = ["pomeranians", "goldfish"]
+for l in sys.stdin.readlines():
+    l = l.strip()
+    i = re.findall(r"(?<=Sue )\d+(?=:)", l)[0]
+    if all(
+        int(m[2]) == ttm[m[1]] for m in re.finditer(r"(\w+): (\d+)", l) if m[1] in ttm
+    ):
+        print("r1", i)
         break
-for i, v in a.items():
-    for k in v:
-        if k in ["cats", "trees"]:
-            if v[k] <= e[k]:
+    for m in re.finditer(r"(\w+): (\d+)", l):
+        k = m[1]
+        v = int(m[2])
+        if k in greaters:
+            if ttm[k] > v:
                 break
-        elif k in ["pomeranians", "goldfish"]:
-            if v[k] >= e[k]:
+        elif k in fewers:
+            if ttm[k] < v:
                 break
         else:
-            if v[k] != e[k]:
+            if k in ttm and ttm[k] != v:
                 break
     else:
-        print(i)
-        break
+        print("r2", i)

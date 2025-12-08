@@ -1,12 +1,6 @@
-from util import *
+import sys
+cs = list(map(int,sys.stdin.readlines()))
 
-
-def s():
-    for i in range(R):
-        ss = sum(sum(p) == 150 for p in combinations(I, i))
-        if ss:
-            yield ss
-
-
-print(sum(s()))
-print(next(s()))
+def dfs(l,remains):
+    for c in remains:
+        if l in

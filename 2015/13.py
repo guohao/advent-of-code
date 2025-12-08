@@ -1,20 +1,35 @@
-from util import *
+import sys
+from itertools import permutations
+from collections import defaultdict
 
-d = defaultdict(int)
-p = set()
-for line in L:
-    a, c, v, b = re.search(r"(\w+).*(gain|lose) (\d+).* (\w+)", line).groups()
-    v = int(v)
-    p.add(a)
-    d[a, b] = v if c == "gain" else -v
+ls = sys.stdin.readlines()
+g = defaultdict(int)
+ps = set()
+for l in ls:
+    cells = l.split()
+    a, b = cells[0], cells[-1][:-1]
+    v = int(cells[3])
+    if "lose" in l:
+        v = -v
+    g[a, b] = v
+    ps.add(a)
 
 
-def total_change(persons):
-    return max(
-        sum(d[k[::-1]] + d[k] for k in zip(c, c[1:] + (c[0],)))
-        for c in permutations(persons)
-    )
+def neighbors(lst, i):
+    n = len(lst)
+    return lst[i - 1], lst[(i + 1) % n]
 
 
-print(total_change(p))
-print(total_change(p | {"me"}))
+def run():
+    r1 = 0
+    for p in permutations(ps):
+        adder = 0
+        for i in range(len(p)):
+            adder += sum(g[p[i], x] for x in neighbors(p, i))
+        r1 = max(adder, r1)
+    print(r1)
+
+
+run()
+ps.add("me")
+run()

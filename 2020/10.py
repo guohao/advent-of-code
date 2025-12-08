@@ -2,7 +2,7 @@ from util import *
 
 import networkx as nx
 
-data = D 
+data = D
 
 G = nx.DiGraph()
 for a in map(int, data.splitlines()):

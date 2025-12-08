@@ -30,12 +30,7 @@ def total_points(vertices):
 
 
 vs = [(0, 0)]
-DS = {
-    'R': (0, 1),
-    'L': (0, -1),
-    'U': (-1, 0),
-    'D': (1, 0)
-}
+DS = {"R": (0, 1), "L": (0, -1), "U": (-1, 0), "D": (1, 0)}
 for line in L:
     d, n, _ = line.split()
     n = int(n)
@@ -44,15 +39,10 @@ for line in L:
 print(total_points(vs))
 
 vs = [(0, 0)]
-DS = {
-    'R': (0, 1),
-    'L': (0, -1),
-    'U': (-1, 0),
-    'D': (1, 0)
-}
+DS = {"R": (0, 1), "L": (0, -1), "U": (-1, 0), "D": (1, 0)}
 for line in L:
-    h = re.findall(r'\w{2,}', line.split()[-1])[0]
+    h = re.findall(r"\w{2,}", line.split()[-1])[0]
     n = int(h[:-1], 16)
-    d = {'0': (0, 1), '2': (0, -1), '1': (1, 0), '3': (-1, 0)}[h[-1]]
+    d = {"0": (0, 1), "2": (0, -1), "1": (1, 0), "3": (-1, 0)}[h[-1]]
     vs.append((vs[-1][0] + d[0] * n, vs[-1][1] + d[1] * n))
 print(total_points(vs))

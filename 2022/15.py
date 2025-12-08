@@ -1,12 +1,14 @@
 from util import *
 
+
 def d(a, b) -> int:
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 
 BS = {}
-for x1, y1, x2, y2  in NS:
+for x1, y1, x2, y2 in NS:
     BS[(x1, y1)] = (x2, y2)
+
 
 def check(p) -> bool:
     for s, b in BS.items():
@@ -25,6 +27,7 @@ for b in BS.values():
     if b[1] == 2000000 and b[0] in ret:
         ret.remove(b[0])
 print(len(ret))
+
 
 def check(p) -> bool:
     for s, b in BS.items():

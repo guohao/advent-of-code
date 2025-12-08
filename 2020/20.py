@@ -5,9 +5,9 @@ data = D
 
 def reassemble(data: str):
     tiles = {}
-    for part in data.strip().split('\n\n'):
+    for part in data.strip().split("\n\n"):
         lines = part.splitlines()
-        id = re.findall(r'\d+', lines[0])[0]
+        id = re.findall(r"\d+", lines[0])[0]
         tiles[id] = lines[1:]
 
     N = int(len(tiles) ** 0.5)
@@ -27,9 +27,16 @@ def reassemble(data: str):
                 if nb in pkv:
                     nbt, nbf, nbr = pkv[nb]
                     nbt = fr(tiles[nbt], nbf, nbr)
-                    if (di, dj) == (0, 1) and list(zip(*nbt))[0] != list(zip(*t))[-1] or (di, dj) == (1, 0) and nbt[
-                        0] != t[-1] or (di, dj) == (0, -1) and list(zip(*nbt))[-1] != list(zip(*t))[0] or (di, dj) == (
-                            -1, 0) and nbt[-1] != t[0]:
+                    if (
+                        (di, dj) == (0, 1)
+                        and list(zip(*nbt))[0] != list(zip(*t))[-1]
+                        or (di, dj) == (1, 0)
+                        and nbt[0] != t[-1]
+                        or (di, dj) == (0, -1)
+                        and list(zip(*nbt))[-1] != list(zip(*t))[0]
+                        or (di, dj) == (-1, 0)
+                        and nbt[-1] != t[0]
+                    ):
                         placeable = False
                         break
             if placeable and i < N:
@@ -51,15 +58,17 @@ def fr(a: list[str], flip, rotate) -> list[str]:
     if flip:
         a = a[::-1]
     for _ in range(rotate):
-        a = [''.join(l[::-1]) for l in zip(*a)]
+        a = ["".join(l[::-1]) for l in zip(*a)]
     return a
 
 
 tiles, pkv = reassemble(data)
 N = int(len(tiles) ** 0.5)
-print(math.prod(int(pkv[p][0]) for p in [(0, 0), (0, N - 1), (N - 1, 0), (N - 1, N - 1)]))
+print(
+    math.prod(int(pkv[p][0]) for p in [(0, 0), (0, N - 1), (N - 1, 0), (N - 1, N - 1)])
+)
 M = len(list(tiles.values())[0])
-g = ['' for _ in range(N * (M - 2))]
+g = ["" for _ in range(N * (M - 2))]
 for i in range(N):
     for j in range(N):
         id, f, r = pkv[i, j]
@@ -77,22 +86,26 @@ for f, r in product([0, 1], range(4)):
     sms.append(fr(sm, f, r))
 marks = [[0] * len(g) for _ in range(len(g))]
 for i, j, sm in product(range(len(g)), range(len(g)), sms):
+
     def match():
         for si, sj in product(range(len(sm)), range(len(sm[0]))):
-            if sm[si][sj] != '#':
+            if sm[si][sj] != "#":
                 continue
-            if 0 <= i + si < len(g) and 0 <= j + sj < len(g) and g[i + si][j + sj] == '#':
+            if (
+                0 <= i + si < len(g)
+                and 0 <= j + sj < len(g)
+                and g[i + si][j + sj] == "#"
+            ):
                 continue
             return False
         return True
 
-
     if match():
         for si, sj in product(range(len(sm)), range(len(sm[0]))):
-            if sm[si][sj] == '#':
+            if sm[si][sj] == "#":
                 marks[i + si][j + sj] = 1
 ans = 0
 for i, j in product(range(len(g)), repeat=2):
-    if g[i][j] == '#' and marks[i][j] == 0:
+    if g[i][j] == "#" and marks[i][j] == 0:
         ans += 1
 print(ans)

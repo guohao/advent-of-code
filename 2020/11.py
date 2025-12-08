@@ -13,24 +13,24 @@ def p1():
         changed = False
         for i, j in g:
             gs[i, j] = g[i, j]
-            if g[i, j] == '.':
+            if g[i, j] == ".":
                 continue
             cnt = 0
             for di, dj in product(range(-1, 2), repeat=2):
                 if di == dj == 0:
                     continue
                 nb = i + di, j + dj
-                if nb in g and g[nb] == '#':
+                if nb in g and g[nb] == "#":
                     cnt += 1
-            if cnt == 0 and g[i, j] == 'L':
+            if cnt == 0 and g[i, j] == "L":
                 changed = True
-                gs[i, j] = '#'
-            if cnt >= 4 and g[i, j] == '#':
+                gs[i, j] = "#"
+            if cnt >= 4 and g[i, j] == "#":
                 changed = True
-                gs[i, j] = 'L'
+                gs[i, j] = "L"
         g = gs
         if not changed:
-            print(sum(v == '#' for v in g.values()))
+            print(sum(v == "#" for v in g.values()))
             return
 
 
@@ -46,26 +46,26 @@ def p2():
         changed = False
         for i, j in g:
             gs[i, j] = g[i, j]
-            if g[i, j] == '.':
+            if g[i, j] == ".":
                 continue
             cnt = 0
             for di, dj in product(range(-1, 2), repeat=2):
                 if di == dj == 0:
                     continue
                 nb = i + di, j + dj
-                while nb in g and g[nb] == '.':
+                while nb in g and g[nb] == ".":
                     nb = nb[0] + di, nb[1] + dj
-                if nb in g and g[nb] == '#':
+                if nb in g and g[nb] == "#":
                     cnt += 1
-            if cnt == 0 and g[i, j] == 'L':
+            if cnt == 0 and g[i, j] == "L":
                 changed = True
-                gs[i, j] = '#'
-            if cnt >= 5 and g[i, j] == '#':
+                gs[i, j] = "#"
+            if cnt >= 5 and g[i, j] == "#":
                 changed = True
-                gs[i, j] = 'L'
+                gs[i, j] = "L"
         g = gs
         if not changed:
-            print(sum(v == '#' for v in g.values()))
+            print(sum(v == "#" for v in g.values()))
             break
 
 

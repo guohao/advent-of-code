@@ -3,15 +3,26 @@ import re
 from util import *
 
 
-def dest_of_hex_walk(path: list[str], start: tuple[int, int, int] = (0, 0, 0)) -> tuple[int, int, int]:
+def dest_of_hex_walk(
+    path: list[str], start: tuple[int, int, int] = (0, 0, 0)
+) -> tuple[int, int, int]:
     return list(hex_walk(path, start))[-1]
 
 
-def hex_walk(path, start=(0, 0, 0), ):
-    directions = {'n': (1, 1, 0), 's': (-1, -1, 0),
-                  'e': (1, -1, 0), 'w': (-1, 1, 0),
-                  'ne': (1, 0, -1), 'sw': (-1, 0, 1),
-                  'nw': (0, 1, -1), 'se': (0, -1, 1)}
+def hex_walk(
+    path,
+    start=(0, 0, 0),
+):
+    directions = {
+        "n": (1, 1, 0),
+        "s": (-1, -1, 0),
+        "e": (1, -1, 0),
+        "w": (-1, 1, 0),
+        "ne": (1, 0, -1),
+        "sw": (-1, 0, 1),
+        "nw": (0, 1, -1),
+        "se": (0, -1, 1),
+    }
     x, y, z = start
     for move in path:
         dx, dy, dz = directions[move]
@@ -25,7 +36,7 @@ data = D
 def build_black_grid(data: str):
     tiles = set()
     for line in data.splitlines():
-        path = re.findall(r'se|sw|ne|nw|e|w', line)
+        path = re.findall(r"se|sw|ne|nw|e|w", line)
         dest = dest_of_hex_walk(path)
         if dest in tiles:
             tiles.remove(dest)
@@ -46,9 +57,14 @@ def range_of_grid_3(g):
 
 
 def hex_neighbors_without_ns(x, y, z):
-    directions = {'e': (1, -1, 0), 'w': (-1, 1, 0),
-                  'ne': (1, 0, -1), 'sw': (-1, 0, 1),
-                  'nw': (0, 1, -1), 'se': (0, -1, 1)}
+    directions = {
+        "e": (1, -1, 0),
+        "w": (-1, 1, 0),
+        "ne": (1, 0, -1),
+        "sw": (-1, 0, 1),
+        "nw": (0, 1, -1),
+        "se": (0, -1, 1),
+    }
     for dx, dy, dz in directions.values():
         yield x + dx, y + dy, z + dz
 

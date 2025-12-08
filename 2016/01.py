@@ -4,7 +4,7 @@ ans2 = None
 x = y = 0
 d = (1, 0)
 visited = {(x, y)}
-for step in D.split(', '):
+for step in D.split(", "):
     d = turn(d, step[0])
     moves = int(step[1:])
     for i in range(moves):

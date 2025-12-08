@@ -3,7 +3,7 @@ from intcode import IntCodeVM
 
 from util import *
 
-data = D 
+data = D
 
 vm = IntCodeVM(data)
 
@@ -27,7 +27,7 @@ while q:
     q.append(((x, y), (dx, dy), g[x, y]))
 print(len(g))
 
-data = D 
+data = D
 
 vm = IntCodeVM(data)
 sq = vm.sq
@@ -52,10 +52,10 @@ while q:
 min_x, max_x = min(x for x, _ in g.keys()), max(x for x, _ in g.keys())
 min_y, max_y = min(y for _, y in g.keys()), max(y for _, y in g.keys())
 for j in range(max_y, min_y - 1, -1):
-    line = ''
+    line = ""
     for i in range(min_x, max_x + 1):
         if g[i, j] == 1:
-            line += '#'
+            line += "#"
         else:
-            line += '.'
+            line += "."
     print(line)

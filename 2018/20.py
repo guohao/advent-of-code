@@ -13,19 +13,19 @@ def draw_room(r: str):
         idx = 0
         while idx < len(cmd):
             c = cmd[idx]
-            if c == '(':
+            if c == "(":
                 pc = 1
                 end = idx + 1
                 ps = idx + 1
                 parts = []
                 while pc:
-                    if cmd[end] == '(':
+                    if cmd[end] == "(":
                         pc += 1
-                    elif cmd[end] == ')':
+                    elif cmd[end] == ")":
                         if pc == 1:
                             parts.append(cmd[ps:end])
                         pc -= 1
-                    elif cmd[end] == '|':
+                    elif cmd[end] == "|":
                         if pc == 1:
                             parts.append(cmd[ps:end])
                             ps = end + 1
@@ -34,7 +34,7 @@ def draw_room(r: str):
                     expand(i, j, part + cmd[end:])
                 return
             else:
-                d = {'N': (0, -1), 'E': (1, 0), 'S': (0, 1), 'W': (-1, 0)}[c]
+                d = {"N": (0, -1), "E": (1, 0), "S": (0, 1), "W": (-1, 0)}[c]
                 ni, nj = i + d[0], j + d[1]
                 g.add_edge((i, j), (ni, nj))
                 i, j = ni, nj
@@ -45,7 +45,15 @@ def draw_room(r: str):
 
 
 data = D
-print(max(map(len, nx.single_source_shortest_path(draw_room(data.strip()), (0, 0)).values())) - 1)
+print(
+    max(
+        map(
+            len,
+            nx.single_source_shortest_path(draw_room(data.strip()), (0, 0)).values(),
+        )
+    )
+    - 1
+)
 ans = 0
 for v in nx.single_source_shortest_path(draw_room(data.strip()), (0, 0)).values():
     if len(v) > 1000:

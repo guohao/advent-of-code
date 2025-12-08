@@ -1,6 +1,6 @@
 from util import *
 
-data = D 
+data = D
 
 seq = deque()
 for n in map(int, data.splitlines()):
@@ -28,10 +28,10 @@ for n in map(int, data.splitlines()):
         seq.popleft()
 
 ns = list(map(int, data.splitlines()))
-ns = ns[:ns.index(target)]
+ns = ns[: ns.index(target)]
 for i in range(len(ns)):
     for j in range(1, len(ns) - i):
-        if sum(ns[i:i + j + 1]) == target:
-            ans = sorted(ns[i:i + 1 + j])
+        if sum(ns[i : i + j + 1]) == target:
+            ans = sorted(ns[i : i + 1 + j])
             print(ans[0] + ans[-1])
             exit()

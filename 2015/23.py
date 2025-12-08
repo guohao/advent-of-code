@@ -5,36 +5,36 @@ prog = L
 
 def f(p2=None):
     pc = 0
-    r = {'a': 0, 'b': 0}
+    r = {"a": 0, "b": 0}
     if p2:
-        r['a'] = 1
+        r["a"] = 1
     while pc < len(prog):
-        op, *opr = prog[pc].replace(',', '').split()
+        op, *opr = prog[pc].replace(",", "").split()
         if len(opr) == 1:
             a = opr[0]
             b = None
         else:
             a, b = opr
         match op:
-            case 'hlf':
+            case "hlf":
                 r[a] //= 2
-            case 'tpl':
+            case "tpl":
                 r[a] *= 3
-            case 'inc':
+            case "inc":
                 r[a] += 1
-            case 'jmp':
+            case "jmp":
                 pc += int(a)
                 continue
-            case 'jie':
+            case "jie":
                 if r[a] % 2 == 0:
                     pc += int(b)
                     continue
-            case 'jio':
+            case "jio":
                 if r[a] == 1:
                     pc += int(b)
                     continue
         pc += 1
-    print(r['b'])
+    print(r["b"])
 
 
 f()

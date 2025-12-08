@@ -1,13 +1,14 @@
-from util import  *
+from util import *
+
 g = IG
 
-start = next(x for x in g if g[x] == 'S')
-target = next(x for x in g if g[x] == 'E')
+start = next(x for x in g if g[x] == "S")
+target = next(x for x in g if g[x] == "E")
 tv = [(0, start, (0, 1))]
 SEEN = set()
 while tv:
     s, p, d = heapq.heappop(tv)
-    if g.get(p, '#') == '#':
+    if g.get(p, "#") == "#":
         continue
     if (p, d) in SEEN:
         continue
@@ -20,8 +21,8 @@ while tv:
         sa = 1 if (dx, dy) == d else 1001
         heapq.heappush(tv, (s + sa, (dx + x, dy + y), (dx, dy)))
 
-start = next(x for x in g if g[x] == 'S')
-target = next(x for x in g if g[x] == 'E')
+start = next(x for x in g if g[x] == "S")
+target = next(x for x in g if g[x] == "E")
 tv = [(0, [start], (0, 1))]
 SEEN = {}
 best = math.inf
@@ -31,7 +32,7 @@ while tv:
     if s > best:
         continue
     p = path[-1]
-    if g.get(p, '#') == '#':
+    if g.get(p, "#") == "#":
         continue
     if (p, d) in SEEN and SEEN[p, d] < s:
         continue

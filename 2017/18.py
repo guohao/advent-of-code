@@ -1,6 +1,6 @@
 from util import *
 
-PC = 'PC'
+PC = "PC"
 
 
 def run(r, rcv_q, snd_q, p2=None):
@@ -20,18 +20,18 @@ def run(r, rcv_q, snd_q, p2=None):
         else:
             a, b = opr
         match op:
-            case 'snd':
+            case "snd":
                 snd_q.append(v_of(a))
-                r['snd_cnt'] += 1
-            case 'set':
+                r["snd_cnt"] += 1
+            case "set":
                 r[a] = v_of(b)
-            case 'mul':
+            case "mul":
                 r[a] *= v_of(b)
-            case 'add':
+            case "add":
                 r[a] += v_of(b)
-            case 'mod':
+            case "mod":
                 r[a] %= v_of(b)
-            case 'rcv':
+            case "rcv":
                 if p2:
                     if not rcv_q:
                         return
@@ -41,7 +41,7 @@ def run(r, rcv_q, snd_q, p2=None):
                     if v_of(a):
                         print(snd_q.pop())
                         return
-            case 'jgz':
+            case "jgz":
                 if v_of(a) > 0:
                     r[PC] += v_of(b)
                     continue
@@ -49,13 +49,13 @@ def run(r, rcv_q, snd_q, p2=None):
 
 
 run(defaultdict(int), deque(), deque())
-ar = defaultdict(int) | {'p': 0}
+ar = defaultdict(int) | {"p": 0}
 arq = deque()
-br = defaultdict(int) | {'p': 1}
+br = defaultdict(int) | {"p": 1}
 brq = deque()
 for k in count():
     run(ar, arq, brq, 1)
     run(br, brq, arq, 1)
     if not arq and not brq:
-        print(br['snd_cnt'])
+        print(br["snd_cnt"])
         break

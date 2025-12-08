@@ -9,23 +9,23 @@ def f(p2=None):
     goal = 0, 0
     for i, line in enumerate(data.splitlines()):
         for j, c in enumerate(line.strip()):
-            if c == 'E':
+            if c == "E":
                 if p2:
-                    start = i,j
+                    start = i, j
                 else:
                     goal = i, j
-                c = 'z'
-            if c == 'S':
+                c = "z"
+            if c == "S":
                 if not p2:
                     start = i, j
-                c = 'a'
+                c = "a"
             g[i, j] = ord(c)
     q.append((start, 0))
     visited = set()
     while q:
         (x, y), s = q.popleft()
         if p2:
-            if g[x, y] == ord('a'):
+            if g[x, y] == ord("a"):
                 print(s)
                 return
         else:

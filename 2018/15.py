@@ -21,11 +21,11 @@ def solve(data: str, elf_ap: int):
         for i, line in enumerate(data.splitlines()):
             for j, c in enumerate(line):
                 k = (i, j)
-                if c == '.':
+                if c == ".":
                     free_node(k)
-                elif c == 'E':
+                elif c == "E":
                     units[k] = (c, elf_ap, 200)
-                elif c == 'G':
+                elif c == "G":
                     units[k] = (c, 3, 200)
 
     def enemies(c):
@@ -49,7 +49,10 @@ def solve(data: str, elf_ap: int):
             return k
         free_node(k)
         i, j = k
-        nbs = [(dx + x, dy + y) for (x, y), (dx, dy) in product(enemies_pos, neighbor_directions)]
+        nbs = [
+            (dx + x, dy + y)
+            for (x, y), (dx, dy) in product(enemies_pos, neighbor_directions)
+        ]
         squares = [nb for nb in nbs if G.has_node(nb) and nx.has_path(G, (i, j), nb)]
         squares.sort(key=lambda x: (len(nx.shortest_path(G, k, x)), x))
         if not squares:
@@ -67,7 +70,7 @@ def solve(data: str, elf_ap: int):
             ec, eap, ehp = units[ek]
             ehp -= ap
             if ehp <= 0:
-                if ec == 'E':
+                if ec == "E":
                     elf_deaths.add(k)
                 free_node(ek)
             else:
@@ -108,5 +111,7 @@ def p2(data: str):
             r = m - 1
         else:
             l = m + 1
+
+
 print(p1(D))
 print(p2(D))

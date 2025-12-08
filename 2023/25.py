@@ -4,7 +4,7 @@ import networkx as nx
 
 graph = nx.DiGraph()
 for line in L:
-    left, right = line.split(':')
+    left, right = line.split(":")
     for y in right.split():
         graph.add_edge(left, y, capacity=1)
         graph.add_edge(y, left, capacity=1)

@@ -7,14 +7,14 @@ for _ in range(100):
     g = {k: v + 1 for k, v in g.items()}
     while any(v > 9 and k not in flashed for k, v in g.items()):
         for x, y in g:
-            if g[x,y] > 9 and (x,y) not in flashed:
+            if g[x, y] > 9 and (x, y) not in flashed:
                 for dx, dy in product(range(-1, 2), repeat=2):
                     if dx == dy == 0:
                         continue
                     nb = x + dx, y + dy
                     if nb in g:
                         g[nb] += 1
-                flashed.add((x,y))
+                flashed.add((x, y))
     for n in flashed:
         g[n] = 0
     ans += len(flashed)

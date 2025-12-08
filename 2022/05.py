@@ -1,6 +1,6 @@
 from util import *
 
-parts = RAW.split('\n\n')
+parts = RAW.split("\n\n")
 
 qs = {}
 for c in zip(*parts[0].splitlines()):
@@ -11,7 +11,7 @@ for m in parts[1].splitlines():
     n, f, t = ints(m)
     for _ in range(n):
         qs[t].append(qs[f].pop())
-print(''.join(q.pop() for q in qs.values()))
+print("".join(q.pop() for q in qs.values()))
 
 qs = {}
 for c in zip(*parts[0].splitlines()):
@@ -23,4 +23,4 @@ for m in parts[1].splitlines():
     qs[f].rotate(n)
     for _ in range(n):
         qs[t].append(qs[f].popleft())
-print(''.join(q.pop() for q in qs.values()))
+print("".join(q.pop() for q in qs.values()))

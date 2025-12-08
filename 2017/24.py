@@ -1,7 +1,7 @@
 from util import *
 
 comps = defaultdict(list)
-for a,b in NS:
+for a, b in NS:
     comps[a].append(b)
     comps[b].append(a)
 
@@ -35,4 +35,3 @@ while q:
         elif len(visited) == max_len:
             ans = max(ans, sum(sum(x) for x in visited))
 print(ans)
-

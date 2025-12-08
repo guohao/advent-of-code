@@ -25,6 +25,8 @@ for k in range(100):
     for ptc in particles:
         ptc = move(ptc)
         collisions[tuple(ptc[:3])].append(ptc)
-    particles = reduce(operator.add, [v for v in collisions.values() if len(v) == 1], [])
+    particles = reduce(
+        operator.add, [v for v in collisions.values() if len(v) == 1], []
+    )
     ans = len(particles)
 print(ans)

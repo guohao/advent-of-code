@@ -6,15 +6,15 @@ from functools import cache
 
 from util import *
 
-data = D 
+data = D
 
 G = {}
 start = None
 for i, line in enumerate(data.splitlines()):
     for j, c in enumerate(line):
-        if c == '@':
+        if c == "@":
             start = i, j
-        if c != '#':
+        if c != "#":
             G[i, j] = c
 starts = [start]
 
@@ -52,8 +52,10 @@ while q:
     seen.add((ps, keys))
     for i, p in enumerate(ps):
         for x, y, distance in reachable(*p, keys):
-            nps = ps[:i] + ((x, y),) + ps[i + 1:]
-            heapq.heappush(q, (steps + distance, tuple(nps), keys | frozenset([G[x, y]])))
+            nps = ps[:i] + ((x, y),) + ps[i + 1 :]
+            heapq.heappush(
+                q, (steps + distance, tuple(nps), keys | frozenset([G[x, y]]))
+            )
 
 from functools import cache
 
@@ -63,17 +65,17 @@ G = {}
 start = None
 for i, line in enumerate(data.splitlines()):
     for j, c in enumerate(line):
-        if c == '@':
+        if c == "@":
             start = i, j
-        if c != '#':
+        if c != "#":
             G[i, j] = c
 starts = []
 for i, j in itertools.product(range(-1, 2), repeat=2):
     nb = start[0] + i, start[1] + j
     if abs(i) + abs(j) < 2:
-        G[nb] = '#'
+        G[nb] = "#"
     else:
-        G[nb] = '@'
+        G[nb] = "@"
         starts.append(nb)
 
 
@@ -110,5 +112,7 @@ while q:
     seen.add((ps, keys))
     for i, p in enumerate(ps):
         for x, y, distance in reachable(*p, keys):
-            nps = ps[:i] + ((x, y),) + ps[i + 1:]
-            heapq.heappush(q, (steps + distance, tuple(nps), keys | frozenset([G[x, y]])))
+            nps = ps[:i] + ((x, y),) + ps[i + 1 :]
+            heapq.heappush(
+                q, (steps + distance, tuple(nps), keys | frozenset([G[x, y]]))
+            )

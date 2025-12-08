@@ -1,6 +1,6 @@
 from util import *
 
-data = D 
+data = D
 
 q = deque(map(int, data.strip()))
 for _ in range(100):
@@ -21,7 +21,7 @@ for _ in range(100):
     i1 = q.index(1)
 q.rotate(-(q.index(1) + 1))
 q.pop()
-print(''.join(map(str, q)))
+print("".join(map(str, q)))
 
 data = list(map(int, data.strip()))
 data += range(len(data) + 1, 1000000 + 1)

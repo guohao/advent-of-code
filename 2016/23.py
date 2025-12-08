@@ -1,11 +1,11 @@
 from util import *
 
-r = {x: 0 for x in 'abcd'}
-r['a'] = 7
+r = {x: 0 for x in "abcd"}
+r["a"] = 7
 
 
 def value_of(n: str):
-    if n in 'abcd':
+    if n in "abcd":
         return r[n]
     return int(n)
 
@@ -18,30 +18,30 @@ while i < R:
         b = None
     else:
         a, b = opr
-    if 'cpy' == op:
-        if b in 'abcd':
+    if "cpy" == op:
+        if b in "abcd":
             r[b] = value_of(a)
-    elif 'inc' == op:
+    elif "inc" == op:
         r[a] += 1
-    elif 'dec' == op:
+    elif "dec" == op:
         r[a] -= 1
-    elif 'tgl' in op:
+    elif "tgl" in op:
         t = value_of(a) + i
         if 0 <= t < R:
             tc = L[t].split()
             if len(tc) == 2:
-                if tc[0] == 'inc':
-                    L[t] = f'dec {tc[1]}'
+                if tc[0] == "inc":
+                    L[t] = f"dec {tc[1]}"
                 else:
-                    L[t] = f'inc {tc[1]}'
+                    L[t] = f"inc {tc[1]}"
             elif len(tc) == 3:
-                if tc[0] == 'jnz':
-                    L[t] = f'cpy {tc[1]} {tc[2]}'
+                if tc[0] == "jnz":
+                    L[t] = f"cpy {tc[1]} {tc[2]}"
                 else:
-                    L[t] = f'jnz {tc[1]} {tc[2]}'
+                    L[t] = f"jnz {tc[1]} {tc[2]}"
             else:
                 raise Exception(op)
-    elif 'jnz' == op:
+    elif "jnz" == op:
         if value_of(a):
             i += value_of(b)
             continue
@@ -49,7 +49,7 @@ while i < R:
         raise Exception(op)
 
     i += 1
-print(r['a'])
+print(r["a"])
 
 # transform from input manually
 print(12 * math.prod(range(1, 12)) + 80 * 76)

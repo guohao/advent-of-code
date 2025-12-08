@@ -24,6 +24,7 @@ for i in range(1, xr + 1):
             ans = max(ans, my)
 print(ans)
 
+
 def can_within2(vx, vy):
     sx, sy = 0, 0
     maxy = 0
@@ -38,6 +39,8 @@ def can_within2(vx, vy):
             vx += 1
         vy -= 1
     return -1
+
+
 ans = set()
 for i in range(1, xr + 1):
     for j in range(-xr, xr + 1):

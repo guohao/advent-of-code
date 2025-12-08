@@ -3,7 +3,7 @@ from util import *
 t = 0
 p0 = []
 for l in PS[0].splitlines():
-    a, b = map(int, l.split('|'))
+    a, b = map(int, l.split("|"))
     p0.append((a, b))
 
 p1 = []

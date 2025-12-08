@@ -4,12 +4,12 @@ from util import *
 
 
 def ints(line):
-    return list(map(int, re.findall(r'-?\d+', line)))
+    return list(map(int, re.findall(r"-?\d+", line)))
 
 
 def solve(data: str, boost=0):
     def build_groups():
-        parts = data.split('\n\n')
+        parts = data.split("\n\n")
         groups = {}
 
         pattern = re.compile(
@@ -21,17 +21,26 @@ def solve(data: str, boost=0):
                 weak = []
                 immune = []
                 if m.group(3):
-                    for cell in m.group(3).split('; '):
-                        if cell.startswith('weak'):
-                            weak = cell.replace(',', '').split()[2:]
+                    for cell in m.group(3).split("; "):
+                        if cell.startswith("weak"):
+                            weak = cell.replace(",", "").split()[2:]
                         else:
-                            immune = cell.replace(',', '').split()[2:]
+                            immune = cell.replace(",", "").split()[2:]
                 damage = int(m.group(4))
                 if i == 0:
                     damage += boost
                 idx = len(groups)
-                groups[idx] = (int(m.group(1)), int(m.group(2)), weak,
-                               immune, damage, m.group(5), int(m.group(6)), i, idx)
+                groups[idx] = (
+                    int(m.group(1)),
+                    int(m.group(2)),
+                    weak,
+                    immune,
+                    damage,
+                    m.group(5),
+                    int(m.group(6)),
+                    i,
+                    idx,
+                )
                 # 0 unit count
                 # 1 hp
                 # 2 weak
@@ -59,8 +68,11 @@ def solve(data: str, boost=0):
             return effective_damage, effective_power(defender), defender[6]
 
         for group in select_order.copy():
-            targets = sorted((t for t in select_order if t[7] != group[7]), key=lambda x: damage(group, x),
-                             reverse=True)
+            targets = sorted(
+                (t for t in select_order if t[7] != group[7]),
+                key=lambda x: damage(group, x),
+                reverse=True,
+            )
             if not targets or damage(group, targets[0])[0] == 0:
                 continue
             target = targets[0]

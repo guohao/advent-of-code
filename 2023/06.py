@@ -6,7 +6,9 @@ for t, d in zip(*NS):
 
 print(ans)
 
-lines = [list(map(int, re.findall(r'-?\d+', line.strip().replace(' ', '')))) for line in L]
+lines = [
+    list(map(int, re.findall(r"-?\d+", line.strip().replace(" ", "")))) for line in L
+]
 ans = 1
 for t, d in zip(*lines):
     ans *= sum(x * (t - x) > d for x in range(t))

@@ -2,7 +2,7 @@ from util import *
 
 
 def f(p2=None):
-    pc, last_points = list(map(int, re.findall(r'-?\d+', D)))
+    pc, last_points = list(map(int, re.findall(r"-?\d+", D)))
     ps = [0] * pc
 
     q = deque()

@@ -13,8 +13,8 @@ def seat(s: str):
                 lo = mid
         return lo
 
-    r = bs(128, s[:7], 'F')
-    c = bs(8, s[7:], 'L')
+    r = bs(128, s[:7], "F")
+    c = bs(8, s[7:], "L")
     return r * 8 + c
 
 
@@ -38,8 +38,8 @@ def seat(s: str):
                 lo = mid
         return lo
 
-    r = bs(128, s[:7], 'F')
-    c = bs(8, s[7:], 'L')
+    r = bs(128, s[:7], "F")
+    c = bs(8, s[7:], "L")
     return r * 8 + c
 
 

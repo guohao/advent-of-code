@@ -18,21 +18,21 @@ for _ in range(N):
             c[G[i, j]] -= 1
 
             match G[i, j]:
-                case '.':
-                    if c['|'] >= 3:
-                        ng[i, j] = '|'
-                case '|':
-                    if c['#'] >= 3:
-                        ng[i, j] = '#'
-                case '#':
-                    if not (c['#'] >= 1 and c['|'] >= 1):
-                        ng[i, j] = '.'
+                case ".":
+                    if c["|"] >= 3:
+                        ng[i, j] = "|"
+                case "|":
+                    if c["#"] >= 3:
+                        ng[i, j] = "#"
+                case "#":
+                    if not (c["#"] >= 1 and c["|"] >= 1):
+                        ng[i, j] = "."
                 case _:
                     assert False
             if (i, j) not in ng:
                 ng[i, j] = G[i, j]
     G = ng
-print(sum(v == '|' for v in G.values()) * sum(v == '#' for v in G.values()))
+print(sum(v == "|" for v in G.values()) * sum(v == "#" for v in G.values()))
 
 N = 1000000000
 G = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line.strip())}
@@ -51,15 +51,15 @@ def gen(g):
                 c[g[k]] += 1
         c[g[i, j]] -= 1
         match g[i, j]:
-            case '.':
-                if c['|'] >= 3:
-                    ng[i, j] = '|'
-            case '|':
-                if c['#'] >= 3:
-                    ng[i, j] = '#'
-            case '#':
-                if not (c['#'] >= 1 and c['|'] >= 1):
-                    ng[i, j] = '.'
+            case ".":
+                if c["|"] >= 3:
+                    ng[i, j] = "|"
+            case "|":
+                if c["#"] >= 3:
+                    ng[i, j] = "#"
+            case "#":
+                if not (c["#"] >= 1 and c["|"] >= 1):
+                    ng[i, j] = "."
         if (i, j) not in ng:
             ng[i, j] = g[i, j]
     return ng
@@ -76,4 +76,4 @@ while t < N:
     G = gen(G)
     t += 1
 
-print(sum(v == '|' for v in G.values()) * sum(v == '#' for v in G.values()))
+print(sum(v == "|" for v in G.values()) * sum(v == "#" for v in G.values()))

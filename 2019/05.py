@@ -2,14 +2,14 @@ from intcode import IntCodeVM
 
 from util import *
 
-data = D 
+data = D
 
 vm = IntCodeVM(data)
 vm.rq.append(1)
 vm.run()
 print(vm.sq.pop())
 
-data = D 
+data = D
 
 vm = IntCodeVM(data)
 vm.rq.append(5)

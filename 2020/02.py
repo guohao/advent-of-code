@@ -3,14 +3,14 @@ from util import *
 lines = L
 ans = 0
 for line in lines:
-    f, t, c, s = re.match(r'(\d+)-(\d+) (\w): (\w+)', line).groups()
+    f, t, c, s = re.match(r"(\d+)-(\d+) (\w): (\w+)", line).groups()
     if int(f) <= s.count(c) <= int(t):
         ans += 1
 print(ans)
 
 ans = 0
 for line in lines:
-    f, t, c, s = re.match(r'(\d+)-(\d+) (\w): (\w+)', line).groups()
+    f, t, c, s = re.match(r"(\d+)-(\d+) (\w): (\w+)", line).groups()
     f = int(f) - 1
     t = int(t) - 1
     mc = 0

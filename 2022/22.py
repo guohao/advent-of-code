@@ -2,13 +2,23 @@ from util import *
 
 
 def p1():
-    maze, path = RAW.split('\n\n')
-    if maze[0] == '\n':
+    maze, path = RAW.split("\n\n")
+    if maze[0] == "\n":
         maze = maze[1:]
-    path = 'R' + path
+    path = "R" + path
 
-    g = {(i, j): c for i, line in enumerate(maze.splitlines()) for j, c in enumerate(line) if c != ' '}
-    limits = (min(x for x, _ in g), max(x for x, _ in g), min(y for _, y in g), max(y for _, y in g))
+    g = {
+        (i, j): c
+        for i, line in enumerate(maze.splitlines())
+        for j, c in enumerate(line)
+        if c != " "
+    }
+    limits = (
+        min(x for x, _ in g),
+        max(x for x, _ in g),
+        min(y for _, y in g),
+        max(y for _, y in g),
+    )
     N = limits[1] - limits[0] + 1
     M = limits[3] - limits[2] + 1
 
@@ -18,18 +28,18 @@ def p1():
         for _ in range(limit):
             np = ((p[0] + facing[0]) % N, (p[1] + facing[1]) % M)
             if np in g:
-                if g[np] == '.':
+                if g[np] == ".":
                     return np
-                elif g[np] == '#':
+                elif g[np] == "#":
                     return None
             p = np
 
-    p = (0, maze.index('.'))
+    p = (0, maze.index("."))
     facing = (-1, 0)
-    for move in re.findall(r'[RL]\d+', path):
+    for move in re.findall(r"[RL]\d+", path):
         steps = int(move[1:])
         direction = move[0]
-        if direction == 'R':
+        if direction == "R":
             facing = (facing[1], -facing[0])
         else:
             facing = (-facing[1], facing[0])
@@ -54,12 +64,17 @@ def p1():
 
 
 def p2():
-    maze, path = RAW.split('\n\n')
-    if maze[0] == '\n':
+    maze, path = RAW.split("\n\n")
+    if maze[0] == "\n":
         maze = maze[1:]
-    path = 'R' + path
+    path = "R" + path
 
-    g = {(i, j): c for i, line in enumerate(maze.splitlines()) for j, c in enumerate(line) if c != ' '}
+    g = {
+        (i, j): c
+        for i, line in enumerate(maze.splitlines())
+        for j, c in enumerate(line)
+        if c != " "
+    }
 
     neighbors = {}
 
@@ -67,7 +82,7 @@ def p2():
         np = ((p[0] + facing[0]), (p[1] + facing[1]))
         if np not in g:
             np, facing = neighbors[p, facing]
-        if g[np] != '#':
+        if g[np] != "#":
             return np, facing
         return None, None
 
@@ -77,7 +92,7 @@ def p2():
       ED.
       F..
       """
-    p = (0, maze.index('.'))
+    p = (0, maze.index("."))
     facing = (-1, 0)
     K = 50
     for i in range(0, K):
@@ -110,10 +125,10 @@ def p2():
         # F -> D
         neighbors[(3 * K + i, K - 1), (0, 1)] = ((3 * K - 1, K + i), (-1, 0))
 
-    for move in re.findall(r'[RL]\d+', path):
+    for move in re.findall(r"[RL]\d+", path):
         steps = int(move[1:])
         direction = move[0]
-        if direction == 'R':
+        if direction == "R":
             facing = (facing[1], -facing[0])
         else:
             facing = (-facing[1], facing[0])

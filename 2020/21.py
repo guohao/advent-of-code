@@ -8,9 +8,9 @@ data = D
 a2i = defaultdict(list)
 c = Counter()
 for line in data.strip().splitlines():
-    l, r = line.split('(contains ')
+    l, r = line.split("(contains ")
     l = l.split()
-    r = r[:-1].split(', ')
+    r = r[:-1].split(", ")
     for x in r:
         a2i[x].append(l)
     c.update(l)
@@ -29,4 +29,4 @@ while len(a2i) != len(mapping):
 for x in mapping.values():
     del c[x]
 print(sum(c.values()))
-print(','.join(v for k, v in sorted(mapping.items())))
+print(",".join(v for k, v in sorted(mapping.items())))

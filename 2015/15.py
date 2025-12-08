@@ -13,7 +13,9 @@ def sum_n(n, total, prefix=None):
 
 
 def score_of(c):
-    return math.prod(max(0, sum(NS[i][j] * c[i] for i in range(R))) for j in range(N - 1))
+    return math.prod(
+        max(0, sum(NS[i][j] * c[i] for i in range(R))) for j in range(N - 1)
+    )
 
 
 def c500(c):

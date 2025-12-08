@@ -2,7 +2,7 @@ from intcode import IntCodeVM
 
 from util import *
 
-data = D 
+data = D
 
 vm = IntCodeVM(data)
 commands = """NOT A T
@@ -22,7 +22,7 @@ from intcode import IntCodeVM
 
 from util import *
 
-data = D 
+data = D
 
 vm = IntCodeVM(data)
 commands = """NOT B J 

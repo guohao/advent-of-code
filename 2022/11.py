@@ -1,6 +1,6 @@
 from util import *
 
-sys.set_int_max_str_digits(10 ** 6)
+sys.set_int_max_str_digits(10**6)
 
 
 def f(n, p2=None):
@@ -23,7 +23,7 @@ def f(n, p2=None):
             while mk[0]:
                 inspected[i] += 1
                 item = mk[0].popleft()
-                item = eval(mk[1].replace('old', str(item)).split('=')[1])
+                item = eval(mk[1].replace("old", str(item)).split("=")[1])
                 if p2:
                     item = item % m
                 else:

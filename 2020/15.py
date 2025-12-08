@@ -1,8 +1,8 @@
 from util import *
 
-data = D 
+data = D
 
-seq = list(map(int, data.split(',')))
+seq = list(map(int, data.split(",")))
 seen = {}
 for t in range(2019):
     if t == len(seq) - 1:
@@ -13,7 +13,7 @@ for t in range(2019):
     seen[seq[t]] = t
 print(seq[-1])
 
-seq = list(map(int, data.split(',')))
+seq = list(map(int, data.split(",")))
 seen = {}
 for t in range(30000000 - 1):
     if t == len(seq) - 1:

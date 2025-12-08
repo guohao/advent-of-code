@@ -2,25 +2,25 @@ from util import *
 
 
 def is_cart(c: str):
-    return c in '><^v'
+    return c in "><^v"
 
 
 def next_cart(road: str, curr: [tuple[int, int]]) -> tuple[tuple[int, int], int]:
-    if road == '+':
+    if road == "+":
         if curr[1] % 3 == 0:
             return (-curr[0][1], curr[0][0]), curr[1] + 1
         if curr[1] % 3 == 1:
             return curr[0], curr[1] + 1
         if curr[1] % 3 == 2:
             return (curr[0][1], -curr[0][0]), curr[1] + 1
-    if road in '-|':
+    if road in "-|":
         return curr
-    if road == '\\':
+    if road == "\\":
         if curr[0] == (1, 0) or curr[0] == (-1, 0):
             return (-curr[0][1], curr[0][0]), curr[1]
         else:
             return (curr[0][1], -curr[0][0]), curr[1]
-    if road == '/':
+    if road == "/":
         if curr[0] == (0, -1) or curr[0] == (0, 1):
             return (-curr[0][1], curr[0][0]), curr[1]
         else:
@@ -29,12 +29,7 @@ def next_cart(road: str, curr: [tuple[int, int]]) -> tuple[tuple[int, int], int]
 
 
 def char_to_direction(c: str):
-    direction_mapping = {
-        '>': (0, 1),
-        '<': (0, -1),
-        'v': (1, 0),
-        '^': (-1, 0)
-    }
+    direction_mapping = {">": (0, 1), "<": (0, -1), "v": (1, 0), "^": (-1, 0)}
     return direction_mapping[c]
 
 
@@ -45,13 +40,13 @@ def p1(data: str):
         for j, c in enumerate(line):
             if is_cart(c):
                 carts[i, j] = (char_to_direction(c), 0)
-                if c in '<>':
-                    G[i, j] = '-'
-                elif c in '^v':
-                    G[i, j] = '|'
+                if c in "<>":
+                    G[i, j] = "-"
+                elif c in "^v":
+                    G[i, j] = "|"
                 else:
                     raise Exception()
-            elif c != ' ':
+            elif c != " ":
                 G[i, j] = c
 
     while True:
@@ -65,7 +60,7 @@ def p1(data: str):
             x = i + dx
             y = j + dy
             if (x, y) in n_carts:
-                return str(f'{y},{x}')
+                return str(f"{y},{x}")
             else:
                 n_carts[x, y] = ((dx, dy), times)
         carts = n_carts
@@ -78,11 +73,11 @@ def p2(data: str):
         for j, c in enumerate(line):
             if is_cart(c):
                 carts[i, j] = (char_to_direction(c), 0)
-                if c in '<>':
-                    G[i, j] = '-'
-                elif c in '^v':
-                    G[i, j] = '|'
-            elif c != ' ':
+                if c in "<>":
+                    G[i, j] = "-"
+                elif c in "^v":
+                    G[i, j] = "|"
+            elif c != " ":
                 G[i, j] = c
 
     while len(carts) > 1:
@@ -101,7 +96,7 @@ def p2(data: str):
                 n_carts[x, y] = ((dx, dy), times)
         carts = n_carts
     x, y = list(carts.keys())[0]
-    return str(f'{y},{x}')
+    return str(f"{y},{x}")
 
 
 print(p1(RAW))

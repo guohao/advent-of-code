@@ -6,6 +6,7 @@ from intcode import IntCodeVM
 
 data = D
 
+
 def p1():
     q = deque([[]])
     seen = set()
@@ -29,6 +30,7 @@ def p1():
         seen.add((x, y))
         for i in range(1, 5):
             q.append(path + [i])
+
 
 def p2():
     q = deque([[]])
@@ -61,6 +63,7 @@ def p2():
             if nb in seen:
                 G.add_edge(nb, (x, y))
     print(max(nx.shortest_path_length(G, oxygen).values()))
+
 
 p1()
 p2()

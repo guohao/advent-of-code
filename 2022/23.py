@@ -4,13 +4,21 @@ from util import *
 def f(k, p2=None):
     data = D
 
-    g = {(i, j) for i, line in enumerate(data.strip().splitlines()) for j, c in enumerate(line) if c != '.'}
+    g = {
+        (i, j)
+        for i, line in enumerate(data.strip().splitlines())
+        for j, c in enumerate(line)
+        if c != "."
+    }
     DIRECTIONS = ((-1, 0), (1, 0), (0, -1), (0, 1))
 
     for r in range(k):
         dest = defaultdict(list)
         for x, y in g:
-            if sum([(x + i, y + j) in g for i in range(-1, 2) for j in range(-1, 2)]) == 1:
+            if (
+                sum([(x + i, y + j) in g for i in range(-1, 2) for j in range(-1, 2)])
+                == 1
+            ):
                 continue
             np = (x, y)
             for j in range(4):

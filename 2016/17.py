@@ -1,11 +1,8 @@
 from util import *
 
-DS = {0: ('U', (-1, 0)),
-      1: ('D', (1, 0)),
-      2: ('L', (0, -1)),
-      3: ('R', (0, 1))}
+DS = {0: ("U", (-1, 0)), 1: ("D", (1, 0)), 2: ("L", (0, -1)), 3: ("R", (0, 1))}
 
-hp = [(0, '', 1, 1)]
+hp = [(0, "", 1, 1)]
 min_len_path = None
 max_len = -math.inf
 while hp:
@@ -19,8 +16,8 @@ while hp:
         continue
     if y <= 0 or y > 4:
         continue
-    for i, c in enumerate(md5(f'{D}{p}')[:4]):
-        if int(c, 16) > int('a', 16):
+    for i, c in enumerate(md5(f"{D}{p}")[:4]):
+        if int(c, 16) > int("a", 16):
             dl, (dx, dy) = DS[i]
             heapq.heappush(hp, (l + 1, p + dl, x + dx, y + dy))
 

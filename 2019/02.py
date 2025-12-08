@@ -1,6 +1,6 @@
 from util import *
 
-ns = [int(x) for x in D.split(',')]
+ns = [int(x) for x in D.split(",")]
 ns[1] = 12
 ns[2] = 2
 i = 0
@@ -14,7 +14,7 @@ while True:
     i += 4
 print(ns[0])
 
-on = [int(x) for x in D.split(',')]
+on = [int(x) for x in D.split(",")]
 
 for n, v in product(range(99), repeat=2):
     ns = on.copy()

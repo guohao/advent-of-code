@@ -10,12 +10,12 @@ def h(s):
     return v
 
 
-print(sum(map(h, D.split(','))))
+print(sum(map(h, D.split(","))))
 boxes = [{} for _ in range(256)]
-for part in D.split(','):
-    label = re.findall(r'\w+', part)[0]
+for part in D.split(","):
+    label = re.findall(r"\w+", part)[0]
     box = boxes[h(label)]
-    if '-' in part:
+    if "-" in part:
         if label not in box:
             continue
         _, order = box[label]
@@ -25,7 +25,7 @@ for part in D.split(','):
             if other_order > order:
                 box[other] = (box[other][0], other_order - 1)
     else:
-        lens = int(next(re.finditer(r'\d+', part)).group())
+        lens = int(next(re.finditer(r"\d+", part)).group())
         if label in box:
             box[label] = (lens, box[label][1])
         else:

@@ -7,19 +7,19 @@ ans = 0
 g = False
 while i < len(d):
     c = d[i]
-    if c == '!':
+    if c == "!":
         i += 2
         continue
     if g:
-        if c == '>':
+        if c == ">":
             g = False
     else:
-        if c == '{':
+        if c == "{":
             l += 1
-        elif c == '}':
+        elif c == "}":
             ans += l
             l -= 1
-        elif c == '<':
+        elif c == "<":
             g = True
     i += 1
 print(ans)
@@ -30,16 +30,16 @@ ans = 0
 g = False
 while i < len(d):
     c = d[i]
-    if c == '!':
+    if c == "!":
         i += 2
         continue
     if g:
-        if c == '>':
+        if c == ">":
             g = False
         else:
             ans += 1
     else:
-        if c == '<':
+        if c == "<":
             g = True
     i += 1
 print(ans)

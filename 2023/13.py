@@ -6,8 +6,8 @@ def mirror(part: str):
         n = len(lines)
         for i in range(1, n):
             sl = min(n - i, i)
-            a = lines[i - sl:i][::-1]
-            b = lines[i:i + sl]
+            a = lines[i - sl : i][::-1]
+            b = lines[i : i + sl]
             if a == b:
                 return i
         return 0
@@ -25,8 +25,8 @@ def diff1(part: str):
         n = len(lines)
         for i in range(1, n):
             sl = min(n - i, i)
-            a = lines[i - sl:i][::-1]
-            b = lines[i:i + sl]
+            a = lines[i - sl : i][::-1]
+            b = lines[i : i + sl]
             dc = 0
             for j in range(sl):
                 for k in range(len(a[0])):

@@ -32,11 +32,11 @@ for _ in range(64):
         skip_size += 1
 q.rotate(cur_pos)
 
-ans = ''
+ans = ""
 while q:
     x = 0
     for _ in range(16):
         x ^= q.popleft()
-    ans += f'{x:02x}'
+    ans += f"{x:02x}"
 
 print(ans)

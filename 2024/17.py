@@ -1,7 +1,7 @@
-
 from util import *
 from z3 import *
-a, b, c, *prog = map(int, re.findall(r'\d+', RAW))
+
+a, b, c, *prog = map(int, re.findall(r"\d+", RAW))
 output = []
 i = 0
 
@@ -33,13 +33,13 @@ while i < len(prog) - 1:
 
 print(output)
 
-outs = list(map(int, re.findall(r'\d+', L[-1])))
+outs = list(map(int, re.findall(r"\d+", L[-1])))
 
 s = Optimize()
-a = BitVec('a', 64)
+a = BitVec("a", 64)
 s.add(a > 0)
 a_vars = [a]
-expect = [BitVec(f'e_{i}', 64) for i in range(len(outs))]
+expect = [BitVec(f"e_{i}", 64) for i in range(len(outs))]
 
 for i in range(len(outs)):
     s.add(expect[i] == BitVecVal(outs[i], 64))
@@ -51,7 +51,7 @@ for i in range(len(outs)):
     expr = expr ^ BitVecVal(3, 64)
     b = expr & BitVecVal(7, 64)
     s.add(expect[i] == b)
-    a_next = BitVec(f'a_{i + 1}', 64)
+    a_next = BitVec(f"a_{i + 1}", 64)
     s.add(a_next == LShR(ai, 3))
     a_vars.append(a_next)
 s.minimize(a)

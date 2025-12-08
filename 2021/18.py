@@ -7,11 +7,11 @@ def t(s: str):
     q = deque()
     d = 0
     for c in s:
-        if c == '[':
+        if c == "[":
             d += 1
-        elif c == ']':
+        elif c == "]":
             d -= 1
-        elif c == ',':
+        elif c == ",":
             continue
         else:
             q.append((d, int(c)))
@@ -71,5 +71,3 @@ data = D
 print(magnitude(reduce(merge, map(t, data.splitlines()))))
 sns = list(map(t, data.splitlines()))
 print(max(magnitude(merge(*p)) for p in permutations(sns, 2)))
-
-

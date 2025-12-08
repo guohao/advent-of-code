@@ -1,6 +1,6 @@
 from util import *
 
-seeds = list(map(int,PS[0].split(':')[1].split()))
+seeds = list(map(int, PS[0].split(":")[1].split()))
 parts = [part.splitlines()[1:] for part in PS[1:]]
 ans = []
 for s in seeds:

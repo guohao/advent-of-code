@@ -4,8 +4,8 @@ g = {}
 data = D
 
 for line in data.splitlines():
-    toggle = line.startswith('on')
-    x0, x1, y0, y1, z0, z1 = list(map(int, re.findall(r'-?\d+', line)))
+    toggle = line.startswith("on")
+    x0, x1, y0, y1, z0, z1 = list(map(int, re.findall(r"-?\d+", line)))
     x0 = max(-50, x0)
     x1 = min(50, x1)
     y0 = max(-50, y0)
@@ -23,8 +23,8 @@ def x():
     ranges = []
     toggles = []
     for line in data.splitlines():
-        toggle = line.startswith('on')
-        x0, x1, y0, y1, z0, z1 = list(map(int, re.findall(r'-?\d+', line)))
+        toggle = line.startswith("on")
+        x0, x1, y0, y1, z0, z1 = list(map(int, re.findall(r"-?\d+", line)))
         ranges.append([[x0, x1 + 1], [y0, y1 + 1], [z0, z1 + 1]])
         toggles.append(toggle)
     return ranges, toggles
@@ -50,7 +50,10 @@ xm = {x: i for i, x in enumerate(sd[0])}
 ym = {y: i for i, y in enumerate(sd[1])}
 zm = {z: i for i, z in enumerate(sd[2])}
 
-g = [[[0] * (len(sd[2]) - 1) for _ in range(len(sd[1]) - 1)] for _ in range(len(sd[0]) - 1)]
+g = [
+    [[0] * (len(sd[2]) - 1) for _ in range(len(sd[1]) - 1)]
+    for _ in range(len(sd[0]) - 1)
+]
 
 for i, (toggle, data) in enumerate(zip(toggles, ranges)):
     for x in range(xm[data[0][0]], xm[data[0][1]]):
@@ -63,6 +66,10 @@ for x in range(len(g)):
     for y in range(len(g[x])):
         for z in range(len(g[x][y])):
             if g[x][y][z]:
-                t += (sd[0][x + 1] - sd[0][x]) * (sd[1][y + 1] - sd[1][y]) * (sd[2][z + 1] - sd[2][z])
+                t += (
+                    (sd[0][x + 1] - sd[0][x])
+                    * (sd[1][y + 1] - sd[1][y])
+                    * (sd[2][z + 1] - sd[2][z])
+                )
 
 print(t)

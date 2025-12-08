@@ -4,7 +4,7 @@ from util import *
 def solve(data: str, n):
     seen = {(0, 0)}
     rs = [(0, 0)] * n
-    directions = {'U': (-1, 0), 'R': (0, 1), 'L': (0, -1), 'D': (1, 0)}
+    directions = {"U": (-1, 0), "R": (0, 1), "L": (0, -1), "D": (1, 0)}
 
     for line in data.splitlines():
         d, s = line.split()
@@ -27,4 +27,4 @@ def solve(data: str, n):
 
 
 solve(D, 2)
-solve(D ,10)
+solve(D, 10)

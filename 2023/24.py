@@ -27,9 +27,16 @@ print(ans)
 
 ls = NS
 n = len(ls)
-x, y, z, dx, dy, dz = Real('x'), Real('y'), Real('z'), Real('dx'), Real('dy'), Real('dz')
+x, y, z, dx, dy, dz = (
+    Real("x"),
+    Real("y"),
+    Real("z"),
+    Real("dx"),
+    Real("dy"),
+    Real("dz"),
+)
 
-T = [Real(f'T{i}') for i in range(len(ls))]
+T = [Real(f"T{i}") for i in range(len(ls))]
 s = Solver()
 for i in range(len(ls)):
     s.add(x + T[i] * dx - ls[i][0] - T[i] * ls[i][3] == 0)

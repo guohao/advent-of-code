@@ -1,22 +1,20 @@
 from util import *
+
 sys.setrecursionlimit(10000000)
 
 DIRECTIONS = {
-    '>': [(0, 1)],
-    'v': [(1, 0)],
-    '<': [(0, -1)],
-    '^': [(-1, 0)],
-    '.': [(0, 1),
-          (1, 0),
-          (0, -1),
-          (-1, 0)]
+    ">": [(0, 1)],
+    "v": [(1, 0)],
+    "<": [(0, -1)],
+    "^": [(-1, 0)],
+    ".": [(0, 1), (1, 0), (0, -1), (-1, 0)],
 }
 ls = L
 g = IG
 
-start = (0, [c for _, c in g if g[0, c] == '.'][0])
+start = (0, [c for _, c in g if g[0, c] == "."][0])
 R = len(ls)
-goal = (R - 1, [c for _, c in g if g[R - 1, c] == '.'][0])
+goal = (R - 1, [c for _, c in g if g[R - 1, c] == "."][0])
 
 seen = set()
 
@@ -28,14 +26,14 @@ def dfs(p):
     path_len = 0
     for dr, dc in DIRECTIONS[g[p]]:
         nb = dr + p[0], dc + p[1]
-        if nb in g and g[nb] != '#' and nb not in seen:
+        if nb in g and g[nb] != "#" and nb not in seen:
             path_len = max(1 + dfs(nb), path_len)
     seen.remove(p)
     return path_len
 
 
 print(dfs(start))
-g = {k for k, v in g.items() if v != '#'}
+g = {k for k, v in g.items() if v != "#"}
 start = (0, [c for _, c in g if (0, c) in g][0])
 R = len(ls)
 goal = (R - 1, [c for _, c in g if (R - 1, c) in g][0])

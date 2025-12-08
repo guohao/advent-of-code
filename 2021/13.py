@@ -3,11 +3,11 @@ from util import *
 parts = PS
 g = set()
 for line in parts[0].splitlines():
-    g.add(tuple(map(int, line.split(','))))
+    g.add(tuple(map(int, line.split(","))))
 fold = parts[1].splitlines()[0]
 ng = set()
-fl = int(re.findall(r'\d+', fold)[0])
-if 'x=' in fold:
+fl = int(re.findall(r"\d+", fold)[0])
+if "x=" in fold:
     for x, y in g:
         if x < fl:
             ng.add((x, y))
@@ -23,11 +23,11 @@ g = ng
 print(len(g))
 g = set()
 for line in parts[0].splitlines():
-    g.add(tuple(map(int, line.split(','))))
+    g.add(tuple(map(int, line.split(","))))
 for fold in parts[1].splitlines():
     ng = set()
-    fl = int(re.findall(r'\d+', fold)[0])
-    if 'x=' in fold:
+    fl = int(re.findall(r"\d+", fold)[0])
+    if "x=" in fold:
         for x, y in g:
             if x < fl:
                 ng.add((x, y))
@@ -43,10 +43,10 @@ for fold in parts[1].splitlines():
 min_x, max_x = min(x for x, y in g), max(x for x, y in g)
 min_y, max_y = min(y for x, y in g), max(y for x, y in g)
 for y in range(min_y, max_y + 1):
-    line = ''
+    line = ""
     for x in range(min_x, max_x + 1):
         if (x, y) in g:
-            line += '#'
+            line += "#"
         else:
-            line += '.'
+            line += "."
     print(line)

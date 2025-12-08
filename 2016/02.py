@@ -3,7 +3,7 @@ from util import *
 
 def p1():
     x = y = 0
-    ans = ''
+    ans = ""
 
     for line in L:
         for c in line:
@@ -21,13 +21,18 @@ def p1():
 
 
 def p2():
-    ans = ''
+    ans = ""
     g = grid("""  1
  234
 56789
  ABC
   D""")
-    g = {(i, j): g[i, j] for i in range(5) for j in range(5) if (i, j) in g and g[i, j].strip()}
+    g = {
+        (i, j): g[i, j]
+        for i in range(5)
+        for j in range(5)
+        if (i, j) in g and g[i, j].strip()
+    }
     x, y = 2, 1
     for line in L:
         for c in line:

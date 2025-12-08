@@ -2,7 +2,7 @@ from util import *
 
 g = IG
 q = deque()
-start = [k for k, v in g.items() if v == '^'][0]
+start = [k for k, v in g.items() if v == "^"][0]
 q.append([start, (-1, 0)])
 seen = set()
 while q:
@@ -11,12 +11,12 @@ while q:
     nx, ny = x + dx, y + dy
     if (nx, ny) not in g:
         break
-    if g[nx, ny] == '#':
+    if g[nx, ny] == "#":
         dx, dy = dy, -dx
         nx, ny = x + dx, y + dy
         if (nx, ny) not in g:
             break
-        elif g[nx, ny] == '#':
+        elif g[nx, ny] == "#":
             dx, dy = dy, -dx
             nx, ny = x + dx, y + dy
             if (nx, ny) not in g:
@@ -27,11 +27,11 @@ print(len(seen))
 og = IG
 t = 0
 for k in og:
-    if og[k] in '^#':
+    if og[k] in "^#":
         continue
     g = og.copy()
-    g[k] = '#'
-    start = [k for k, v in g.items() if v == '^'][0]
+    g[k] = "#"
+    start = [k for k, v in g.items() if v == "^"][0]
     q = deque()
     q.append([start, (-1, 0)])
     seen = set()
@@ -45,12 +45,12 @@ for k in og:
         nx, ny = x + dx, y + dy
         if (nx, ny) not in g:
             break
-        if g[nx, ny] == '#':
+        if g[nx, ny] == "#":
             dx, dy = dy, -dx
             nx, ny = x + dx, y + dy
             if (nx, ny) not in g:
                 break
-            elif g[nx, ny] == '#':
+            elif g[nx, ny] == "#":
                 dx, dy = dy, -dx
                 nx, ny = x + dx, y + dy
                 if (nx, ny) not in g:

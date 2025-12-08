@@ -16,8 +16,9 @@ def f(s: int, n=2000):
 
 t = 0
 for line in ls:
-    t += f(next(map(int, re.findall(r'-?\d+', line))))
+    t += f(next(map(int, re.findall(r"-?\d+", line))))
 print(t)
+
 
 def f2(s: int):
     seq = [s]
@@ -34,11 +35,11 @@ def f2(s: int):
 
 profits = defaultdict(int)
 for line in ls:
-    ps = [x % 10 for x in f2(next(map(int, re.findall(r'-?\d+', line))))]
+    ps = [x % 10 for x in f2(next(map(int, re.findall(r"-?\d+", line))))]
     cs = [ps[i + 1] - ps[i] for i in range(len(ps) - 1)]
     seen = {}
     for i in range(len(cs) - 3):
-        s4 = tuple(cs[i:i + 4])
+        s4 = tuple(cs[i : i + 4])
         if s4 not in seen:
             seen[s4] = ps[i + 4]
     for s4, price in seen.items():

@@ -9,13 +9,12 @@ def calculate_angle(center, point):
     return adjusted_angle
 
 
-
-data = D 
+data = D
 
 g = set()
 for i, line in enumerate(data.splitlines()):
     for j, c in enumerate(line):
-        if c == '#':
+        if c == "#":
             g.add((j, i))
 
 
@@ -31,7 +30,7 @@ print(max(count(n) for n in g))
 g = set()
 for i, line in enumerate(data.splitlines()):
     for j, c in enumerate(line):
-        if c == '#':
+        if c == "#":
             g.add((j, i))
 
 X, Y = 23, 20

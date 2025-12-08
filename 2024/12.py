@@ -41,17 +41,28 @@ def dfs2(frm, curr):
                 outer[frm].add(nb)
 
 
-for k in g: dfs2(k, k)
+for k in g:
+    dfs2(k, k)
 
 t = 0
 for k in g:
     c = 0
     for x, y in inner[k]:
-        for c0, c1 in [[(-1, 0), (0, -1)], [(1, 0), (0, 1)], [(-1, 0), (0, 1)], [(1, 0), (0, -1)]]:
-            if (x + c0[0], y + c0[1]) in outer[k] and (x + c1[0], y + c1[1]) in outer[k]:
+        for c0, c1 in [
+            [(-1, 0), (0, -1)],
+            [(1, 0), (0, 1)],
+            [(-1, 0), (0, 1)],
+            [(1, 0), (0, -1)],
+        ]:
+            if (x + c0[0], y + c0[1]) in outer[k] and (x + c1[0], y + c1[1]) in outer[
+                k
+            ]:
                 c += 1
-            elif (x + c0[0], y + c0[1]) in inner[k] and (x + c1[0], y + c1[1]) in inner[k] and \
-                    (x + c0[0] + c1[0], y + c0[1] + c1[1]) in outer[k]:
+            elif (
+                (x + c0[0], y + c0[1]) in inner[k]
+                and (x + c1[0], y + c1[1]) in inner[k]
+                and (x + c0[0] + c1[0], y + c0[1] + c1[1]) in outer[k]
+            ):
                 c += 1
     t += len(inner[k]) * c
 

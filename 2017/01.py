@@ -2,7 +2,13 @@ from regex import regex
 
 from util import *
 
-print(counts(lambda line: sum(map(int, regex.findall(r'(\d)\1', line + line[0], overlapped=True)))))
+print(
+    counts(
+        lambda line: sum(
+            map(int, regex.findall(r"(\d)\1", line + line[0], overlapped=True))
+        )
+    )
+)
 
 
 def f(a):

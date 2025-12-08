@@ -1,10 +1,10 @@
 from util import *
 
-grid = [l for l in RAW.split('\n')]
-g = {(i, j): c for i, line in enumerate(grid) for j, c in enumerate(line) if c != ' '}
+grid = [l for l in RAW.split("\n")]
+g = {(i, j): c for i, line in enumerate(grid) for j, c in enumerate(line) if c != " "}
 start = next((0, j) for j in range(len(grid[0])) if (0, j) in g)
 q = deque([(start, (1, 0))])
-ans = ''
+ans = ""
 ans2 = 0
 while q:
     p, d = q.popleft()

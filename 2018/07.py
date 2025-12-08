@@ -8,12 +8,12 @@ for line in L:
     a = line.split()[1]
     b = line.split()[-3]
     g.add_edge(a, b)
-print(''.join(nx.lexicographical_topological_sort(g)))
+print("".join(nx.lexicographical_topological_sort(g)))
 
 g = nx.DiGraph()
 for line in L:
-    a = ord(line.split()[1]) - ord('A') + 61
-    b = ord(line.split()[-3]) - ord('A') + 61
+    a = ord(line.split()[1]) - ord("A") + 61
+    b = ord(line.split()[-3]) - ord("A") + 61
     g.add_edge(a, b)
 
 indegree = {v: d for v, d in g.in_degree() if d > 0}

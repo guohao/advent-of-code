@@ -1,8 +1,8 @@
 from util import *
 
-d = D.split(',')
-ds = ['s', 'se', 'ne', 'n', 'nw', 'sw']
-pairs = {'s': 'n', 'se': 'nw', 'ne': 'sw'}
+d = D.split(",")
+ds = ["s", "se", "ne", "n", "nw", "sw"]
+pairs = {"s": "n", "se": "nw", "ne": "sw"}
 
 
 def distance(path: list[str]) -> int:

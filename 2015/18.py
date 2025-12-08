@@ -7,20 +7,20 @@ def f(p2=None):
     g = IG.copy()
     if p2:
         for p in C4:
-            g[p] = '#'
+            g[p] = "#"
     for _ in range(100):
         ng = {}
         for p in g:
             if p2 and p in C4:
-                ng[p] = '#'
+                ng[p] = "#"
                 continue
-            o = count_9(p, '#', g)
-            if g[p] == '#':
-                ng[p] = '#' if o in {2, 3} else '.'
+            o = count_9(p, "#", g)
+            if g[p] == "#":
+                ng[p] = "#" if o in {2, 3} else "."
             else:
-                ng[p] = '#' if o == 3 else '.'
+                ng[p] = "#" if o == 3 else "."
         g = ng
-    print(Counter(g.values())['#'])
+    print(Counter(g.values())["#"])
 
 
 f()

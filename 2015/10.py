@@ -1,11 +1,29 @@
-from util import *
+import sys
+
+d = input().strip()
 
 
-def run(s: str, n: int):
-    for _ in range(n):
-        s = re.sub(r'(\d)\1*', lambda m: str(m.end() - m.start()) + m.group(1), s)
-    return len(s)
+def count_say(s):
+    s = s + "-"
+    r = ""
+    j = 1
+    prev = s[0]
+    for i, c in enumerate(s[1:]):
+        if c == prev:
+            j += 1
+        else:
+            r += str(j) + prev
+            j = 1
+            prev = c
+    return r
 
 
-print(run(D, 40))
-print(run(D, 50))
+def run(times):
+    cs = d
+    for i in range(times):
+        cs = count_say(cs)
+    print(len(cs))
+
+
+run(40)
+run(50)

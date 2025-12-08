@@ -4,17 +4,17 @@ from util import *
 
 
 def dance(s: str) -> str:
-    for cmd in D.split(','):
-        if 's' in cmd:
+    for cmd in D.split(","):
+        if "s" in cmd:
             x = int(cmd[1:])
             s = s[-x:] + s[:-x]
-        elif 'x' in cmd:
-            a, b = map(int, cmd[1:].split('/'))
+        elif "x" in cmd:
+            a, b = map(int, cmd[1:].split("/"))
             a, b = s[a], s[b]
             s = re.sub(a + "|" + b, lambda m: a if m.group() == b else b, s)
-        elif cmd[0] == 'p':
-            a, b = cmd[1:].split('/')
-            s = re.sub(a + '|' + b, lambda m: a if m.group() == b else b, s)
+        elif cmd[0] == "p":
+            a, b = cmd[1:].split("/")
+            s = re.sub(a + "|" + b, lambda m: a if m.group() == b else b, s)
     return s
 
 

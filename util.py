@@ -4,13 +4,21 @@ import math
 import re
 import sys
 from collections import defaultdict, deque, Counter
-from itertools import count, permutations, combinations, product, combinations_with_replacement, chain, cycle
+from itertools import (
+    count,
+    permutations,
+    combinations,
+    product,
+    combinations_with_replacement,
+    chain,
+    cycle,
+)
 from typing import Tuple
 
 # (r,c)
-_arrow_dirs = {'>': (0, 1), '<': (0, -1), 'v': (1, 0), '^': (-1, 0)}
-LRDU = 'LRDU'
-LDRU_DIRS = {'L': (0, -1), 'D': (1, 0), 'R': (0, 1), 'U': (-1, 0)}
+_arrow_dirs = {">": (0, 1), "<": (0, -1), "v": (1, 0), "^": (-1, 0)}
+LRDU = "LRDU"
+LDRU_DIRS = {"L": (0, -1), "D": (1, 0), "R": (0, 1), "U": (-1, 0)}
 
 
 def _holder():
@@ -29,9 +37,9 @@ def _holder():
 
 def ints(l: str, neg=True):
     if neg:
-        return list(map(int, re.findall(r'-?\d+', l)))
+        return list(map(int, re.findall(r"-?\d+", l)))
     else:
-        return list(map(int, re.findall(r'\d+', l)))
+        return list(map(int, re.findall(r"\d+", l)))
 
 
 def nums(l: list[str]):
@@ -72,7 +80,7 @@ def md5(s: str):
 
 def md5_seq(s: str):
     for i in count():
-        yield md5(f'{s}{i}')
+        yield md5(f"{s}{i}")
 
 
 def first(f) -> int:
@@ -86,15 +94,15 @@ def nb_pair(l):
 
 
 def c2i(c: str):
-    return ord(c) - ord('a')
+    return ord(c) - ord("a")
 
 
 def i2c(i: int):
-    return chr(i + ord('a'))
+    return chr(i + ord("a"))
 
 
 def join(l):
-    return ''.join(map(str, l))
+    return "".join(map(str, l))
 
 
 def nb9(p, _g=None):
@@ -147,13 +155,13 @@ def move(p, d):
 
 
 def parts(s: str):
-    return s.split('\n\n')
+    return s.split("\n\n")
 
 
 def turn(d: tuple[int, int], t: str) -> tuple[int, int]:
-    if t == 'L':
+    if t == "L":
         return turn_left(d)
-    elif t == 'R':
+    elif t == "R":
         return turn_right(d)
     else:
         raise ValueError(f"Invalid turn: {t}")
@@ -168,16 +176,26 @@ def turn_right(d: tuple[int, int]) -> tuple[int, int]:
 
 
 def grid(s: str):
-    return {(i, j): c for i, line in enumerate(lines(s, False)) for j, c in enumerate(line)}
+    return {
+        (i, j): c for i, line in enumerate(lines(s, False)) for j, c in enumerate(line)
+    }
 
 
 class Graph2D:
-
-    def __init__(self, from_input=False, rows: int = None, cols: int = None, default_val=None, start=(0, 0)):
+    def __init__(
+        self,
+        from_input=False,
+        rows: int = None,
+        cols: int = None,
+        default_val=None,
+        start=(0, 0),
+    ):
         self.start = start
         self.grid = {}
         if from_input:
-            self.grid = {(i, j): c for i, line in enumerate(lines(D)) for j, c in enumerate(line)}
+            self.grid = {
+                (i, j): c for i, line in enumerate(lines(D)) for j, c in enumerate(line)
+            }
             self.rows = len(L)
             self.cols = len(L[0])
         if any([rows, cols]) and not all([rows, cols]):
@@ -262,7 +280,7 @@ class UnorderedDict:
 
 
 try:
-    input_file = 'input.txt'
+    input_file = "input.txt"
     if len(sys.argv) > 1:
         input_file = sys.argv[1]
     RAW = open(input_file).read()

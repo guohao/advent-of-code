@@ -2,8 +2,8 @@ from util import *
 
 
 def tick(a) -> bool:
-    r = {x: 0 for x in 'abcd'}
-    r['a'] = a
+    r = {x: 0 for x in "abcd"}
+    r["a"] = a
 
     def value_of(n: str):
         if n in r:
@@ -21,19 +21,19 @@ def tick(a) -> bool:
         else:
             a, b = opr
         match op:
-            case 'cpy':
+            case "cpy":
                 r[b] = value_of(a)
-            case 'inc':
+            case "inc":
                 r[a] += 1
-            case 'dec':
+            case "dec":
                 r[a] -= 1
-            case 'out':
+            case "out":
                 if value_of(a) != next(c):
                     return False
                 cnt += 1
                 if cnt == 10:
                     return True
-            case 'jnz':
+            case "jnz":
                 if value_of(a):
                     i += value_of(b)
                     continue

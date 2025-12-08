@@ -2,7 +2,6 @@ from util import *
 from z3 import *
 
 
-
 def bots_of_input(data: str):
     bots = []
     for line in data.splitlines():
@@ -37,16 +36,16 @@ def my_abs(x):
 
 
 o = Optimize()
-(x, y, z) = (Int('x'), Int('y'), Int('z'))
-in_ranges = [
-    Int('in_range_' + str(i)) for i in range(len(bots))
-]
-range_count = Int('sum')
+(x, y, z) = (Int("x"), Int("y"), Int("z"))
+in_ranges = [Int("in_range_" + str(i)) for i in range(len(bots))]
+range_count = Int("sum")
 for i in range(len(bots)):
     (nx, ny, nz), r = bots[i]
-    o.add(in_ranges[i] == If(my_abs(x - nx) + my_abs(y - ny) + my_abs(z - nz) <= r, 1, 0))
+    o.add(
+        in_ranges[i] == If(my_abs(x - nx) + my_abs(y - ny) + my_abs(z - nz) <= r, 1, 0)
+    )
 o.add(range_count == sum(in_ranges))
-dist_from_zero = Int('dist')
+dist_from_zero = Int("dist")
 o.add(dist_from_zero == my_abs(x) + my_abs(y) + my_abs(z))
 o.maximize(range_count)
 h2 = o.minimize(dist_from_zero)

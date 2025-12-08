@@ -2,13 +2,13 @@ from util import *
 
 t = 0
 q = deque()
-pairs = {'{': '}', '(': ')', '<': '>', '[': ']'}
-points = {')': 3, ']': 57, '}': 1197, '>': 25137}
+pairs = {"{": "}", "(": ")", "<": ">", "[": "]"}
+points = {")": 3, "]": 57, "}": 1197, ">": 25137}
 lines = [l.strip() for l in L]
 
 for line in lines:
     for c in line:
-        if c in '[{<(':
+        if c in "[{<(":
             q.append(c)
         else:
             if pairs[q[-1]] != c:
@@ -18,12 +18,13 @@ for line in lines:
                 q.pop()
 print(t)
 
+
 def score_of(line: str):
     q = deque()
-    pairs = {'{': '}', '(': ')', '<': '>', '[': ']'}
-    points = {'(': 1, '[': 2, '{': 3, '<': 4}
+    pairs = {"{": "}", "(": ")", "<": ">", "[": "]"}
+    points = {"(": 1, "[": 2, "{": 3, "<": 4}
     for c in line:
-        if c in '[{<(':
+        if c in "[{<(":
             q.append(c)
         else:
             if pairs[q[-1]] != c:

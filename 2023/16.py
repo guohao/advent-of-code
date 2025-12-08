@@ -19,13 +19,13 @@ def solve(data: str, entry):
         x, y = p
         visited.add(p)
 
-        if g[p] == '.' or (g[p] == '|' and dy == 0) or (g[p] == '-' and dx == 0):
+        if g[p] == "." or (g[p] == "|" and dy == 0) or (g[p] == "-" and dx == 0):
             q.append(((x + dx, y + dy), (dx, dy)))
-        elif g[p] == '-' or g[p] == '|':
+        elif g[p] == "-" or g[p] == "|":
             q.append(((x - dy, y + dx), (-dy, dx)))
             q.append(((x + dy, y + dx), (dy, dx)))
             q.append(((x + dy, y - dx), (dy, -dx)))
-        elif (g[p] == '/' and dx == 0) or (g[p] == '\\' and dy == 0):
+        elif (g[p] == "/" and dx == 0) or (g[p] == "\\" and dy == 0):
             q.append(((x - dy, y + dx), (-dy, dx)))
         else:
             q.append(((x + dy, y - dx), (dy, -dx)))

@@ -2,7 +2,7 @@ from util import *
 
 
 def f(p2=None):
-    r = {x: 0 for x in 'abcd'}
+    r = {x: 0 for x in "abcd"}
     i = 0
 
     def value_of(n: str):
@@ -11,7 +11,7 @@ def f(p2=None):
         return int(n)
 
     if p2:
-        r['c'] = 1
+        r["c"] = 1
     while i < R:
         op, *opr = L[i].split()
         if len(opr) == 1:
@@ -20,18 +20,18 @@ def f(p2=None):
         else:
             a, b = opr
         match op:
-            case 'cpy':
+            case "cpy":
                 r[b] = value_of(a)
-            case 'inc':
+            case "inc":
                 r[a] += 1
-            case 'dec':
+            case "dec":
                 r[a] -= 1
-            case 'jnz':
+            case "jnz":
                 if value_of(a):
                     i += value_of(b)
                     continue
         i += 1
-    print(r['a'])
+    print(r["a"])
 
 
 f()

@@ -4,12 +4,12 @@ parts = PS
 s = parts[0]
 ms = {}
 for line in parts[1].splitlines():
-    l, r = line.split(' -> ')
+    l, r = line.split(" -> ")
     ms[l] = r
 for _ in range(10):
-    ns = ''
+    ns = ""
     for i in range(len(s)):
-        pair = s[i - 1:i + 1]
+        pair = s[i - 1 : i + 1]
         if pair in ms:
             ns += ms[pair]
         ns += s[i]
@@ -20,7 +20,7 @@ print(c[-1] - c[0])
 s = parts[0]
 g = defaultdict(int)
 for i in range(1, len(s)):
-    pair = s[i - 1:i + 1]
+    pair = s[i - 1 : i + 1]
     g[pair] += 1
 c = Counter(s)
 for _ in range(40):

@@ -2,17 +2,17 @@ from util import *
 
 
 def parse(data: str):
-    b = ''.join(bin(int(c, 16))[2:].zfill(4) for c in data.strip())
+    b = "".join(bin(int(c, 16))[2:].zfill(4) for c in data.strip())
 
     def read(curr, n):
-        return int(b[curr:curr + n], 2), curr + n
+        return int(b[curr : curr + n], 2), curr + n
 
     def literal_value_of(i):
-        seq = ''
+        seq = ""
         while True:
-            seq += b[i + 1:i + 5]
+            seq += b[i + 1 : i + 5]
             i += 5
-            if b[i - 5] == '0':
+            if b[i - 5] == "0":
                 break
         return int(seq, 2), i
 

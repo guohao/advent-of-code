@@ -1,32 +1,36 @@
 import string
+from itertools import product
 
-from util import *
-
-lts = string.ascii_lowercase
-
-
-def increase(s: str):
-    for i in range(len(s) - 1, -1, -1):
-        idx = lts.index(s[i])
-        if idx != 25:
-            return s[:i] + lts[idx + 1] + ('a' * (len(s) - i - 1))
+d = input()
+atz = string.ascii_lowercase
 
 
-increasings = set(lts[i] + lts[i + 1] + lts[i + 2] for i in range(24))
-pairs = set(c + c for c in lts)
+def next_c(c):
+    return chr((ord(c) - ord("a") + 1) % 26 + ord("a"))
 
 
-def f(s):
+def next_s(s):
+    r = s[::-1]
+    for i in range(len(r)):
+        c = next_c(r[i])
+        r = r[:i] + c + r[i + 1 :]
+        if c != "a":
+            break
+    return r[::-1]
+
+
+def next_pass(p):
     while True:
-        s = increase(s)
-        if any(c in s for c in 'iol'):
+        p = next_s(p)
+        if any(x in p for x in "iol"):
             continue
-        if not any(c in s for c in increasings):
+        if sum(x + x in p for x in atz) < 2:
             continue
-        if sum(p in s for p in pairs) < 2:
+        if not any(x + next_c(x) + next_c(next_c(x)) in p for x in atz[:-2]):
             continue
-        return s
+        return p
 
 
-print(f(D))
-print(f(f(D)))
+r1 = next_pass(d)
+print(r1)
+print(next_pass(r1))

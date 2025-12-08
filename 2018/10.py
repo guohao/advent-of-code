@@ -2,19 +2,20 @@ from util import *
 
 ps = []
 for line in L:
-    nums = list(map(int, re.findall(r'-?\d+', line)))
+    nums = list(map(int, re.findall(r"-?\d+", line)))
     ps.append(nums)
 
 
 def print_grid(k):
     g = {}
     a = trans(k)
-    for p in a:  g[p[0], p[1]] = '#'
+    for p in a:
+        g[p[0], p[1]] = "#"
     x0, x1, y0, y1 = range_of(a)
     for j in range(y0, y1 + 1):
-        line = ''
+        line = ""
         for i in range(x0, x1 + 1):
-            line += g.get((i, j), '.')
+            line += g.get((i, j), ".")
         print(line)
 
 

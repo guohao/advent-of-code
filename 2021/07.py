@@ -1,7 +1,7 @@
 from util import *
 
 data = D
-ns = list(map(int, data.split(',')))
+ns = list(map(int, data.split(",")))
 
 ans = math.inf
 for n in range(min(ns), max(ns) + 1):

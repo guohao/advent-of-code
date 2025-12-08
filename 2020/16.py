@@ -1,11 +1,11 @@
 from util import *
 
-data = D 
+data = D
 
-parts = data.split('\n\n')
+parts = data.split("\n\n")
 holes = []
 for line in parts[0].splitlines():
-    ns = list(map(int, re.findall(r'\d+', line)))
+    ns = list(map(int, re.findall(r"\d+", line)))
     for i in range(0, len(ns), 2):
         holes.append((ns[i], ns[i + 1]))
 ans = 0
@@ -19,16 +19,16 @@ def not_match(n) -> bool:
 
 
 for line in parts[2].splitlines()[1:]:
-    for n in map(int, line.split(',')):
+    for n in map(int, line.split(",")):
         if not_match(n):
             ans += n
 print(ans)
-parts = data.split('\n\n')
+parts = data.split("\n\n")
 holes = {}
 flat_holes = []
 for line in parts[0].splitlines():
-    ns = list(map(int, re.findall(r'\d+', line)))
-    name = line.split(':')[0]
+    ns = list(map(int, re.findall(r"\d+", line)))
+    name = line.split(":")[0]
     holes[name] = []
     for i in range(0, len(ns), 2):
         holes[name].append((ns[i], ns[i + 1]))
@@ -36,7 +36,7 @@ for line in parts[0].splitlines():
 
 
 def match() -> bool:
-    for n in map(int, line.split(',')):
+    for n in map(int, line.split(",")):
         match_any = False
         for a, b in flat_holes:
             if a <= n <= b:
@@ -57,7 +57,7 @@ can_place = {}
 
 def all_match_hole(hole):
     for t in all_tickets:
-        if not any(a <= list(map(int, t.split(',')))[i] <= b for a, b in hole):
+        if not any(a <= list(map(int, t.split(",")))[i] <= b for a, b in hole):
             return False
     return True
 
@@ -80,5 +80,9 @@ while can_place:
                 if target in can_place[other]:
                     can_place[other].remove(target)
 
-my_ticket = list(map(int, my_ticket.split(',')))
-print(math.prod([int(my_ticket[v]) for k, v in final_place.items() if k.startswith("departure")]))
+my_ticket = list(map(int, my_ticket.split(",")))
+print(
+    math.prod(
+        [int(my_ticket[v]) for k, v in final_place.items() if k.startswith("departure")]
+    )
+)

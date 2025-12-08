@@ -5,10 +5,10 @@ def f(p2=None):
     lines = L
     grid = set()
     for line in lines:
-        parts = line.split(' -> ')
+        parts = line.split(" -> ")
         for i in range(1, len(parts)):
-            xs, ys = (int(x) for x in parts[i - 1].split(','))
-            xe, ye = (int(x) for x in parts[i].split(','))
+            xs, ys = (int(x) for x in parts[i - 1].split(","))
+            xe, ye = (int(x) for x in parts[i].split(","))
             for x in range(min(xs, xe), max(xe, xs) + 1):
                 for y in range(min(ys, ye), max(ys, ye) + 1):
                     grid.add((x, y))

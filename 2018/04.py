@@ -6,16 +6,16 @@ g = defaultdict(lambda: defaultdict(int))
 cg = -1
 ft = -1
 for line in lines:
-    if '#' in line:
+    if "#" in line:
         cg = int(line.split()[-3][1:])
-    elif 'falls' in line:
+    elif "falls" in line:
         ft = line.split()[1][:-1]
-    elif 'wakes' in line:
+    elif "wakes" in line:
         wt = line.split()[1][:-1]
-        h, m = map(int, ft.split(':'))
+        h, m = map(int, ft.split(":"))
         if h == 23:
             m -= 60
-        h2, m2 = map(int, wt.split(':'))
+        h2, m2 = map(int, wt.split(":"))
         if h2 == 23:
             m2 -= 60
         for i in range(m, m2):

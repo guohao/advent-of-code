@@ -7,13 +7,13 @@ nums = I
 @cache
 def gen(n):
     if n == 0:
-        return 1,
+        return (1,)
     elif len(str(n)) % 2 == 0:
         s = str(n)
-        l, r = int(s[:len(s) // 2]), int(s[len(s) // 2:])
+        l, r = int(s[: len(s) // 2]), int(s[len(s) // 2 :])
         return l, r
     else:
-        return n * 2024,
+        return (n * 2024,)
 
 
 @cache

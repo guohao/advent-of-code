@@ -13,7 +13,7 @@ def state_of(data: str, x, y):
 
 from util import *
 
-data = D 
+data = D
 
 ans = 0
 for x in range(50):
@@ -34,7 +34,7 @@ def match(data, x, y):
 
 from util import *
 
-data = D 
+data = D
 
 
 def s(xs, y):

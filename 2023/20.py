@@ -9,21 +9,21 @@ def f(p2=None):
     types = {}
     states = {}
     for line in L:
-        f, t = line.split(' -> ')
-        name = f if f[0] not in '%&' else f[1:]
-        dest[name] = t.split(', ')
+        f, t = line.split(" -> ")
+        name = f if f[0] not in "%&" else f[1:]
+        dest[name] = t.split(", ")
 
-        if f[0] == '%':
-            types[name] = '%'
+        if f[0] == "%":
+            types[name] = "%"
             states[name] = 0
-        elif f[0] == '&':
-            types[name] = '&'
+        elif f[0] == "&":
+            types[name] = "&"
             states[name] = {}
         else:
             types[name] = name
     for m, tos in dest.items():
         for t in tos:
-            if t in types and types[t] == '&':
+            if t in types and types[t] == "&":
                 states[t][m] = 0
     q = deque()
 
@@ -31,11 +31,11 @@ def f(p2=None):
         for to in dest[name]:
             q.append((name, to, pulse))
 
-    needs = {'sg', 'dh', 'db', 'lm'}
+    needs = {"sg", "dh", "db", "lm"}
     cycles = {x: 0 for x in needs}
-    source = 'jm'
+    source = "jm"
     for i in range(10000):
-        q.append(('', 'broadcaster', 0))
+        q.append(("", "broadcaster", 0))
         while q:
             prev, curr, p = q.popleft()
             if not p2:
@@ -52,13 +52,13 @@ def f(p2=None):
             if curr not in types:
                 continue
             match types[curr]:
-                case 'broadcaster':
+                case "broadcaster":
                     send(curr, p)
-                case '%':
+                case "%":
                     if p == 0:
                         states[curr] = 1 - states[curr]
                         send(curr, states[curr])
-                case '&':
+                case "&":
                     states[curr][prev] = p
                     send(curr, not all(states[curr].values()))
 

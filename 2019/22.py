@@ -1,12 +1,12 @@
 from util import *
 
-data = D 
+data = D
 
 cards = list(range(10007))
 for line in data.splitlines():
-    if 'new stack' in line:
+    if "new stack" in line:
         cards.reverse()
-    elif 'cut' in line:
+    elif "cut" in line:
         n = int(line.split()[-1])
         cards = cards[n:] + cards[:n]
     else:
@@ -20,16 +20,16 @@ for line in data.splitlines():
 print(cards.index(2019))
 from util import *
 
-data = D 
+data = D
 
 nc, times = 119315717514047, 101741582076661
 
 add, mul = 0, 1
 for line in data.splitlines():
-    if 'new stack' in line:
+    if "new stack" in line:
         mul *= -1
         add += mul
-    elif 'cut' in line:
+    elif "cut" in line:
         n = int(line.split()[-1])
         add += n * mul
     else:

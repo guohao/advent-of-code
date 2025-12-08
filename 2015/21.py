@@ -21,7 +21,10 @@ Damage +3   100     3       0
 Defense +1   20     0       1
 Defense +2   40     0       2
 Defense +3   80     0       3"""
-items = [[list(map(int, item.split()[-3:])) for item in p.splitlines()[1:]] for p in shop.split('\n\n')]
+items = [
+    [list(map(int, item.split()[-3:])) for item in p.splitlines()[1:]]
+    for p in shop.split("\n\n")
+]
 
 boss_hp, boss_damage, boss_armor = I
 

@@ -3,7 +3,7 @@ from util import *
 data = D
 
 qs = []
-for part in data.split('\n\n'):
+for part in data.split("\n\n"):
     qs.append(deque(map(int, part.splitlines()[1:])))
 while all(qs):
     for i in range(2):
@@ -15,7 +15,7 @@ w = qs[0] if qs[0] else qs[1]
 print(sum(w.popleft() * i for i in range(len(w), 0, -1)))
 
 qs = []
-for part in data.split('\n\n'):
+for part in data.split("\n\n"):
     qs.append(deque(map(int, part.splitlines()[1:])))
 
 
@@ -27,7 +27,7 @@ def game(cqs):
         for i in range(2):
             seen[i].add(tuple(cqs[i]))
         if all(cqs[i][0] < len(cqs[i]) for i in range(2)):
-            nqs = [deque(list(q)[1:1 + q[0]]) for q in cqs]
+            nqs = [deque(list(q)[1 : 1 + q[0]]) for q in cqs]
             win_idx = game(nqs)
         else:
             win_idx = int(cqs[1][0] > cqs[0][0])

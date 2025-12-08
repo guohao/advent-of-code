@@ -2,7 +2,7 @@ from util import *
 
 bs = []
 for line in L:
-    x0, y0, z0, x1, y1, z1 = list(map(int, re.findall(r'\d+', line)))
+    x0, y0, z0, x1, y1, z1 = list(map(int, re.findall(r"\d+", line)))
     points = []
     for x in range(x0, x1 + 1):
         for y in range(y0, y1 + 1):

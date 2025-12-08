@@ -20,7 +20,7 @@ for line in tt.splitlines():
 a = {}
 for line in L:
     vs = ints(line)
-    a[vs[0]] = dict(zip(re.findall(r'([a-z]+):', line), vs[1:]))
+    a[vs[0]] = dict(zip(re.findall(r"([a-z]+):", line), vs[1:]))
 
 for i, v in a.items():
     if all(e[k] == v[k] for k in v):
@@ -28,10 +28,10 @@ for i, v in a.items():
         break
 for i, v in a.items():
     for k in v:
-        if k in ['cats', 'trees']:
+        if k in ["cats", "trees"]:
             if v[k] <= e[k]:
                 break
-        elif k in ['pomeranians', 'goldfish']:
+        elif k in ["pomeranians", "goldfish"]:
             if v[k] >= e[k]:
                 break
         else:

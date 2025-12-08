@@ -1,6 +1,6 @@
 from util import *
 
-data = D 
+data = D
 
 ops = data.splitlines()
 i = 0
@@ -11,9 +11,9 @@ while i < len(ops):
         break
     seen.add(i)
     op = ops[i]
-    if 'acc' in op:
+    if "acc" in op:
         acc += int(op.split()[1])
-    elif 'jmp' in op:
+    elif "jmp" in op:
         i += int(op.split()[1])
         continue
     i += 1
@@ -21,15 +21,16 @@ print(acc)
 
 cmds = data.splitlines()
 
+
 def replace(k):
     ops = cmds.copy()
     kop = ops[k]
-    if "nop" not in kop and 'jmp' not in kop:
+    if "nop" not in kop and "jmp" not in kop:
         return False, 0
-    if 'nop' in kop:
-        ops[k] = 'jmp ' + kop.split()[1]
+    if "nop" in kop:
+        ops[k] = "jmp " + kop.split()[1]
     else:
-        ops[k] = 'nop ' + kop.split()[1]
+        ops[k] = "nop " + kop.split()[1]
     i = 0
     acc = 0
     run_times = 1000
@@ -38,9 +39,9 @@ def replace(k):
         if run_times < 0:
             return False, 0
         op = ops[i]
-        if 'acc' in op:
+        if "acc" in op:
             acc += int(op.split()[1])
-        elif 'jmp' in op:
+        elif "jmp" in op:
             i += int(op.split()[1])
             continue
         i += 1

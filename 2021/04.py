@@ -1,7 +1,7 @@
 from util import *
 
 parts = PS
-ns = list(map(int, parts[0].split(',')))
+ns = list(map(int, parts[0].split(",")))
 gs = []
 for part in parts[1:]:
     g = {}

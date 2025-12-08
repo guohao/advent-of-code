@@ -20,22 +20,22 @@ def knot_hash(s: str):
             skip_size += 1
     q.rotate(cur_pos)
 
-    h = ''
+    h = ""
     while q:
         x = 0
         for _ in range(16):
             x ^= q.popleft()
-        h += f'{x:02x}'
+        h += f"{x:02x}"
     return h
 
 
-print(sum(int(c, 16).bit_count() for i in range(128) for c in knot_hash(f'{D}-{i}')))
+print(sum(int(c, 16).bit_count() for i in range(128) for c in knot_hash(f"{D}-{i}")))
 
 g = nx.Graph()
 for i in range(128):
-    for j, c in enumerate(knot_hash(f'{D}-{i}')):
-        for k, used in enumerate(f'{int(c, 16):04b}'):
-            if used == '1':
+    for j, c in enumerate(knot_hash(f"{D}-{i}")):
+        for k, used in enumerate(f"{int(c, 16):04b}"):
+            if used == "1":
                 u = i, j * 4 + k
                 g.add_node(u)
                 for dx, dy in [(1, 0), (0, 1), (-1, 0), (0, -1)]:

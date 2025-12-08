@@ -7,8 +7,10 @@ ans = 0
 
 def visible():
     for dx, dy in [(0, 1), (0, -1), (-1, 0), (1, 0)]:
-        if all((i + dx * k, j + dy * k) not in g or g[i + dx * k, j + dy * k] < g[i, j] for k in
-               range(1, max(x_max, y_max))):
+        if all(
+            (i + dx * k, j + dy * k) not in g or g[i + dx * k, j + dy * k] < g[i, j]
+            for k in range(1, max(x_max, y_max))
+        ):
             return True
     return False
 

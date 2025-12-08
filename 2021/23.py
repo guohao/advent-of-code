@@ -11,10 +11,10 @@ def f(d: str):
                 pos.append((c, (i, j)))
     hallways = set((1, x) for x in list(range(1, 12)) if x not in range(3, 11, 2))
     goals = {}
-    for letter, j in zip('ABCD', range(3, 11, 2)):
+    for letter, j in zip("ABCD", range(3, 11, 2)):
         goals[letter] = [(i, j) for i in range(2, max(x for _, (x, y) in pos) + 1)]
 
-    cost = {'A': 1, 'B': 10, 'C': 100, 'D': 1000}
+    cost = {"A": 1, "B": 10, "C": 100, "D": 1000}
 
     @cache
     def dfs(n_pos):
@@ -33,7 +33,10 @@ def f(d: str):
                 return -1
             if any((i, cell[1]) in grid for i in range(2, cell[0])):
                 return -1
-            if any((1, i) in grid for i in range(min(hp[1], cell[1]) + 1, max(hp[1], cell[1]))):
+            if any(
+                (1, i) in grid
+                for i in range(min(hp[1], cell[1]) + 1, max(hp[1], cell[1]))
+            ):
                 return -1
             return cell[0] - 1 + abs(cell[1] - hp[1])
 
@@ -69,5 +72,5 @@ f(D)
 lines = D.splitlines()
 lines.insert(3, "  #D#B#A#C#")
 lines.insert(3, "  #D#C#B#A#")
-data = '\n'.join(lines)
+data = "\n".join(lines)
 f(data)

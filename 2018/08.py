@@ -1,4 +1,5 @@
 from util import *
+
 d = list(map(int, D.split()))
 
 t = 0
@@ -13,7 +14,7 @@ def dfs():
     i += 2
     for _ in range(cc):
         dfs()
-    t += sum(d[i:i + mc])
+    t += sum(d[i : i + mc])
     i += mc
 
 
@@ -21,6 +22,8 @@ dfs()
 print(t)
 
 i = 0
+
+
 def dfs() -> int:
     t = 0
     global i
@@ -28,7 +31,7 @@ def dfs() -> int:
     mc = d[i + 1]
     i += 2
     children = [dfs() for _ in range(cc)]
-    metadata = d[i:i + mc]
+    metadata = d[i : i + mc]
     c = Counter(metadata)
     if not cc:
         t += sum(metadata)

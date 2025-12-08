@@ -1,26 +1,27 @@
 from util import *
 
 op_all = {
-    'addr': lambda r, a, b: r[a] + r[b],
-    'addi': lambda r, a, b: r[a] + b,
-    'mulr': lambda r, a, b: r[a] * r[b],
-    'muli': lambda r, a, b: r[a] * b,
-    'banr': lambda r, a, b: r[a] & r[b],
-    'bani': lambda r, a, b: r[a] & b,
-    'borr': lambda r, a, b: r[a] | r[b],
-    'bori': lambda r, a, b: r[a] | b,
-    'setr': lambda r, a, _: r[a],
-    'seti': lambda r, a, _: a,
-    'gtir': lambda r, a, b: int(a > r[b]),
-    'gtri': lambda r, a, b: int(r[a] > b),
-    'gtrr': lambda r, a, b: int(r[a] > r[b]),
-    'eqir': lambda r, a, b: int(a == r[b]),
-    'eqri': lambda r, a, b: int(r[a] == b),
-    'eqrr': lambda r, a, b: int(r[a] == r[b])}
+    "addr": lambda r, a, b: r[a] + r[b],
+    "addi": lambda r, a, b: r[a] + b,
+    "mulr": lambda r, a, b: r[a] * r[b],
+    "muli": lambda r, a, b: r[a] * b,
+    "banr": lambda r, a, b: r[a] & r[b],
+    "bani": lambda r, a, b: r[a] & b,
+    "borr": lambda r, a, b: r[a] | r[b],
+    "bori": lambda r, a, b: r[a] | b,
+    "setr": lambda r, a, _: r[a],
+    "seti": lambda r, a, _: a,
+    "gtir": lambda r, a, b: int(a > r[b]),
+    "gtri": lambda r, a, b: int(r[a] > b),
+    "gtrr": lambda r, a, b: int(r[a] > r[b]),
+    "eqir": lambda r, a, b: int(a == r[b]),
+    "eqri": lambda r, a, b: int(r[a] == b),
+    "eqrr": lambda r, a, b: int(r[a] == r[b]),
+}
 
 
 def ints(line):
-    return list(map(int, re.findall(r'-?\d+', line)))
+    return list(map(int, re.findall(r"-?\d+", line)))
 
 
 def opcs(before, op, after):
@@ -35,16 +36,16 @@ def opcs(before, op, after):
 
 def p1(data: str):
     ans = 0
-    for part in data.split('\n\n\n')[0].split('\n\n'):
+    for part in data.split("\n\n\n")[0].split("\n\n"):
         if len(opcs(*list(map(ints, part.splitlines())))) > 2:
             ans += 1
     return ans
 
 
 def p2(data: str):
-    sample, test = data.split('\n\n\n')
+    sample, test = data.split("\n\n\n")
     opm = defaultdict(lambda: set(op_all.keys()))
-    for part in sample.split('\n\n'):
+    for part in sample.split("\n\n"):
         before, ops, after = list(map(ints, part.splitlines()))
         opm[ops[0]] = opm[ops[0]].intersection(opcs(before, ops, after))
     nto = {}
@@ -64,5 +65,7 @@ def p2(data: str):
         op = ints(part)
         r[op[3]] = op_all[nto[op[0]]](r, op[1], op[2])
     return r[0]
+
+
 print(p1(D))
 print(p2(D))

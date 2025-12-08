@@ -6,10 +6,10 @@ for p in PS:
     lines = [l.strip() for l in p.splitlines()]
     g = {(i, j): c for i, line in enumerate(lines) for j, c in enumerate(line)}
     hs = []
-    if p[0] == '#':
+    if p[0] == "#":
         for j in range(len(lines[0])):
             for i in range(len(lines)):
-                if g[i, j] != '#':
+                if g[i, j] != "#":
                     hs.append(i - 1)
                     break
 
@@ -17,7 +17,7 @@ for p in PS:
     else:
         for j in range(len(lines[0])):
             for i in range(len(lines)):
-                if g[i, j] != '.':
+                if g[i, j] != ".":
                     hs.append(len(lines) - i - 1)
                     break
         ks.append((hs, len(lines) - 1))

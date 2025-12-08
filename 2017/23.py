@@ -5,7 +5,7 @@ i = 0
 
 
 def vo(n: str):
-    if re.fullmatch(r'-?\d+', n):
+    if re.fullmatch(r"-?\d+", n):
         return int(n)
     return r[n]
 
@@ -13,14 +13,14 @@ def vo(n: str):
 ans = 0
 while 0 <= i < R:
     c, *a = L[i].split()
-    if 'set' == c:
+    if "set" == c:
         r[a[0]] = vo(a[1])
-    elif 'sub' == c:
+    elif "sub" == c:
         r[a[0]] -= vo(a[1])
-    elif 'mul' == c:
+    elif "mul" == c:
         ans += 1
         r[a[0]] *= vo(a[1])
-    elif 'jnz' == c:
+    elif "jnz" == c:
         if vo(a[0]) != 0:
             i += vo(a[1])
             continue

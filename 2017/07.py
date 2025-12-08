@@ -6,11 +6,12 @@ from util import *
 
 g = nx.DiGraph()
 for line in L:
-    cells = line.replace(',', '').split()
+    cells = line.replace(",", "").split()
     g.add_node(cells[0], v=int(cells[1][1:-1]))
-    if '->' in line:
-        cells = line.replace(',', '').split()
-        for c in cells[3:]:  g.add_edge(cells[0], c);
+    if "->" in line:
+        cells = line.replace(",", "").split()
+        for c in cells[3:]:
+            g.add_edge(cells[0], c)
 print(next(nx.topological_sort(g)))
 
 
@@ -20,7 +21,7 @@ def tw(n: str) -> int:
 
 
 def nw(n: str) -> int:
-    return nx.get_node_attributes(g, 'v')[n]
+    return nx.get_node_attributes(g, "v")[n]
 
 
 def need_to_be(es: int, root: str) -> int:

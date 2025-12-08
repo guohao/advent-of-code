@@ -15,7 +15,7 @@ def abs_sum(l):
 
 
 def ints(s: str):
-    return list(map(int, re.findall(r'-?\d+', s)))
+    return list(map(int, re.findall(r"-?\d+", s)))
 
 
 data = D
@@ -26,13 +26,14 @@ for i, line in enumerate(data.splitlines()):
 for _ in range(1000):
     for ma in moons:
         n = ma[0]
-        for mb in moons[:n] + moons[n + 1:]:
+        for mb in moons[:n] + moons[n + 1 :]:
             for i in range(3):
                 ma[4 + i] += cmp(ma[1 + i], mb[1 + i])
     for ma in moons:
         for i in range(3):
             ma[i + 1] += ma[i + 4]
 print(sum(abs_sum(m[1:4]) * abs_sum(m[4:7]) for m in moons))
+
 
 def cmp(a, b):
     return (a < b) - (a > b)
@@ -43,7 +44,7 @@ def abs_sum(l):
 
 
 def ints(s: str):
-    return list(map(int, re.findall(r'-?\d+', s)))
+    return list(map(int, re.findall(r"-?\d+", s)))
 
 
 dims = [[] for _ in range(3)]
@@ -64,4 +65,4 @@ for i in range(3):
         if cmp_state == dim:
             periods.append(t + 1)
             break
-print(reduce(math.lcm,periods))
+print(reduce(math.lcm, periods))

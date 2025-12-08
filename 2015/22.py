@@ -32,9 +32,14 @@ def fight(p2=None):
             print(cost)
             break
         if boss_turn:
-            heapq.heappush(heap, (cost, hp - boss_damage + armor, mana, tuple(effects), boss_hp, False))
+            heapq.heappush(
+                heap,
+                (cost, hp - boss_damage + armor, mana, tuple(effects), boss_hp, False),
+            )
         else:
-            for j, (cost_mana, damage, heal, add_armor, add_mana, lasts) in enumerate(spells):
+            for j, (cost_mana, damage, heal, add_armor, add_mana, lasts) in enumerate(
+                spells
+            ):
                 if j in {e[0] for e in effects}:
                     continue
                 if cost_mana > mana:

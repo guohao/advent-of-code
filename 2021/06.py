@@ -1,6 +1,6 @@
 from util import *
 
-seq = list(map(int, D.split(',')))
+seq = list(map(int, D.split(",")))
 lfs = defaultdict(int)
 for t in seq:
     lfs[t] += 1

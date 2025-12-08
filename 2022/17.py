@@ -3,14 +3,8 @@ from util import *
 
 def f(epoch):
     data = D
-    JETS = list(map({'<': -1, '>': 1}.get, list(data.strip())))
-    ROCKS = [
-        [1, 1, 1, 1],
-        [2, 7, 2],
-        [1, 1, 7],
-        [15],
-        [3, 3]
-    ]
+    JETS = list(map({"<": -1, ">": 1}.get, list(data.strip())))
+    ROCKS = [[1, 1, 1, 1], [2, 7, 2], [1, 1, 7], [15], [3, 3]]
 
     N = 7
     G = [0] * N

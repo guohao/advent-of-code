@@ -43,5 +43,5 @@ for x, y in g:
         for common in list({ta, tb}.intersection(list({0, 1, 2} - {g[k1]}))):
             G.add_edge((k0, common), (k1, common), weight=1)
 
-path = nx.shortest_path(G, ((0, 0), 1), (target, 1), 'weight')
-print(nx.path_weight(G, path, 'weight'))
+path = nx.shortest_path(G, ((0, 0), 1), (target, 1), "weight")
+print(nx.path_weight(G, path, "weight"))

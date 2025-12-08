@@ -7,7 +7,7 @@ gd = defaultdict(list)
 for i in range(R):
     for j in range(C):
         v = L[i][j]
-        if v != '.':
+        if v != ".":
             gd[v].append((i, j))
 ans = set()
 for v in gd.values():

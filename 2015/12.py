@@ -1,6 +1,6 @@
 import json
+import sys
+import re
 
-from util import *
-
-print(sum(ints(D)))
-print(sum(ints(str(json.loads(D, object_hook=lambda o: {} if "red" in o.values() else o)))))
+d = sys.stdin.read()
+print(sum(re.findall(r"-?\d+", d)))

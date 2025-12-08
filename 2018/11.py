@@ -7,7 +7,7 @@ gsn = int(D)
 @cache
 def power_level(x, y):
     rack_id = x + 10
-    return int(f'{(rack_id * y + gsn) * rack_id:03}'[-3]) - 5
+    return int(f"{(rack_id * y + gsn) * rack_id:03}"[-3]) - 5
 
 
 n = 300
@@ -29,7 +29,7 @@ sat = defaultdict(int)
 for x in range(1, N):
     for y in range(1, N):
         cid = x + 10
-        p = int(f'{(cid * y + gsn) * cid:03}'[-3]) - 5
+        p = int(f"{(cid * y + gsn) * cid:03}"[-3]) - 5
         sat[x, y] = sat[x - 1, y] - sat[x - 1, y - 1] + sat[x, y - 1] + p
 
 for k in range(1, N):

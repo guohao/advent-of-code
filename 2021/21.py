@@ -4,7 +4,7 @@ from util import *
 def p1():
     ps = {}
     for line in D.splitlines():
-        p, pos = list(map(int, re.findall(r'\d+', line)))
+        p, pos = list(map(int, re.findall(r"\d+", line)))
         ps[p] = (pos - 1, 0)
     dc = 0
     dseq = cycle(range(1, 101))
@@ -22,7 +22,7 @@ def p1():
 
 ps = {}
 for line in D.splitlines():
-    p, pos = list(map(int, re.findall(r'\d+', line)))
+    p, pos = list(map(int, re.findall(r"\d+", line)))
     ps[p] = pos - 1
 
 

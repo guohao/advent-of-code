@@ -5,13 +5,13 @@ data = D
 g = {}
 for i, line in enumerate(data.splitlines()):
     for j, c in enumerate(line):
-        if c != '.':
+        if c != ".":
             g[i, j] = c
 R = len(data.splitlines())
 C = len(data.splitlines()[0])
 for t in count(1):
     moved = False
-    for tc, d in [('>', (0, 1)), ('v', (1, 0))]:
+    for tc, d in [(">", (0, 1)), ("v", (1, 0))]:
         ng = {}
         for p, v in g.items():
             np = (p[0] + d[0]) % R, (p[1] + d[1]) % C

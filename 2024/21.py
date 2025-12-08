@@ -13,30 +13,18 @@ def run(n):
         G = nx.Graph()
         for i in range(len(grid)):
             for j in range(len(grid[i])):
-                if g[i, j] == '#':
+                if g[i, j] == "#":
                     continue
                 for dx, dy in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
                     nb = i + dx, j + dy
-                    if nb in g and g[nb] != '#':
+                    if nb in g and g[nb] != "#":
                         G.add_edge((i, j), nb)
         return g, rg, G
 
-    dg, rdg, DG = build_graph([
-        [7, 8, 9],
-        [4, 5, 6],
-        [1, 2, 3],
-        ['#', 0, 'A']])
-    cg, rcg, CG = build_graph([
-        ['#', '^', 'A'],
-        ['<', 'v', '>']
-    ])
+    dg, rdg, DG = build_graph([[7, 8, 9], [4, 5, 6], [1, 2, 3], ["#", 0, "A"]])
+    cg, rcg, CG = build_graph([["#", "^", "A"], ["<", "v", ">"]])
 
-    D = {
-        (1, 0): 'v',
-        (-1, 0): '^',
-        (0, 1): '>',
-        (0, -1): '<'
-    }
+    D = {(1, 0): "v", (-1, 0): "^", (0, 1): ">", (0, -1): "<"}
 
     def decode(G, prev_steps):
         steps = []
@@ -50,8 +38,8 @@ def run(n):
                     diff = (path[j][0] - path[j - 1][0], path[j][1] - path[j - 1][1])
 
                     cur_seq.append(D[diff])
-                cur_seq.append('A')
-                one_step_choices.append(''.join(cur_seq))
+                cur_seq.append("A")
+                one_step_choices.append("".join(cur_seq))
             min_len = min(len(x) for x in one_step_choices)
             steps.append([x for x in one_step_choices if len(x) == min_len])
         return steps
@@ -60,10 +48,10 @@ def run(n):
     def dfs(turn: int, picked: str):
         total_cost = 0
         if turn == 1:
-            for s in decode(CG, [rcg[c] for c in 'A' + picked]):
+            for s in decode(CG, [rcg[c] for c in "A" + picked]):
                 total_cost += min(len(a) for a in s)
         else:
-            for steps in decode(CG, [rcg[c] for c in 'A' + picked]):
+            for steps in decode(CG, [rcg[c] for c in "A" + picked]):
                 min_cost = math.inf
                 for pick in steps:
                     min_cost = min(min_cost, dfs(turn - 1, pick))
@@ -74,9 +62,9 @@ def run(n):
     t = 0
     for line in ls:
         cost = 0
-        for step in decode(DG, [rdg[c] for c in 'A' + line]):
+        for step in decode(DG, [rdg[c] for c in "A" + line]):
             cost += min(dfs(N, choice) for choice in step)
-        t += cost * next(map(int, re.findall(r'-?\d+', line)))
+        t += cost * next(map(int, re.findall(r"-?\d+", line)))
     print(t)
 
 

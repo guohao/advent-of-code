@@ -40,12 +40,12 @@ for t in count(101):
     g = set(r for r, v in rs)
     outs = []
     for j in range(Y):
-        line = ''
+        line = ""
         for i in range(X):
             if (i, j) in g:
-                line += '#'
+                line += "#"
             else:
-                line += '.'
+                line += "."
         if "#########" in line:
             print(t)
             exit()

@@ -2,7 +2,7 @@ import intcode
 
 from util import *
 
-data = D 
+data = D
 
 vm = intcode.IntCodeVM(data)
 vm.run()
@@ -18,7 +18,7 @@ print(len(g))
 
 data = D
 
-data = '2' + data[1:]
+data = "2" + data[1:]
 vm = intcode.IntCodeVM(data)
 sq = vm.sq
 rq = vm.rq

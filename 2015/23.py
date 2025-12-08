@@ -1,6 +1,6 @@
-from util import *
+import sys
 
-prog = L
+prog = sys.stdin.readlines()
 
 
 def f(p2=None):

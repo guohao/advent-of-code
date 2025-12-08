@@ -1,20 +1,31 @@
-from util import *
-
-dist = {}
+import sys
+import heapq
+from functools import cache
+ls = sys.stdin.readlines()
+edges= {}
 nodes = set()
-for line in L:
-    f, t, d = line.split()[0::2]
-    nodes |= {f, t}
-    dist[f, t] = int(d)
-    dist[t, f] = int(d)
+for l in ls:
+    l=l.strip()
+    f,_,t,_,d = l.split()
+    d = int(d)
+    edges[f,t] = d
+    edges[t,f] = d
+    nodes.add(f)
+    nodes.add(t)
 
-min_cost = math.inf
-max_cost = -math.inf
+@cache
+def dfs(visited):
+    if len(visited) == len(nodes):
+        return 0,0
+    min_cost = 2**63-1
+    max_cost = -1
+    for n in nodes - set(visited):
+        smin,smax = dfs(visited + (n,))
+        if visited:
+            smin += edges[visited[-1],n]
+            smax += edges[visited[-1],n]
+        min_cost = min(min_cost,smin)
+        max_cost = max(max_cost,smax)
+    return min_cost,max_cost
 
-for path in permutations(nodes):
-    cost = sum(dist[p] for p in nb_pair(path))
-    min_cost = min(min_cost, cost)
-    max_cost = max(max_cost, cost)
-
-print(min_cost)
-print(max_cost)
+print(dfs(tuple()))

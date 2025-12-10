@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 import heapq
 import sys
 
@@ -9,7 +9,20 @@ def join(l):
     return "".join(map(str, l))
 
 
-import networkx as nx
+def bfs_shortest_path(G, start, end):
+    if start not in G or end not in G:
+        return None
+    q = deque([(start, 0)])
+    visited = {start}
+    while q:
+        node, dist = q.popleft()
+        if node == end:
+            return dist
+        for neighbor in G[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                q.append((neighbor, dist + 1))
+    return None
 
 
 def p1(data: str):
@@ -19,14 +32,15 @@ def p1(data: str):
         for j, c in enumerate(line):
             if c == "." or c.isupper():
                 g[i, j] = c
-    G = nx.Graph()
+    G = defaultdict(list)
     for i, line in enumerate(data.splitlines()):
         for j, c in enumerate(line):
             if c == ".":
                 for dx, dy in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
                     nb = (i + dx, j + dy)
                     if nb in g and g[nb] == ".":
-                        G.add_edge(nb, (i, j))
+                        G[(i, j)].append(nb)
+                        G[nb].append((i, j))
             elif c.isupper():
                 for dx, dy in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
                     nb = (i + dx, j + dy)
@@ -35,11 +49,12 @@ def p1(data: str):
                         if p in g:
                             pair = "".join(sorted(c + data.splitlines()[nb[0]][nb[1]]))
                             if pair in l2p:
-                                G.add_edge(l2p[pair], p)
+                                G[l2p[pair]].append(p)
+                                G[p].append(l2p[pair])
                             else:
                                 l2p[pair] = p
                             break
-    return nx.shortest_path_length(G, l2p["AA"], l2p["ZZ"])
+    return bfs_shortest_path(G, l2p["AA"], l2p["ZZ"])
 
 
 def p2(data: str):
@@ -50,7 +65,7 @@ def p2(data: str):
         for j, c in enumerate(line):
             if c == "." or c.isupper():
                 g[i, j] = c
-    G = nx.Graph()
+    G = defaultdict(list)
     outs = {}
     ins = {}
     for i, line in enumerate(data.splitlines()):
@@ -59,7 +74,8 @@ def p2(data: str):
                 for dx, dy in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
                     nb = (i + dx, j + dy)
                     if nb in g and g[nb] == ".":
-                        G.add_edge(nb, (i, j))
+                        G[(i, j)].append(nb)
+                        G[nb].append((i, j))
             elif c.isupper():
                 for dx, dy in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
                     nb = (i + dx, j + dy)
@@ -82,9 +98,10 @@ def p2(data: str):
         for b in list(outs.values()) + list(ins.values()):
             if a == b:
                 continue
-            if nx.has_path(G, a, b):
-                paths[a][b] = nx.shortest_path_length(G, a, b)
-                paths[b][a] = paths[a][b]
+            dist = bfs_shortest_path(G, a, b)
+            if dist is not None:
+                paths[a][b] = dist
+                paths[b][a] = dist
     q = []
     heapq.heapify(q)
 
@@ -115,5 +132,6 @@ def p2(data: str):
             heapq.heappush(q, (steps + reaches[n], lvl + diff, p))
 
 
-print(p1(RAW))
-print(p2(RAW))
+D = sys.stdin.read()
+print(p1(D))
+print(p2(D))

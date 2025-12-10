@@ -1,9 +1,6 @@
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
+D = input().strip()
 
 
 def p1():
@@ -34,12 +31,13 @@ def p2():
     data = (D * 10000)[int(D[:7]) :]
 
     def fft2(s: str):
-        out = ""
+        # 使用列表收集结果，避免字符串拼接的O(n²)复杂度
+        result = []
         cum = 0
-        for i in s[::-1]:
+        for i in reversed(s):
             cum += int(i)
-            out = str(cum)[-1] + out
-        return out
+            result.append(str(cum % 10))
+        return "".join(reversed(result))
 
     for t in range(100):
         data = fft2(data)

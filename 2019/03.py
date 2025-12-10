@@ -1,7 +1,6 @@
 import sys
 
-import re
-
+L = sys.stdin.readlines()
 D = {"R": (0, 1), "L": (0, -1), "D": (1, 0), "U": (-1, 0)}
 
 
@@ -17,7 +16,7 @@ def visited(cmds):
     return seen
 
 
-sa, sb = map(visited, L)
+sa, sb = map(visited, [line.strip() for line in L])
 
 print(min(sum(map(abs, x)) for x in sa if x in sb))
 
@@ -37,6 +36,6 @@ def visited2(cmds):
     return seen
 
 
-sa, sb = map(visited2, L)
+sa, sb = map(visited2, [line.strip() for line in L])
 
 print(min(sa[x] + sb[x] for x in sa if x in sb))

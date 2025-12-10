@@ -3,8 +3,8 @@ from itertools import count
 import math
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
+data = D
 
 
 def calculate_angle(center, point):
@@ -14,8 +14,6 @@ def calculate_angle(center, point):
     adjusted_angle = (angle + math.pi / 2) % (2 * math.pi)
     return adjusted_angle
 
-
-data = D
 
 g = set()
 for i, line in enumerate(data.splitlines()):

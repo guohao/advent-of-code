@@ -1,8 +1,7 @@
 from itertools import product
 import sys
 
-import re
-
+D = input().strip()
 ns = [int(x) for x in D.split(",")]
 ns[1] = 12
 ns[2] = 2

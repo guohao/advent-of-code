@@ -1,10 +1,8 @@
 import re
 import sys
 
+D = sys.stdin.read()
 from intcode import IntCodeVM
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def state_of(data: str, x, y):
@@ -30,7 +28,7 @@ def match(data, x, y):
     ur = state_of(data, x + 99, y)
     ul = state_of(data, x, y)
     dl = state_of(data, x, y + 99)
-    dr = state_of(data, x, y + 99)
+    dr = state_of(data, x + 99, y + 99)
     return ur and ul and dr and dl
 
 

@@ -2,9 +2,7 @@ import sys
 from collections import defaultdict, deque
 from intcode import IntCodeVM
 
-sys.path.insert(0, "..")
-from util import *
-
+D = input().strip()
 data = D
 
 vm = IntCodeVM(data)

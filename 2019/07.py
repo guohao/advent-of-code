@@ -1,5 +1,7 @@
 import re
 import sys
+
+D = sys.stdin.read()
 from collections import deque
 from itertools import permutations
 

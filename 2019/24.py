@@ -1,12 +1,11 @@
 import re
 import sys
+
+D = sys.stdin.read()
 from itertools import count, product
 
 import itertools
 import math
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def p1():

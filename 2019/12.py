@@ -4,8 +4,8 @@ import math
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
+data = D
 
 
 def ints(s: str, neg=True):
@@ -23,7 +23,9 @@ def abs_sum(l):
     return sum(abs(x) for x in l)
 
 
-data = D
+def lcm(a, b):
+    return abs(a * b) // math.gcd(a, b)
+
 
 moons = []
 for i, line in enumerate(data.splitlines()):
@@ -57,4 +59,4 @@ for i in range(3):
         if cmp_state == dim:
             periods.append(t + 1)
             break
-print(reduce(math.lcm, periods))
+print(reduce(lcm, periods))

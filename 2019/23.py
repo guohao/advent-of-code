@@ -1,12 +1,11 @@
 import re
 import sys
+
+D = sys.stdin.read()
 from collections import deque
 from itertools import count
 
 from intcode import IntCodeVM
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def p1():

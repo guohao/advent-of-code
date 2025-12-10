@@ -1,18 +1,15 @@
 import sys
 from collections import deque
-import networkx as nx
 from intcode import IntCodeVM
 
-sys.path.insert(0, "..")
-from util import *
-
+D = input().strip()
 data = D
 
 
 def p1():
     q = deque([[]])
     seen = set()
-    D = {1: (0, -1), 2: (0, 1), 3: (-1, 0), 4: (1, 0)}
+    D_map = {1: (0, -1), 2: (0, 1), 3: (-1, 0), 4: (1, 0)}
     while q:
         path = q.popleft()
         vm = IntCodeVM(data)
@@ -25,7 +22,7 @@ def p1():
                 print(len(path))
                 return
             elif s == 1:
-                d = D[move]
+                d = D_map[move]
                 x, y = x + d[0], y + d[1]
         if (x, y) in seen:
             continue
@@ -37,7 +34,7 @@ def p1():
 def p2():
     q = deque([[]])
     seen = set()
-    D = {1: (0, -1), 2: (0, 1), 3: (-1, 0), 4: (1, 0)}
+    D_map = {1: (0, -1), 2: (0, 1), 3: (-1, 0), 4: (1, 0)}
     oxygen = 0, 0
     while q:
         path = q.popleft()
@@ -49,7 +46,7 @@ def p2():
             s = vm.sq.popleft()
             if s == 0:
                 continue
-            d = D[move]
+            d = D_map[move]
             x, y = x + d[0], y + d[1]
             if s == 2:
                 oxygen = x, y
@@ -58,13 +55,23 @@ def p2():
         seen.add((x, y))
         for i in range(1, 5):
             q.append(path + [i])
-    G = nx.Graph()
-    for x, y in seen:
-        for d in D.values():
-            nb = (x + d[0], y + d[1])
-            if nb in seen:
-                G.add_edge(nb, (x, y))
-    print(max(nx.shortest_path_length(G, oxygen).values()))
+
+    def bfs_max_distance(start):
+        q = deque([(start, 0)])
+        visited = {start}
+        max_dist = 0
+        while q:
+            pos, dist = q.popleft()
+            max_dist = max(max_dist, dist)
+            x, y = pos
+            for d in D_map.values():
+                nb = (x + d[0], y + d[1])
+                if nb in seen and nb not in visited:
+                    visited.add(nb)
+                    q.append((nb, dist + 1))
+        return max_dist
+
+    print(bfs_max_distance(oxygen))
 
 
 p1()

@@ -1,11 +1,8 @@
 import re
 import sys
-
 import intcode
 
-sys.path.insert(0, "..")
-from util import *
-
+D = input().strip()
 data = D
 
 vm = intcode.IntCodeVM(data)

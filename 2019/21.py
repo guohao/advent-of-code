@@ -1,10 +1,9 @@
 import re
 import sys
 
+D = sys.stdin.read()
 from intcode import IntCodeVM
 
-sys.path.insert(0, "..")
-from util import *
 
 data = D
 

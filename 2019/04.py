@@ -1,6 +1,7 @@
 import re
 import sys
 
+D = sys.stdin.read()
 l, r = map(int, D.split("-"))
 t = 0
 for i in range(l, r + 1):

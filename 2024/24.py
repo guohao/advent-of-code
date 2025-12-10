@@ -1,22 +1,11 @@
 from collections import deque
 import sys
-
-sys.path.insert(0, "..")
-from util import *
-
-
-def join(l):
-    return "".join(map(str, l))
-
-
+import networkx as nx
 import re
 
-
-def join(l):
-    return "".join(map(str, l))
-
-
-import networkx as nx
+L = sys.stdin.readlines()
+RAW = "".join(L)
+PS = RAW.strip().split("\n\n")
 
 g = nx.DiGraph()
 for line in L:
@@ -28,25 +17,27 @@ for line in L:
         g.add_edge(a, c, op=op)
         g.add_edge(b, c, op=op)
 
-vals = nx.get_node_attributes(g, "v")
-q = deque(vals)
+vals = dict(nx.get_node_attributes(g, "v"))
+q = deque(vals.keys())
 while q:
     k = q.popleft()
     for s in g.successors(k):
         if s in vals:
             continue
-        a, b = g.predecessors(s)
+        preds = list(g.predecessors(s))
+        if len(preds) < 2:
+            continue
+        a, b = preds[0], preds[1]
         op = g[a][s]["op"]
         if a in vals and b in vals:
-            a = vals[a]
-            b = vals[b]
+            av, bv = vals[a], vals[b]
             match op:
                 case "XOR":
-                    vals[s] = a ^ b
+                    vals[s] = av ^ bv
                 case "OR":
-                    vals[s] = a | b
+                    vals[s] = av | bv
                 case "AND":
-                    vals[s] = a & b
+                    vals[s] = av & bv
             q.append(s)
 print(
     int(
@@ -75,8 +66,9 @@ for line in PS[1].splitlines():
 
 
 def swap(_a, _b):
+    ka, kb = rg[_a], rg[_b]
+    g[ka], g[kb] = g[kb], g[ka]
     rg[_a], rg[_b] = rg[_b], rg[_a]
-    g[rg[_a]], g[rg[_b]] = g[rg[_b]], g[rg[_a]]
 
 
 output = set()
@@ -105,7 +97,9 @@ for i in range(int(max(rg)[1:])):
         k = rg[z]
         xxy = g[x, y, XOR]
         xay = g[x, y, AND]
-        c = g[*minmax(c, xxy), AND]
-        c = g[*minmax(c, xay), OR]
+        a, b = minmax(c, xxy)
+        c = g[a, b, AND]
+        a, b = minmax(c, xay)
+        c = g[a, b, OR]
 
 print(",".join(sorted(output)))

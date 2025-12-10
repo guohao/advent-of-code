@@ -2,11 +2,8 @@ import re
 import sys
 from itertools import combinations
 
-count_nums = lambda f: sum(map(f, NS))
-
-count_nums = lambda f: sum(map(f, NS))
-
-count_nums = lambda f: sum(map(f, NS))
+L = sys.stdin.readlines()
+NS = [list(map(int, re.findall(r"\d+", line))) for line in L]
 
 
 def f(ns):
@@ -31,5 +28,5 @@ def f2(ns):
     return 0
 
 
-print(count_nums(f))
-print(count_nums(f2))
+print(sum(f(ns) for ns in NS))
+print(sum(f2(ns) for ns in NS))

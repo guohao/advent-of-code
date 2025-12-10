@@ -1,4 +1,6 @@
-d = input()
+import sys
+
+d = sys.stdin.read().strip()
 s = []
 for i in range(len(d)):
     s.extend(["." if i % 2 else i // 2] * int(d[i]))
@@ -10,7 +12,8 @@ while l < r:
         l += 1
     while l < r and s[r] == ".":
         r -= 1
-    s[r], s[l] = s[l], s[r]
+    if l < r:
+        s[r], s[l] = s[l], s[r]
 
 t = 0
 for i in range(len(s)):
@@ -26,6 +29,8 @@ r = len(s) - 1
 while r >= 0:
     while r >= 0 and s[r] == ".":
         r -= 1
+    if r < 0:
+        break
     re = r + 1
     rs = r
     while rs >= 0 and s[rs] == s[rs - 1]:

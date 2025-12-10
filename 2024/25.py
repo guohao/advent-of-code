@@ -1,7 +1,7 @@
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+RAW = sys.stdin.read()
+PS = RAW.strip().split("\n\n")
 
 ls = []
 ks = []
@@ -15,7 +15,6 @@ for p in PS:
                 if g[i, j] != "#":
                     hs.append(i - 1)
                     break
-
         ls.append((hs, len(lines) - 1))
     else:
         for j in range(len(lines[0])):

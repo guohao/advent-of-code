@@ -1,7 +1,8 @@
 from collections import deque
 import sys
 
-import re
+L = sys.stdin.readlines()
+IG = {(i, j): L[i][j] for i in range(len(L)) for j in range(len(L[i].strip()))}
 
 g = IG
 q = deque()

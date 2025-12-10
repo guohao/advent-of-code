@@ -2,10 +2,7 @@ from collections import defaultdict
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
-ls = L
+L = sys.stdin.readlines()
 
 
 def f(s: int, n=2000):
@@ -20,7 +17,7 @@ def f(s: int, n=2000):
 
 
 t = 0
-for line in ls:
+for line in L:
     t += f(next(map(int, re.findall(r"-?\d+", line))))
 print(t)
 
@@ -39,7 +36,7 @@ def f2(s: int):
 
 
 profits = defaultdict(int)
-for line in ls:
+for line in L:
     ps = [x % 10 for x in f2(next(map(int, re.findall(r"-?\d+", line))))]
     cs = [ps[i + 1] - ps[i] for i in range(len(ps) - 1)]
     seen = {}

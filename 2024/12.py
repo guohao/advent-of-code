@@ -2,16 +2,8 @@ from collections import defaultdict
 import math
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
-
-def nb4(p):
-    for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
-        yield p[0] + i, p[1] + j
-
-
-import re
+L = sys.stdin.readlines()
+IG = {(i, j): L[i][j] for i in range(len(L)) for j in range(len(L[i].strip()))}
 
 
 def nb4(p):
@@ -38,7 +30,7 @@ def dfs(curr):
     return a, p
 
 
-print(sum(math.prod(dfs(k)) for k in g.copy()))
+print(sum(math.prod(dfs(k)) for k in list(g.keys())))
 
 seen.clear()
 

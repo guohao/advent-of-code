@@ -1,7 +1,9 @@
 from itertools import product
 import sys
-
 import re
+
+L = sys.stdin.readlines()
+NS = [list(map(int, re.findall(r"\d+", line))) for line in L]
 
 t = 0
 for ns in NS:

@@ -2,10 +2,8 @@ import heapq
 import math
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+IG = {(i, j): L[i][j] for i in range(len(L)) for j in range(len(L[i].strip()))}
 
 g = IG
 

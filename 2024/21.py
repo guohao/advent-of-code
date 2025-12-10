@@ -1,15 +1,10 @@
 import networkx as nx
-
 import math
 import re
 import sys
-
 from functools import cache
 
-sys.path.insert(0, "..")
-from util import *
-
-ls = L
+L = sys.stdin.readlines()
 
 
 def run(n):
@@ -42,7 +37,6 @@ def run(n):
                 cur_seq = []
                 for j in range(1, len(path)):
                     diff = (path[j][0] - path[j - 1][0], path[j][1] - path[j - 1][1])
-
                     cur_seq.append(D[diff])
                 cur_seq.append("A")
                 one_step_choices.append("".join(cur_seq))
@@ -64,12 +58,11 @@ def run(n):
                 total_cost += min_cost
         return total_cost
 
-    N = n
     t = 0
-    for line in ls:
+    for line in L:
         cost = 0
-        for step in decode(DG, [rdg[c] for c in "A" + line]):
-            cost += min(dfs(N, choice) for choice in step)
+        for step in decode(DG, [rdg[c] for c in "A" + line.strip()]):
+            cost += min(dfs(n, choice) for choice in step)
         t += cost * next(map(int, re.findall(r"-?\d+", line)))
     print(t)
 

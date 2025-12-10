@@ -1,10 +1,9 @@
 import re
 import sys
-
 from z3 import *
 
-sys.path.insert(0, "..")
-from util import *
+RAW = sys.stdin.read()
+PS = RAW.strip().split("\n\n")
 
 
 def run(p2=None):

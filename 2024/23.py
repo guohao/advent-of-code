@@ -1,21 +1,10 @@
 import sys
-
-import re
-
-sys.path.insert(0, "..")
-from util import *
-
-
-def join(l):
-    return "".join(map(str, l))
-
-
 import networkx as nx
 
-ls = L
+L = sys.stdin.readlines()
 G = nx.Graph()
-for l in ls:
-    G.add_edge(*l.split("-"))
+for l in L:
+    G.add_edge(*l.strip().split("-"))
 t = 0
 for c in nx.enumerate_all_cliques(G):
     if len(c) != 3:

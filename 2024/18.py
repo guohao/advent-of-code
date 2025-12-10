@@ -1,11 +1,9 @@
 import sys
-
 import re
-
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+NS = [list(map(int, re.findall(r"\d+", line))) for line in L]
 
 G = nx.grid_2d_graph(71, 71)
 for ns in NS[:1024]:
@@ -18,5 +16,5 @@ for i, ns in enumerate(NS):
     try:
         nx.shortest_path_length(G, min(G), max(G))
     except:
-        print(L[i])
+        print(L[i].strip())
         break

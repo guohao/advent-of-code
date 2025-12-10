@@ -2,16 +2,16 @@ from collections import Counter
 from itertools import product
 import sys
 
-import re
-
-
-def join(l):
-    return "".join(map(str, l))
-
+L = sys.stdin.readlines()
+R = len(L)
+C = len(L[0].strip())
+IG = {(i, j): L[i][j] for i in range(R) for j in range(C)}
 
 t = 0
 for i, j in product(range(R), range(C)):
     for dx, dy in product(range(-1, 2), repeat=2):
+        if dx == 0 and dy == 0:
+            continue
         t += "XMAS" == "".join(IG.get((i + k * dx, j + k * dy), ".") for k in range(4))
 print(t)
 

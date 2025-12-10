@@ -2,6 +2,7 @@ import math
 import re
 import sys
 
+RAW = sys.stdin.read()
 print(sum(math.prod(map(int, m)) for m in re.findall(r"mul\((\d+),(\d+)\)", RAW)))
 
 t = 0

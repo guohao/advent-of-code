@@ -2,10 +2,9 @@ from collections import defaultdict
 from itertools import product
 import sys
 
-import re
-
-X = R
-Y = C
+L = sys.stdin.readlines()
+R = len(L)
+C = len(L[0].strip())
 
 gd = defaultdict(list)
 for i in range(R):
@@ -20,10 +19,8 @@ for v in gd.values():
             continue
         x = 2 * a[0] - b[0]
         y = 2 * a[1] - b[1]
-        if 0 <= x < X and 0 <= y < Y:
+        if 0 <= x < R and 0 <= y < C:
             ans.add((x, y))
-            x += a[0] - b[0]
-            y += a[1] - b[1]
 
 print(len(ans))
 
@@ -35,7 +32,7 @@ for v in gd.values():
         x = 2 * a[0] - b[0]
         y = 2 * a[1] - b[1]
         ans.add(a)
-        while 0 <= x < X and 0 <= y < Y:
+        while 0 <= x < R and 0 <= y < C:
             ans.add((x, y))
             x += a[0] - b[0]
             y += a[1] - b[1]

@@ -1,19 +1,15 @@
 import math
 import sys
-
-import re
-
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
 
 
 def run(cutoff):
     ls = L
     N = len(ls)
-    M = len(ls[0])
-    g = {(i, j): c for i, line in enumerate(ls) for j, c in enumerate(line)}
+    M = len(ls[0].strip())
+    g = {(i, j): ls[i][j] for i in range(N) for j in range(M)}
     start = next(x for x in g if g[x] == "S")
     target = next(x for x in g if g[x] == "E")
     G = nx.grid_2d_graph(N, M)

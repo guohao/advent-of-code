@@ -1,6 +1,9 @@
 import re
 import sys
 
+RAW = sys.stdin.read()
+PS = RAW.strip().split("\n\n")
+
 
 def ints(l: str, neg=True):
     if neg:
@@ -15,7 +18,6 @@ for l in PS[0].splitlines():
     a, b = map(int, l.split("|"))
     p0.append((a, b))
 
-p1 = []
 for l in PS[1].splitlines():
     ns = ints(l)
     for a, b in p0:

@@ -1,11 +1,10 @@
 from itertools import count
 import math
 import sys
-
 import re
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+NS = [list(map(int, re.findall(r"-?\d+", line))) for line in L]
 
 X = 101
 Y = 103
@@ -45,7 +44,6 @@ for t in count(101):
         ns.append(((nx, ny), (dx, dy)))
     rs = ns
     g = set(r for r, v in rs)
-    outs = []
     for j in range(Y):
         line = ""
         for i in range(X):

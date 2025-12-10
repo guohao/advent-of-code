@@ -1,11 +1,9 @@
 import re
 import sys
-
 from z3 import *
 
-sys.path.insert(0, "..")
-from util import *
-
+L = sys.stdin.readlines()
+RAW = "".join(L)
 a, b, c, *prog = map(int, re.findall(r"\d+", RAW))
 output = []
 i = 0
@@ -36,7 +34,7 @@ while i < len(prog) - 1:
             c = a >> V[op]
     i += 2
 
-print(output)
+print(",".join(map(str, output)))
 
 outs = list(map(int, re.findall(r"\d+", L[-1])))
 

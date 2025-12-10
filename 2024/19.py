@@ -1,14 +1,11 @@
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
-lines = L
-ps = set(lines[0].split(", "))
+L = sys.stdin.readlines()
+ps = set(L[0].strip().split(", "))
 max_len = max(len(pat) for pat in ps)
 
 t = 0
-for line in lines[2:]:
+for line in L[2:]:
     line = line.strip()
     n = len(line)
     dp = [False] * (n + 1)
@@ -26,7 +23,8 @@ for line in lines[2:]:
 print(t)
 
 t = 0
-for line in lines[2:]:
+for line in L[2:]:
+    line = line.strip()
     n = len(line)
     dp = [0] * (n + 1)
     dp[0] = 1
@@ -34,7 +32,7 @@ for line in lines[2:]:
     for i in range(n + 1):
         for p in ps:
             l = len(p)
-            if line[i - l : i] == p:
+            if i >= l and line[i - l : i] == p:
                 dp[i] += dp[i - l]
     t += dp[n]
 

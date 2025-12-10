@@ -1,13 +1,9 @@
 import sys
-
 import re
-
 from functools import cache
 
-sys.path.insert(0, "..")
-from util import *
-
-nums = I
+L = sys.stdin.readlines()
+nums = list(map(int, re.findall(r"\d+", L[0])))
 
 
 @cache

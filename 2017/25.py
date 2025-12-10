@@ -1,8 +1,8 @@
 from collections import deque
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+RAW = sys.stdin.read()
+PS = RAW.split("\n\n")
 
 p0 = PS[0].splitlines()
 state = p0[0][-2]

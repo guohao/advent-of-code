@@ -1,6 +1,7 @@
 import sys
 
-import re
+I = [int(line.strip()) for line in sys.stdin.readlines()]
+R = len(I)
 
 t = 0
 i = 0
@@ -23,5 +24,4 @@ while 0 <= i < R:
         nums[i] += 1
     i += n
     t += 1
-
 print(t)

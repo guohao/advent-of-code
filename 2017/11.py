@@ -1,10 +1,7 @@
 from collections import Counter
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
-d = D.split(",")
+d = input().strip().split(",")
 ds = ["s", "se", "ne", "n", "nw", "sw"]
 pairs = {"s": "n", "se": "nw", "ne": "sw"}
 

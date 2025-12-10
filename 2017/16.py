@@ -1,36 +1,38 @@
 import re
 import sys
-
 import string
 
-sys.path.insert(0, "..")
-from util import *
+D = input().strip()
 
 
 def dance(s: str) -> str:
+    s = list(s)
     for cmd in D.split(","):
-        if "s" in cmd:
+        if cmd[0] == "s":
             x = int(cmd[1:])
             s = s[-x:] + s[:-x]
-        elif "x" in cmd:
+        elif cmd[0] == "x":
             a, b = map(int, cmd[1:].split("/"))
-            a, b = s[a], s[b]
-            s = re.sub(a + "|" + b, lambda m: a if m.group() == b else b, s)
+            s[a], s[b] = s[b], s[a]
         elif cmd[0] == "p":
             a, b = cmd[1:].split("/")
-            s = re.sub(a + "|" + b, lambda m: a if m.group() == b else b, s)
-    return s
+            ia, ib = s.index(a), s.index(b)
+            s[ia], s[ib] = s[ib], s[ia]
+    return "".join(s)
 
 
 ans = string.ascii_lowercase[:16]
 print(dance(ans))
-i = 0
 seen = {}
 N = 1000000000
-while i < N:
+for i in range(N):
     if ans in seen:
-        i += (N - i) // (i - seen[ans]) * (i - seen[ans])
+        cycle = i - seen[ans]
+        remaining = N - i
+        i += (remaining // cycle) * cycle
+        for _ in range(remaining % cycle):
+            ans = dance(ans)
+        break
     seen[ans] = i
     ans = dance(ans)
-    i += 1
 print(ans)

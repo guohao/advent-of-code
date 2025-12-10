@@ -1,10 +1,8 @@
 from collections import defaultdict, deque
 import sys
-
 import re
 
-sys.path.insert(0, "..")
-from util import *
+NS = [list(map(int, re.findall(r"\d+", line))) for line in sys.stdin.readlines()]
 
 comps = defaultdict(list)
 for a, b in NS:

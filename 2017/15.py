@@ -1,21 +1,16 @@
 import re
 import sys
-
 from functools import cache
 
-sys.path.insert(0, "..")
-from util import *
-
+I = [int(re.search(r"\d+", line).group()) for line in sys.stdin.readlines()]
 a, b = I
-i = 0
+
 ans = 0
-N = 40000000
-while i < N:
+for _ in range(40000000):
     a = (a * 16807) % 2147483647
     b = (b * 48271) % 2147483647
     if a & 0xFFFF == b & 0xFFFF:
         ans += 1
-    i += 1
 print(ans)
 
 
@@ -37,8 +32,7 @@ def gen_next_b(prev: int) -> int:
 
 ans = 0
 a, b = I
-N = 5000000
-for i in range(N):
+for _ in range(5000000):
     a = gen_next_a(a)
     b = gen_next_b(b)
     if a & 0xFFFF == b & 0xFFFF:

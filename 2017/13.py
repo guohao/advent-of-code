@@ -1,16 +1,10 @@
 from itertools import count
 import sys
-
-sys.path.insert(0, "..")
-from util import *
-
-count_nums = lambda f: sum(map(f, NS))
-
 import re
 
-count_nums = lambda f: sum(map(f, NS))
+NS = [list(map(int, re.findall(r"\d+", line))) for line in sys.stdin.readlines()]
 
-print(count_nums(lambda dr: dr[0] * dr[1] if not dr[0] % (2 * dr[1] - 2) else 0))
+print(sum(d * r for d, r in NS if d % (2 * r - 2) == 0))
 
 for i in count():
     if all((i + d) % (2 * r - 2) for d, r in NS):

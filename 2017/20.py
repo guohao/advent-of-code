@@ -1,10 +1,9 @@
 import sys
-import operator
+import re
 from collections import defaultdict
-from functools import reduce
 
-sys.path.insert(0, "..")
-from util import *
+NS = [list(map(int, re.findall(r"-?\d+", line))) for line in sys.stdin.readlines()]
+R = len(NS)
 
 
 def move(particle):
@@ -14,22 +13,16 @@ def move(particle):
     return p + v + a
 
 
-particles = NS.copy()
-collisions = defaultdict(list)
-for _ in range(350):
-    particles = map(move, particles)
-print(min(zip(range(R), particles), key=lambda x: sum(map(abs, x[1][:3])))[0])
+particles = [move(p) for p in NS]
+for _ in range(349):
+    particles = [move(p) for p in particles]
+print(min(range(R), key=lambda i: sum(map(abs, particles[i][:3]))))
 
-ans = 0
-particles = NS.copy()
+particles = [p.copy() for p in NS]
 for k in range(100):
-    nps = []
     collisions = defaultdict(list)
     for ptc in particles:
         ptc = move(ptc)
         collisions[tuple(ptc[:3])].append(ptc)
-    particles = reduce(
-        operator.add, [v for v in collisions.values() if len(v) == 1], []
-    )
-    ans = len(particles)
-print(ans)
+    particles = [v[0] for v in collisions.values() if len(v) == 1]
+print(len(particles))

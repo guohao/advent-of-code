@@ -1,10 +1,8 @@
 from collections import deque
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
+D = input().strip()
+I = list(map(int, D.strip().split(",")))
 
 q = deque(range(256))
 skip_size = 0

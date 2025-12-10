@@ -3,8 +3,8 @@ import math
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+R = len(L)
 
 r = defaultdict(int)
 i = 0
@@ -38,7 +38,7 @@ c = b + 17000
 
 
 def is_prime(n: int) -> bool:
-    for j in range(2, int(math.sqrt(n))):
+    for j in range(2, int(math.sqrt(n)) + 1):
         if n % j == 0:
             return False
     return True

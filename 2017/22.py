@@ -1,9 +1,8 @@
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+R = len(L)
+IG = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 
 x, y = R // 2, R // 2
 dx, dy = -1, 0

@@ -1,21 +1,18 @@
 from collections import deque
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
-
-skip = I[0]
-q = deque()
-for i in range(2018):
+skip = int(sys.stdin.read())
+q = deque([0])
+for i in range(1, 2018):
     q.rotate(-skip)
     q.append(i)
 print(q.popleft())
+q.rotate(-skip)
 
-q = deque()
-for i in range(50000000):
-    q.rotate(-skip)
-    q.append(i)
-q.rotate(-q.index(0) - 1)
-print(q.popleft())
+pos = 0
+ans = 0
+for i in range(1, 50000001):
+    pos = (pos + skip) % i + 1
+    if pos == 1:
+        ans = i
+print(ans)

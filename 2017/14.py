@@ -1,10 +1,8 @@
-import networkx as nx
-
 from collections import deque
 import sys
+import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
+D = input().strip()
 
 
 def knot_hash(s: str):

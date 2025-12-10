@@ -1,9 +1,8 @@
+import sys
+import re
 import networkx as nx
 
-import sys
-
-sys.path.insert(0, "..")
-from util import *
+NS = [list(map(int, re.findall(r"\d+", line))) for line in sys.stdin.readlines()]
 
 g = nx.Graph()
 for nums in NS:

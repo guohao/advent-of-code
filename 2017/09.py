@@ -1,8 +1,4 @@
-import sys
-
-import re
-
-d = D
+d = input().strip()
 l = 0
 i = 0
 ans = 0
@@ -26,7 +22,6 @@ while i < len(d):
     i += 1
 print(ans)
 
-d = D
 i = 0
 ans = 0
 g = False

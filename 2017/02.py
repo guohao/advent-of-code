@@ -1,19 +1,10 @@
-import re
 import sys
 from itertools import product
 
-count_nums = lambda f: sum(map(f, NS))
+NS = [list(map(int, line.split())) for line in sys.stdin.readlines()]
 
-count_nums = lambda f: sum(map(f, NS))
-
-count_nums = lambda f: sum(map(f, NS))
-
-print(count_nums(lambda x: max(x) - min(x)))
+print(sum(max(ns) - min(ns) for ns in NS))
 
 print(
-    count_nums(
-        lambda ns: sum(
-            a // b for a, b in product(ns, repeat=2) if a != b and a % b == 0
-        )
-    )
+    sum(a // b for ns in NS for a, b in product(ns, repeat=2) if a != b and a % b == 0)
 )

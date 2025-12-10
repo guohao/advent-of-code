@@ -1,5 +1,11 @@
-from util import *
+import sys
+
+import re
+
 from functools import cmp_to_key
+
+sys.path.insert(0, "..")
+from util import *
 
 
 def f(a, b) -> int:

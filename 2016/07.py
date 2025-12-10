@@ -1,6 +1,10 @@
+import re
+import sys
 import regex
+from itertools import count
 
-from util import *
+L = sys.stdin.readlines()
+counts = lambda f: sum(map(f, L))
 
 
 def f(line):

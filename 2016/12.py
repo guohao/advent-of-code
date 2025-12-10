@@ -1,4 +1,9 @@
-from util import *
+import sys
+
+import re
+
+L = sys.stdin.readlines()
+R = len(L)
 
 
 def f(p2=None):

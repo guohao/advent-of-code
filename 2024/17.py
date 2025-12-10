@@ -1,5 +1,10 @@
-from util import *
+import re
+import sys
+
 from z3 import *
+
+sys.path.insert(0, "..")
+from util import *
 
 a, b, c, *prog = map(int, re.findall(r"\d+", RAW))
 output = []

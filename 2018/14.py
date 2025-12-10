@@ -1,4 +1,14 @@
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 d = int(D)
 n = [3, 7]

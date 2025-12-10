@@ -1,4 +1,5 @@
-from util import *
+import re
+import sys
 
 l, r = map(int, D.split("-"))
 t = 0

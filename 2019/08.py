@@ -1,6 +1,13 @@
-from util import *
 from collections import Counter
 from itertools import product
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 N = 150
 print(

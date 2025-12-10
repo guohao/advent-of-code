@@ -1,6 +1,8 @@
-from collections import deque, defaultdict
+import sys
+from collections import defaultdict, deque
 from intcode import IntCodeVM
 
+sys.path.insert(0, "..")
 from util import *
 
 data = D

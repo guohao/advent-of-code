@@ -1,5 +1,10 @@
-from util import *
+import re
+import sys
 
+from itertools import count
+
+
+D = input().strip()
 ans = ["" for _ in range(40)]
 ans[0] = D
 for i in range(1, 40):

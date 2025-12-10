@@ -1,6 +1,9 @@
-from regex import regex
+import re
+import sys
 
-from util import *
+counts = lambda f: sum(map(f, L))
+
+from regex import regex
 
 print(
     counts(

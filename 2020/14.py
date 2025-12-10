@@ -1,4 +1,14 @@
+from itertools import combinations
+import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 data = D
 

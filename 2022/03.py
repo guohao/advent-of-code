@@ -1,4 +1,7 @@
-from util import *
+import sys
+
+import re
+
 from functools import reduce
 
 t = 0

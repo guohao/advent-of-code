@@ -1,6 +1,12 @@
-from util import *
+from itertools import combinations
+import sys
+
+import re
 
 import networkx as nx
+
+sys.path.insert(0, "..")
+from util import *
 
 graph = nx.DiGraph()
 for line in L:

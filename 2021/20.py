@@ -1,5 +1,17 @@
-import itertools
+import re
+import sys
+from itertools import product
+
+sys.path.insert(0, "..")
 from util import *
+
+
+def join(l):
+    return "".join(map(str, l))
+
+
+import itertools
+
 from functools import cache
 
 

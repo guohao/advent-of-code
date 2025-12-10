@@ -1,4 +1,5 @@
-from util import *
+from collections import Counter
+import sys
 
 d = list(map(int, D.split()))
 
@@ -6,19 +7,19 @@ t = 0
 i = 0
 
 
-def dfs():
+def dfs1():
     global t
     global i
     cc = d[i]
     mc = d[i + 1]
     i += 2
     for _ in range(cc):
-        dfs()
+        dfs1()
     t += sum(d[i : i + mc])
     i += mc
 
 
-dfs()
+dfs1()
 print(t)
 
 i = 0

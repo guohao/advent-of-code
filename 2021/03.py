@@ -1,4 +1,12 @@
-from util import *
+from collections import Counter
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 seq = [Counter(l).most_common(1)[0][0] for l in zip(*L)]
 

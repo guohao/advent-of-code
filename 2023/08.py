@@ -1,6 +1,11 @@
+import re
+import sys
+from itertools import count
+
 from functools import reduce
 
-from util import *
+from itertools import count, cycle
+import math
 
 parts = PS
 ins = cycle(parts[0])

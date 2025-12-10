@@ -1,4 +1,6 @@
-from util import *
+import sys
+
+import re
 
 parts = PS
 ns = list(map(int, parts[0].split(",")))

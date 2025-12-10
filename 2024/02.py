@@ -1,4 +1,12 @@
-from util import *
+import re
+import sys
+from itertools import combinations
+
+count_nums = lambda f: sum(map(f, NS))
+
+count_nums = lambda f: sum(map(f, NS))
+
+count_nums = lambda f: sum(map(f, NS))
 
 
 def f(ns):

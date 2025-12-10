@@ -1,4 +1,6 @@
-from util import *
+import sys
+
+import re
 
 g = {k: int(v) for k, v in IG.items()}
 x_max, y_max = max((x, y) for x, y in g)

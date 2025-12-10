@@ -1,4 +1,13 @@
-from util import *
+import re
+import sys
+
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
+
 
 t0 = 0
 t1 = 0

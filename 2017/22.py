@@ -1,3 +1,8 @@
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
 
 x, y = R // 2, R // 2
@@ -17,7 +22,6 @@ for _ in range(10000):
     x, y = x + dx, y + dy
 
 print(ans)
-
 
 nodes = {}
 n = len(L)

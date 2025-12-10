@@ -1,3 +1,7 @@
+from itertools import product
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 mapper = {}

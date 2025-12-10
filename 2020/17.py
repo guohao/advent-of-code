@@ -1,3 +1,9 @@
+from itertools import product
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
 
 data = D

@@ -1,4 +1,24 @@
-from util import *
+from itertools import count
+import sys
+
+
+def nb9_v(p, _g=None):
+    if _g is None:
+        _g = IG
+    return list(map(_g.get, nb9(p, _g)))
+
+
+import re
+
+
+def nb9(p, _g=None):
+    if _g is None:
+        _g = IG
+    for i in range(p[0] - 1, p[0] + 2):
+        for j in range(p[1] - 1, p[1] + 2):
+            if (i, j) != p and (i, j) in _g:
+                yield i, j
+
 
 goal = I[0]
 x = y = 0

@@ -1,4 +1,9 @@
+import re
+import sys
+
 import math
+
+sys.path.insert(0, "..")
 from util import *
 
 data = D

@@ -1,4 +1,12 @@
-from util import *
+import re
+import sys
+from itertools import product
+
+count_nums = lambda f: sum(map(f, NS))
+
+count_nums = lambda f: sum(map(f, NS))
+
+count_nums = lambda f: sum(map(f, NS))
 
 print(count_nums(lambda x: max(x) - min(x)))
 

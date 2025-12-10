@@ -1,4 +1,4 @@
-from util import *
+import sys
 
 lines = L
 h, d = 0, 0

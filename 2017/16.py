@@ -1,5 +1,9 @@
+import re
+import sys
+
 import string
 
+sys.path.insert(0, "..")
 from util import *
 
 

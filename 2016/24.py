@@ -1,6 +1,12 @@
+import re
+import sys
+from itertools import permutations
+
 import networkx as nx
 
-from util import *
+L = sys.stdin.readlines()
+R = len(L)
+C = len(L[0].strip())
 
 g = nx.Graph()
 nodes = {}

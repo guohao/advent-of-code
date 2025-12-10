@@ -1,5 +1,8 @@
-from util import *
 from itertools import count
+import sys
+
+sys.path.insert(0, "..")
+from util import *
 
 lines = L
 d = {a: b for a, b in zip(count(), lines[0].split()[-1])}

@@ -1,10 +1,16 @@
-from util import *
+from itertools import product
+import re
+import sys
+
+ls = sys.stdin.readlines()
+R = len(ls)
+C = len(ls[0].strip())
 
 R = 6
 C = 50
 g = [["."] * C for _ in range(R)]
-for line in L:
-    pos, offset = ints(line)
+for line in ls:
+    pos, offset = list(map(int, re.findall(r"-?\d+", line)))
     if "rect" in line:
         for i, j in product(range(offset), range(pos)):
             g[i][j] = "#"

@@ -1,4 +1,8 @@
-from util import *
+from collections import Counter
+import sys
+
+import re
+from itertools import count
 
 hands = []
 cards = "AKQJT98765432"[::-1]

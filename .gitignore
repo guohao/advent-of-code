@@ -170,5 +170,7 @@ run
 *.txt
 
 input.txt
+test.txt
 */util.py
+template.py
 

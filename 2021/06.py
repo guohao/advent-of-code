@@ -1,4 +1,7 @@
-from util import *
+from collections import defaultdict
+import sys
+
+import re
 
 seq = list(map(int, D.split(",")))
 lfs = defaultdict(int)

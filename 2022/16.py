@@ -1,5 +1,12 @@
-from util import *
+from collections import defaultdict
+import math
+import re
+import sys
+
 import functools
+
+sys.path.insert(0, "..")
+from util import *
 
 D = {}
 for i, line in enumerate(L):

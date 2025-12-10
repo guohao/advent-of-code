@@ -1,4 +1,22 @@
+import math
+import sys
+
+sys.path.insert(0, "..")
 from util import *
+
+
+def nb4(p):
+    for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+        yield p[0] + i, p[1] + j
+
+
+import re
+
+
+def nb4(p):
+    for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+        yield p[0] + i, p[1] + j
+
 
 g = IG
 s = [k for k, v in g.items() if v == "S"][0]

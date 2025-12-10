@@ -1,4 +1,14 @@
-from util import *
+from collections import deque
+import re
+import sys
+
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
+
 
 parts = RAW.split("\n\n")
 

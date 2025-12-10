@@ -1,4 +1,8 @@
-from util import *
+from itertools import combinations
+import math
+import sys
+
+import re
 
 nums = set([int(line.strip()) for line in L])
 t = 0

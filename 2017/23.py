@@ -1,3 +1,9 @@
+from collections import defaultdict
+import math
+import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 r = defaultdict(int)
@@ -26,9 +32,6 @@ while 0 <= i < R:
             continue
     i += 1
 print(ans)
-
-
-import math
 
 b = 93 * 100 + 100000
 c = b + 17000

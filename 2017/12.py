@@ -1,5 +1,8 @@
 import networkx as nx
 
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 g = nx.Graph()

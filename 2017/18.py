@@ -1,3 +1,10 @@
+from collections import defaultdict, deque
+from itertools import count
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
 
 PC = "PC"

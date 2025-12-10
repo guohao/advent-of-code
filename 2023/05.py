@@ -1,4 +1,7 @@
-from util import *
+from collections import deque
+import sys
+
+import re
 
 seeds = list(map(int, PS[0].split(":")[1].split()))
 parts = [part.splitlines()[1:] for part in PS[1:]]

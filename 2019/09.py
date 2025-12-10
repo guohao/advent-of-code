@@ -1,5 +1,7 @@
+import re
+import sys
+
 from intcode import IntCodeVM
-from util import *
 
 data = D
 

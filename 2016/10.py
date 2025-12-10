@@ -1,8 +1,11 @@
-from util import *
+from collections import defaultdict, deque
+import math
+import re
+import sys
 
 bots = defaultdict(list)
 tos = defaultdict(list)
-for line in L:
+for line in sys.stdin.readlines():
     if "value" in line:
         v, b = re.findall(r"\d+", line)
         bots[f"bot {b}"].append(int(v))

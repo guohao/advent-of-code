@@ -1,6 +1,12 @@
-import networkx as nx
+import re
+import sys
 
-from util import *
+
+def join(l):
+    return "".join(map(str, l))
+
+
+import networkx as nx
 
 data = D
 

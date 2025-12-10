@@ -1,6 +1,11 @@
+import re
+import sys
+from itertools import count, product
+
 import itertools
 import math
 
+sys.path.insert(0, "..")
 from util import *
 
 

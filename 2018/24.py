@@ -1,10 +1,10 @@
 import itertools
 import re
+
+import sys
+
+sys.path.insert(0, "..")
 from util import *
-
-
-def ints(line):
-    return list(map(int, re.findall(r"-?\d+", line)))
 
 
 def solve(data: str, boost=0):

@@ -1,4 +1,7 @@
 import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 sys.setrecursionlimit(10000)
@@ -20,17 +23,17 @@ MIN_Y, MAX_Y = min(y for _, y in G), max(y for _, y in G)
 print(MIN_Y, MAX_Y)
 
 
-def drop(x, y):
+def drop1(x, y):
     if y > MAX_Y:
         return
     if G.get((x, y), ".") in "~|#":
         return
     if y >= MIN_Y:
         G[x, y] = "|"
-    drop(x, y + 1)
+    drop1(x, y + 1)
     if G.get((x, y + 1), ".") in "~#":
-        drop(x - 1, y)
-        drop(x + 1, y)
+        drop1(x - 1, y)
+        drop1(x + 1, y)
         lx = x - 1
         while G.get((lx, y), ".") == "|":
             lx -= 1
@@ -42,7 +45,7 @@ def drop(x, y):
                 G[k, y] = "~"
 
 
-drop(500, 0)
+drop1(500, 0)
 print(sum(v in "~|" for v in G.values()))
 
 G = {}

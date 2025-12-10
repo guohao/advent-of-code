@@ -1,6 +1,15 @@
-from functools import reduce
+import re
+import sys
 
+sys.path.insert(0, "..")
 from util import *
+
+
+def join(l):
+    return "".join(map(str, l))
+
+
+from functools import reduce
 
 
 def atoi(s: str) -> int:

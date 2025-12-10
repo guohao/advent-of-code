@@ -1,9 +1,18 @@
 from functools import reduce
-
-from util import *
 import itertools
 import math
 import re
+import sys
+
+sys.path.insert(0, "..")
+from util import *
+
+
+def ints(s: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", s)))
+    else:
+        return list(map(int, re.findall(r"\d+", s)))
 
 
 def cmp(a, b):
@@ -12,10 +21,6 @@ def cmp(a, b):
 
 def abs_sum(l):
     return sum(abs(x) for x in l)
-
-
-def ints(s: str):
-    return list(map(int, re.findall(r"-?\d+", s)))
 
 
 data = D
@@ -33,19 +38,6 @@ for _ in range(1000):
         for i in range(3):
             ma[i + 1] += ma[i + 4]
 print(sum(abs_sum(m[1:4]) * abs_sum(m[4:7]) for m in moons))
-
-
-def cmp(a, b):
-    return (a < b) - (a > b)
-
-
-def abs_sum(l):
-    return sum(abs(x) for x in l)
-
-
-def ints(s: str):
-    return list(map(int, re.findall(r"-?\d+", s)))
-
 
 dims = [[] for _ in range(3)]
 for line in data.splitlines():

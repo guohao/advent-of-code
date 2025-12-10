@@ -1,5 +1,11 @@
-from util import *
+import sys
+
+import re
+
 import networkx as nx
+
+sys.path.insert(0, "..")
+from util import *
 
 G = nx.grid_2d_graph(71, 71)
 for ns in NS[:1024]:

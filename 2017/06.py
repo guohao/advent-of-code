@@ -1,4 +1,7 @@
-from util import *
+from itertools import count
+import sys
+
+import re
 
 seen = set()
 nums = I

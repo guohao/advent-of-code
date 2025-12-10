@@ -1,5 +1,11 @@
+import re
+import sys
+from collections import deque
+from itertools import count
+
 from intcode import IntCodeVM
 
+sys.path.insert(0, "..")
 from util import *
 
 

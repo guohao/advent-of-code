@@ -1,4 +1,8 @@
-from util import *
+from collections import defaultdict
+from itertools import product
+import sys
+
+import re
 
 X = R
 Y = C

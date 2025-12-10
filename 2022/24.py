@@ -1,3 +1,6 @@
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 DIRECTIONS = {"<": (0, -1), ">": (0, 1), "^": (-1, 0), "v": (1, 0)}

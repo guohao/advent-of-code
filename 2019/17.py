@@ -1,5 +1,10 @@
 from intcode import IntCodeVM
 
+from collections import deque
+import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 data = D

@@ -1,3 +1,7 @@
+from collections import deque
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 p0 = PS[0].splitlines()

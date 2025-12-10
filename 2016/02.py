@@ -1,4 +1,10 @@
+import re
 import sys
+
+
+def grid(s: str):
+    lines = [l for l in s.splitlines()]
+    return {(i, j): c for i, line in enumerate(lines) for j, c in enumerate(line)}
 
 
 def move(p, c):
@@ -13,10 +19,6 @@ def move(p, c):
         case "R":
             y += 1
     return x, y
-
-
-def grid(s):
-    return {(i, j): c for i, l in enumerate(s.split("\n")) for j, c in enumerate(l)}
 
 
 def p1():

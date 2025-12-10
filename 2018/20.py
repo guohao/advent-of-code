@@ -1,7 +1,13 @@
-from util import *
+import sys
+
+import re
+
 from functools import cache
 
 import networkx as nx
+
+sys.path.insert(0, "..")
+from util import *
 
 
 def draw_room(r: str):

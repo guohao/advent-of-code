@@ -1,6 +1,11 @@
 import math
-from util import *
+
+import sys
+
 from functools import cache
+
+sys.path.insert(0, "..")
+from util import *
 
 
 def f(d: str):

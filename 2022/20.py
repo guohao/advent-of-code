@@ -1,4 +1,37 @@
+from collections import deque
+import sys
+
+sys.path.insert(0, "..")
 from util import *
+
+
+def move(p, d):
+    _arrow_dirs = {">": (0, 1), "<": (0, -1), "v": (1, 0), "^": (-1, 0)}
+    LDRU_DIRS = {"L": (0, -1), "D": (1, 0), "R": (0, 1), "U": (-1, 0)}
+    if d in _arrow_dirs:
+        return tuple_add(p, _arrow_dirs[d])
+    elif d in LDRU_DIRS:
+        return tuple_add(p, LDRU_DIRS[d])
+
+
+import re
+
+
+def tuple_add(_a, _b) -> tuple[int, ...]:
+    """Adds two tuples of the same length"""
+    assert len(_a) == len(_b)
+    return tuple(_a[i] + _b[i] for i in range(len(_a)))
+
+
+_arrow_dirs = {">": (0, 1), "<": (0, -1), "v": (1, 0), "^": (-1, 0)}
+LDRU_DIRS = {"L": (0, -1), "D": (1, 0), "R": (0, 1), "U": (-1, 0)}
+
+
+def move(p, d):
+    if d in _arrow_dirs:
+        return tuple_add(p, _arrow_dirs[d])
+    elif d in LDRU_DIRS:
+        return tuple_add(p, LDRU_DIRS[d])
 
 
 def f(k, p2=None):

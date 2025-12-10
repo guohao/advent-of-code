@@ -1,8 +1,17 @@
-from util import *
+from itertools import permutations
+import re
+import sys
+
+L = sys.stdin.readlines()
+
+
+def join(l):
+    return "".join(map(str, l))
 
 
 def f(d: str):
     for line in L:
+        line = line.strip()
         nums = list(map(int, re.findall(r"-?\d+", line)))
         if "swap position" in line:
             x, y = sorted(nums)

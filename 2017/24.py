@@ -1,3 +1,9 @@
+from collections import defaultdict, deque
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
 
 comps = defaultdict(list)

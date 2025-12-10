@@ -1,16 +1,14 @@
-import sys
 import re
+import sys
+
 from itertools import chain
 
-
 NS = [list(map(int, re.findall(r"-?\d+", l))) for l in sys.stdin.readlines()]
-# print(NS)
 r1 = 0
 for ns in NS:
     ns = sorted(ns)
     r1 += sum(ns[:2]) > ns[2]
 print(r1)
-
 
 t = 0
 columns = list(chain.from_iterable(zip(*NS)))

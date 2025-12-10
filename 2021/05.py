@@ -1,4 +1,6 @@
-from util import *
+from collections import defaultdict
+import re
+import sys
 
 g = defaultdict(int)
 for line in L:

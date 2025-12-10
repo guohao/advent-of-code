@@ -1,4 +1,4 @@
-from util import *
+import sys
 
 lines = [l.strip() for l in L]
 X = len(lines[0])

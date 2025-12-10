@@ -1,4 +1,12 @@
-from util import *
+from itertools import permutations
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 print(
     len(

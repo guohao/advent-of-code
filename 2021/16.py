@@ -1,4 +1,11 @@
-from util import *
+import math
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
 
 
 def parse(data: str):

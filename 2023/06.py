@@ -1,4 +1,5 @@
-from util import *
+import re
+import sys
 
 ans = 1
 for t, d in zip(*NS):

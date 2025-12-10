@@ -1,4 +1,11 @@
-from util import *
+import math
+import sys
+
+import re
+
+L = sys.stdin.readlines()
+R = len(L)
+C = len(L[0].strip())
 
 r = {x: 0 for x in "abcd"}
 r["a"] = 7

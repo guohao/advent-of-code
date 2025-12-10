@@ -1,6 +1,10 @@
-from util import *
+import re
+import sys
 
 from z3 import *
+
+sys.path.insert(0, "..")
+from util import *
 
 
 def run(p2=None):

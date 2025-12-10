@@ -1,4 +1,14 @@
-from util import *
+from collections import deque
+from itertools import count
+import hashlib
+import re
+import sys
+
+D = input().strip()
+
+
+def md5(s: str):
+    return hashlib.md5(s.encode()).hexdigest()
 
 
 def p1():

@@ -1,5 +1,9 @@
 import networkx as nx
 
+from collections import deque
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 

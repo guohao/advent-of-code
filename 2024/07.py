@@ -1,4 +1,7 @@
-from util import *
+from itertools import product
+import sys
+
+import re
 
 t = 0
 for ns in NS:

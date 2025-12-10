@@ -1,4 +1,5 @@
-from util import *
+import re
+import sys
 
 
 def ext(ints):

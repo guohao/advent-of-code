@@ -1,4 +1,7 @@
-from util import *
+import sys
+
+L = sys.stdin.readlines()
+counts = lambda f: sum(map(f, L))
 
 print(counts(lambda line: len(line.split()) == len(set(line.split()))))
 

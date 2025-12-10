@@ -1,8 +1,10 @@
+import sys
+from collections import deque
 import networkx as nx
-
-from util import *
-
 from intcode import IntCodeVM
+
+sys.path.insert(0, "..")
+from util import *
 
 data = D
 

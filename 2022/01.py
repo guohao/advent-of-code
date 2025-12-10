@@ -1,4 +1,6 @@
-from util import *
+import sys
+
+import re
 
 t = 0
 for part in PS:

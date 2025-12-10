@@ -1,4 +1,7 @@
-from util import *
+from collections import deque
+import sys
+
+import re
 
 g = IG
 q = deque()

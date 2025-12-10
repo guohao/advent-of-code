@@ -1,6 +1,9 @@
-from intcode import IntCodeVM
+import re
+import sys
+from collections import deque
+from itertools import permutations
 
-from util import *
+from intcode import IntCodeVM
 
 data = D
 

@@ -1,4 +1,15 @@
-from util import *
+import hashlib
+import heapq
+import math
+import re
+import sys
+
+D = input()
+
+
+def md5(s: str):
+    return hashlib.md5(s.encode()).hexdigest()
+
 
 DS = {0: ("U", (-1, 0)), 1: ("D", (1, 0)), 2: ("L", (0, -1)), 3: ("R", (0, 1))}
 

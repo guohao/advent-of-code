@@ -1,4 +1,7 @@
-from util import *
+from itertools import cycle
+import sys
+
+import re
 
 t = 0
 for line in L:

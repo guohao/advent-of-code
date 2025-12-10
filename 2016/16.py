@@ -1,4 +1,7 @@
-from util import *
+import re
+import sys
+
+D = input().strip()
 
 
 def f(n):

@@ -1,4 +1,7 @@
-from util import *
+import sys
+
+import re
+
 from copy import deepcopy as dc
 
 

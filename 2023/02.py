@@ -1,4 +1,12 @@
-from util import *
+from collections import defaultdict
+import math
+import re
+import sys
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 pattern = "|".join(r"\d+ " + x for x in ["blue", "green", "red"])
 

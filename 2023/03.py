@@ -1,4 +1,8 @@
-from util import *
+from collections import defaultdict
+from itertools import product
+import math
+import re
+import sys
 
 t = 0
 for i in range(R):

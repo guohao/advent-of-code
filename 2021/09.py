@@ -1,5 +1,7 @@
-from util import *
+import math
+import sys
 
+import re
 
 g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line)}
 ans = 0

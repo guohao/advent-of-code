@@ -1,3 +1,9 @@
+from collections import deque, Counter
+import math
+import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 sys.set_int_max_str_digits(10**6)

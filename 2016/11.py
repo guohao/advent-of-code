@@ -1,4 +1,7 @@
-from util import *
+from itertools import combinations, chain
+import heapq
+import re
+import sys
 
 
 def tuple_state(_state: list[tuple]):
@@ -56,6 +59,7 @@ def f(l: list[str]):
                     heapq.heappush(hp, (step + 1, next_fl, *next_state))
 
 
+L = sys.stdin.readlines()
 f(L)
 L[0] += (
     " elerium generator elerium-compatible microchip dilithium generator dilithium-compatible microchip"

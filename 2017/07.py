@@ -1,8 +1,9 @@
+import re
+import sys
+
 from functools import cache
 
 import networkx as nx
-
-from util import *
 
 g = nx.DiGraph()
 for line in L:

@@ -1,6 +1,15 @@
 import networkx as nx
+import re
 
-from util import *
+import sys
+
+NS = [list(map(int, re.findall(r"-?\d+", l))) for l in sys.stdin.readlines()]
+
+
+def nb4(p):
+    for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+        yield p[0] + i, p[1] + j
+
 
 t = 0
 nodes = {}

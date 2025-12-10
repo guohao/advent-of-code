@@ -1,3 +1,9 @@
+import heapq
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
 
 g = {k: int(v) for k, v in IG.items()}

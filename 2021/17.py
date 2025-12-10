@@ -1,4 +1,16 @@
+import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
+
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
+
 
 xl, xr, yd, yu = ints(D)
 

@@ -1,5 +1,11 @@
-from util import *
+import sys
+
+import re
+
 from z3 import *
+
+sys.path.insert(0, "..")
+from util import *
 
 nums = {}
 ops = {}

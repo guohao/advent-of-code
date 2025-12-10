@@ -1,6 +1,15 @@
+import re
+import sys
 import networkx as nx
+from itertools import product
 
-from util import *
+I = list(map(int, re.findall(r"-?\d+", sys.stdin.read())))
+
+
+def nb4(p):
+    for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+        yield p[0] + i, p[1] + j
+
 
 fn = int(*I)
 g = nx.Graph()

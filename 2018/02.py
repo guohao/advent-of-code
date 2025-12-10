@@ -1,4 +1,12 @@
-from util import *
+from collections import Counter
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 a = b = 0
 for line in L:

@@ -1,4 +1,7 @@
-from util import *
+from collections import Counter
+import sys
+
+import re
 
 print(sum(abs(a - b) for a, b in zip(*map(sorted, zip(*NS)))))
 a, b = zip(*NS)

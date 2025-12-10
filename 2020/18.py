@@ -1,5 +1,10 @@
-from util import *
+from collections import deque
+import sys
 
+import re
+
+sys.path.insert(0, "..")
+from util import *
 
 t = 0
 for line in L:

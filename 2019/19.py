@@ -1,4 +1,10 @@
+import re
+import sys
+
 from intcode import IntCodeVM
+
+sys.path.insert(0, "..")
+from util import *
 
 
 def state_of(data: str, x, y):
@@ -11,8 +17,6 @@ def state_of(data: str, x, y):
     return vm.sq.popleft()
 
 
-from util import *
-
 data = D
 
 ans = 0
@@ -20,8 +24,6 @@ for x in range(50):
     for y in range(50):
         ans += state_of(data, x, y)
 print(ans)
-
-from intcode import IntCodeVM
 
 
 def match(data, x, y):
@@ -31,8 +33,6 @@ def match(data, x, y):
     dr = state_of(data, x, y + 99)
     return ur and ul and dr and dl
 
-
-from util import *
 
 data = D
 

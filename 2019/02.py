@@ -1,4 +1,7 @@
-from util import *
+from itertools import product
+import sys
+
+import re
 
 ns = [int(x) for x in D.split(",")]
 ns[1] = 12

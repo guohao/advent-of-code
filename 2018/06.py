@@ -1,4 +1,7 @@
-from util import *
+from collections import Counter
+from itertools import product
+import re
+import sys
 
 ps = []
 for line in L:

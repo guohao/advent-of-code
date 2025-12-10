@@ -1,4 +1,7 @@
-from util import *
+import math
+import sys
+
+import re
 
 data = D
 ns = list(map(int, data.split(",")))

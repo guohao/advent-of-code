@@ -1,3 +1,8 @@
+import sys
+
+import re
+
+sys.path.insert(0, "..")
 from util import *
 
 data = D
@@ -18,7 +23,6 @@ for line in data.splitlines():
             i = (i + n) % len(n_cards)
         cards = n_cards
 print(cards.index(2019))
-from util import *
 
 data = D
 

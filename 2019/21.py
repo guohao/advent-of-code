@@ -1,5 +1,9 @@
+import re
+import sys
+
 from intcode import IntCodeVM
 
+sys.path.insert(0, "..")
 from util import *
 
 data = D
@@ -17,10 +21,6 @@ for cmd in commands:
     vm.rq.append(ord(cmd))
 vm.run()
 print(vm.sq.pop())
-
-from intcode import IntCodeVM
-
-from util import *
 
 data = D
 

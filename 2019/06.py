@@ -1,6 +1,7 @@
-import networkx as nx
+import re
+import sys
 
-from util import *
+import networkx as nx
 
 G = nx.DiGraph(l.split(")") for l in L)
 # for line in L:

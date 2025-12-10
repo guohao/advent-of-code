@@ -1,3 +1,9 @@
+from collections import deque
+from itertools import count
+import math
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 
@@ -38,14 +44,6 @@ X, Y = 23, 20
 
 def dis_of(x0, y0):
     return calculate_angle((X, Y), (x0, y0)), abs(X - x0) + abs(Y - y0)
-
-
-def calculate_angle(center, point):
-    dx = point[0] - center[0]
-    dy = point[1] - center[1]
-    angle = math.atan2(dy, dx)
-    adjusted_angle = (angle + math.pi / 2) % (2 * math.pi)
-    return adjusted_angle
 
 
 nbs = list(g - {(X, Y)})

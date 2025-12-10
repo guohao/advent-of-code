@@ -1,5 +1,5 @@
-from util import *
 from collections import defaultdict
+import sys
 
 lines = sorted([line.strip() for line in L])
 g = defaultdict(lambda: defaultdict(int))

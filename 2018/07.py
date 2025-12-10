@@ -1,6 +1,15 @@
+import re
+import sys
+
+
+def join(l):
+    return "".join(map(str, l))
+
+
 from heapq import heapify
 
-from util import *
+import heapq
+
 import networkx as nx
 
 g = nx.DiGraph()

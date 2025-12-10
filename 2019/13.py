@@ -1,5 +1,9 @@
+import re
+import sys
+
 import intcode
 
+sys.path.insert(0, "..")
 from util import *
 
 data = D

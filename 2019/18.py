@@ -1,9 +1,12 @@
 import heapq
 import itertools
 import string
+import sys
 from collections import deque
 from functools import cache
+from itertools import product
 
+sys.path.insert(0, "..")
 from util import *
 
 data = D
@@ -51,13 +54,11 @@ while q:
         continue
     seen.add((ps, keys))
     for i, p in enumerate(ps):
-        for x, y, distance in reachable(*p, keys):
+        for x, y, distance in reachable2(*p, keys):
             nps = ps[:i] + ((x, y),) + ps[i + 1 :]
             heapq.heappush(
                 q, (steps + distance, tuple(nps), keys | frozenset([G[x, y]]))
             )
-
-from functools import cache
 
 data = D
 
@@ -80,7 +81,7 @@ for i, j in itertools.product(range(-1, 2), repeat=2):
 
 
 @cache
-def reachable(cx, cy, keys):
+def reachable2(cx, cy, keys):
     rq = deque([(cx, cy, 0)])
     visited = set()
     while rq:

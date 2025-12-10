@@ -1,4 +1,12 @@
-from util import *
+from collections import deque
+import sys
+
+
+def tuple_add(_a, _b) -> tuple[int, ...]:
+    """Adds two tuples of the same length"""
+    assert len(_a) == len(_b)
+    return tuple(_a[i] + _b[i] for i in range(len(_a)))
+
 
 grid = [l for l in RAW.split("\n")]
 g = {(i, j): c for i, line in enumerate(grid) for j, c in enumerate(line) if c != " "}

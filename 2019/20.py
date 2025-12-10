@@ -1,4 +1,13 @@
-from util import *
+from collections import defaultdict
+import heapq
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 import networkx as nx
 

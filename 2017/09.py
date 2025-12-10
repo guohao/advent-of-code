@@ -1,4 +1,6 @@
-from util import *
+import sys
+
+import re
 
 d = D
 l = 0

@@ -1,4 +1,6 @@
-from util import *
+from collections import deque
+import re
+import sys
 
 
 def f(p2=None):

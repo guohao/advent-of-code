@@ -1,4 +1,11 @@
-from util import *
+from itertools import count, cycle
+import sys
+
+import re
+
+L = sys.stdin.readlines()
+R = len(L)
+C = len(L[0].strip())
 
 
 def tick(a) -> bool:

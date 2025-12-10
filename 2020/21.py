@@ -1,6 +1,8 @@
-from collections import defaultdict, Counter
+import sys
+from collections import Counter, defaultdict
 from functools import reduce
 
+sys.path.insert(0, "..")
 from util import *
 
 data = D

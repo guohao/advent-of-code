@@ -1,4 +1,11 @@
-from util import *
+import re
+import sys
+
+
+def join(l):
+    return "".join(map(str, l))
+
+
 import string
 
 d = D

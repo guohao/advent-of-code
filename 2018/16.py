@@ -1,3 +1,8 @@
+from collections import defaultdict
+import re
+import sys
+
+sys.path.insert(0, "..")
 from util import *
 
 op_all = {
@@ -18,10 +23,6 @@ op_all = {
     "eqri": lambda r, a, b: int(r[a] == b),
     "eqrr": lambda r, a, b: int(r[a] == r[b]),
 }
-
-
-def ints(line):
-    return list(map(int, re.findall(r"-?\d+", line)))
 
 
 def opcs(before, op, after):

@@ -1,6 +1,7 @@
-from util import *
+import re
+import sys
 
-d = D
+d = input().strip()
 
 
 def p1():

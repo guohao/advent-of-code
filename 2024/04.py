@@ -1,4 +1,13 @@
-from util import *
+from collections import Counter
+from itertools import product
+import sys
+
+import re
+
+
+def join(l):
+    return "".join(map(str, l))
+
 
 t = 0
 for i, j in product(range(R), range(C)):

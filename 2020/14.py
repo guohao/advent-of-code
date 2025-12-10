@@ -2,8 +2,7 @@ from itertools import combinations
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def join(l):

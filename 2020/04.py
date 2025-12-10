@@ -1,6 +1,7 @@
 import re
 import sys
 
+D = sys.stdin.read()
 data = D
 
 ans = 0

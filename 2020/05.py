@@ -1,5 +1,6 @@
 import sys
 
+D = sys.stdin.read()
 data = D
 
 
@@ -23,6 +24,8 @@ def seat(s: str):
 ids = set()
 for line in data.splitlines():
     ids.add(seat(line))
+print(max(ids))
+
 for si in ids:
     if si + 1 not in ids and si + 2 in ids:
         print(si + 1)

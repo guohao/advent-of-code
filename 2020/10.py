@@ -1,13 +1,8 @@
 from collections import defaultdict, Counter
 import sys
-
-import re
-
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
-
+D = sys.stdin.read()
 data = D
 
 G = nx.DiGraph()

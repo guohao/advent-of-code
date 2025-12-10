@@ -1,10 +1,6 @@
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
-
+D = sys.stdin.read()
 data = D
 
 x, y = 0, 0

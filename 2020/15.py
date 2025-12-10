@@ -1,9 +1,8 @@
 import sys
 
+D = sys.stdin.read()
 import re
 
-sys.path.insert(0, "..")
-from util import *
 
 data = D
 

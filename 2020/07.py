@@ -1,6 +1,8 @@
 import re
 import sys
 
+D = sys.stdin.read()
+
 
 def join(l):
     return "".join(map(str, l))

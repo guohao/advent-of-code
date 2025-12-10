@@ -2,6 +2,7 @@ from collections import deque
 from itertools import combinations
 import sys
 
+D = sys.stdin.read()
 import re
 
 data = D

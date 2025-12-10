@@ -1,9 +1,9 @@
 import sys
+
+D = sys.stdin.read()
 from collections import Counter, defaultdict
 from functools import reduce
 
-sys.path.insert(0, "..")
-from util import *
 
 data = D
 

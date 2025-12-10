@@ -1,6 +1,7 @@
 import re
 import sys
 
+L = sys.stdin.readlines()
 lines = L
 ans = 0
 for line in lines:

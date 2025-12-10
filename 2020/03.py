@@ -1,5 +1,6 @@
 import sys
 
+L = sys.stdin.readlines()
 lines = [l.strip() for l in L]
 X = len(lines[0])
 Y = len(lines)

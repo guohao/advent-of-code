@@ -2,10 +2,8 @@ from collections import deque
 import math
 import sys
 
+D = sys.stdin.read()
 import re
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def join(l):

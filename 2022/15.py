@@ -2,14 +2,21 @@ import sys
 
 import re
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
 
 
 def d(a, b) -> int:
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 
+NS = [ints(line) for line in L]
 BS = {}
 for x1, y1, x2, y2 in NS:
     BS[(x1, y1)] = (x2, y2)

@@ -1,8 +1,7 @@
 from collections import deque
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def nb4(p):

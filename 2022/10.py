@@ -2,9 +2,7 @@ import sys
 
 import re
 
-sys.path.insert(0, "..")
-from util import *
-
+L = sys.stdin.readlines()
 x = 1
 s = []
 for cmd in L:

@@ -2,6 +2,8 @@ import sys
 
 import re
 
+L = sys.stdin.readlines()
+IG = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 g = {k: int(v) for k, v in IG.items()}
 x_max, y_max = max((x, y) for x, y in g)
 ans = 0

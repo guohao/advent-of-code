@@ -2,6 +2,7 @@ import sys
 
 import re
 
+L = sys.stdin.readlines()
 t = 0
 for l in L:
     a, b = l.split()

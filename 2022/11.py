@@ -3,10 +3,17 @@ import math
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
 
 sys.set_int_max_str_digits(10**6)
+
+PS = sys.stdin.read().split("\n\n")
+
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
 
 
 def f(n, p2=None):

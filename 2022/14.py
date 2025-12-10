@@ -1,7 +1,6 @@
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
 
 
 def f(p2=None):

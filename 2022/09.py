@@ -2,6 +2,8 @@ import sys
 
 import re
 
+D = sys.stdin.read()
+
 
 def solve(data: str, n):
     seen = {(0, 0)}

@@ -1,6 +1,8 @@
 import re
 import sys
 
+L = sys.stdin.readlines()
+
 
 def ints(l: str, neg=True):
     if neg:

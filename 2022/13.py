@@ -1,11 +1,9 @@
 import sys
 
+D = sys.stdin.read()
 import re
 
 from functools import cmp_to_key
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def f(a, b) -> int:
@@ -33,6 +31,7 @@ for i, pair in enumerate(D.strip().split("\n\n"), start=1):
         ans += i
 print(ans)
 
+RAW = D
 data = RAW + "\n[[2]]\n[[6]]\n"
 all = sorted(
     list(map(eval, filter(lambda x: x, data.strip().split("\n")))), key=cmp_to_key(f)

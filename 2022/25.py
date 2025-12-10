@@ -1,15 +1,14 @@
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
 
 def join(l):
     return "".join(map(str, l))
 
 
 from functools import reduce
+
+L = [line.strip() for line in sys.stdin.readlines()]
 
 
 def atoi(s: str) -> int:

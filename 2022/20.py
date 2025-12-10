@@ -1,9 +1,6 @@
 from collections import deque
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
 
 def move(p, d):
     _arrow_dirs = {">": (0, 1), "<": (0, -1), "v": (1, 0), "^": (-1, 0)}
@@ -32,6 +29,9 @@ def move(p, d):
         return tuple_add(p, _arrow_dirs[d])
     elif d in LDRU_DIRS:
         return tuple_add(p, LDRU_DIRS[d])
+
+
+I = [int(line.strip()) for line in sys.stdin.readlines()]
 
 
 def f(k, p2=None):

@@ -1,7 +1,6 @@
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def move(p, d):

@@ -10,6 +10,7 @@ def ints(l: str, neg=True):
         return list(map(int, re.findall(r"\d+", l)))
 
 
+RAW = sys.stdin.read()
 parts = RAW.split("\n\n")
 
 qs = {}

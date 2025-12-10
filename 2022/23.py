@@ -1,10 +1,8 @@
 from collections import defaultdict
 import sys
 
+D = sys.stdin.read()
 import re
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def f(k, p2=None):

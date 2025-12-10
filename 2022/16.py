@@ -3,10 +3,9 @@ import math
 import re
 import sys
 
+L = sys.stdin.readlines()
 import functools
 
-sys.path.insert(0, "..")
-from util import *
 
 D = {}
 for i, line in enumerate(L):

@@ -1,11 +1,9 @@
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
 sys.setrecursionlimit(10000)
 
+L = sys.stdin.readlines()
 G = {}
 
 for line in L:
@@ -19,8 +17,6 @@ for line in L:
 
 MIN_X, MAX_X = min(x for x, _ in G), max(x for x, _ in G)
 MIN_Y, MAX_Y = min(y for _, y in G), max(y for _, y in G)
-
-print(MIN_Y, MAX_Y)
 
 
 def drop1(x, y):

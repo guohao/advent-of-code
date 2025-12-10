@@ -1,19 +1,17 @@
 from itertools import cycle
 import sys
 
-import re
-
+L = sys.stdin.readlines()
 t = 0
 for line in L:
-    line = line.strip()
-    t += int(line)
+    t += int(line.strip())
 print(t)
 
 t = 0
 seen = set()
 for line in cycle(L):
     seen.add(t)
-    t += int(line)
+    t += int(line.strip())
     if t in seen:
         print(t)
-        exit()
+        break

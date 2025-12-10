@@ -2,8 +2,15 @@ from collections import defaultdict
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
+
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
+
 
 op_all = {
     "addr": lambda r, a, b: r[a] + r[b],

@@ -1,10 +1,8 @@
 import math
 import re
-
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
 
 
 def ints(l: str, neg=True):
@@ -45,14 +43,19 @@ def x_of(n: int):
 
 lines = L
 ipr = ints(lines[0])[0]
-r = [0] * 6
-r[0] = 0
-instructions = lines[1:]
-while r[ipr] < len(instructions):
-    line = instructions[r[ipr]]
-    op = op_all[line.split()[0]]
-    a, b, c = ints(line)
-    r[c] = op(r, a, b)
-    r[ipr] += 1
 
-print(r[0])
+
+def run(r0):
+    r = [0] * 6
+    r[0] = r0
+    instructions = lines[1:]
+    while r[ipr] < len(instructions):
+        line = instructions[r[ipr]]
+        op = op_all[line.split()[0]]
+        a, b, c = ints(line)
+        r[c] = op(r, a, b)
+        r[ipr] += 1
+    print(r[0])
+
+
+run(0)

@@ -1,13 +1,8 @@
 import sys
-
-import re
-
 from functools import cache
-
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
+D = input().strip()
 
 
 def draw_room(r: str):

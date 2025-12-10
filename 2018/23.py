@@ -1,10 +1,15 @@
 import re
 import sys
+from z3.z3 import *
 
-from z3 import *
+D = sys.stdin.read()
 
-sys.path.insert(0, "..")
-from util import *
+
+def ints(l: str, neg=True):
+    if neg:
+        return list(map(int, re.findall(r"-?\d+", l)))
+    else:
+        return list(map(int, re.findall(r"\d+", l)))
 
 
 def bots_of_input(data: str):

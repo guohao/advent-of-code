@@ -1,6 +1,7 @@
 from collections import defaultdict
 import sys
 
+L = sys.stdin.readlines()
 lines = sorted([line.strip() for line in L])
 g = defaultdict(lambda: defaultdict(int))
 cg = -1

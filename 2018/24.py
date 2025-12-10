@@ -1,10 +1,8 @@
 import itertools
 import re
-
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def solve(data: str, boost=0):

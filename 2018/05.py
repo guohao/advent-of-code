@@ -1,13 +1,8 @@
 import re
 import sys
-
-
-def join(l):
-    return "".join(map(str, l))
-
-
 import string
 
+D = input().strip()
 d = D
 p = []
 for i in range(26):

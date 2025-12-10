@@ -1,15 +1,6 @@
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
-
-
-def join(l):
-    return "".join(map(str, l))
-
-
+D = input().strip()
 d = int(D)
 n = [3, 7]
 p = [0, 1]

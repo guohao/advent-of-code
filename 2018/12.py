@@ -1,40 +1,45 @@
 from itertools import count
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
-lines = L
-d = {a: b for a, b in zip(count(), lines[0].split()[-1])}
-ts = {l: r for l, r in map(lambda x: x.split(" => "), lines[2:]) if r == "#"}
+L = [line.strip() for line in sys.stdin.readlines() if line.strip()]
+initial = L[0].split()[-1]
+d = {i: "#" for i, c in enumerate(initial) if c == "#"}
+rules = {l: r for l, r in map(lambda x: x.split(" => "), L[1:]) if r == "#"}
 
 for _ in range(20):
     nd = {}
-    for i in range(min(d) - 4, max(d) + 4):
-        p = "".join(d.get(j, ".") for j in range(i - 2, i + 3))
-        if p in ts:
-            nd[i] = ts[p]
+    for i in range(min(d) - 2, max(d) + 3):
+        p = "".join("#" if j in d else "." for j in range(i - 2, i + 3))
+        if p in rules:
+            nd[i] = "#"
     d = nd
 
 print(sum(d))
-lines = L
-d = {a: b for a, b in zip(count(), lines[0].split()[-1])}
-ts = {l: r for l, r in map(lambda x: x.split(" => "), lines[2:]) if r == "#"}
 
+d = {i: "#" for i, c in enumerate(initial) if c == "#"}
+prev_pattern = None
+prev_min = None
+prev_sum = None
 
-def snapshot():
-    return sorted([i - min(d) for i in range(min(d), max(d) + 1) if i in d])
-
-
-for k in count():
-    s0 = snapshot()
+for gen in range(1, 50000000001):
     nd = {}
-    for i in range(min(d) - 4, max(d) + 4):
-        p = "".join(d.get(j, ".") for j in range(i - 2, i + 3))
-        if p in ts:
-            nd[i] = ts[p]
-    d = nd
-    s1 = snapshot()
-    if s0 == s1:
-        print(sum(snapshot()) + (50000000000 - k + min(d) - 1) * len(d))
+    for i in range(min(d) - 2, max(d) + 3):
+        p = "".join("#" if j in d else "." for j in range(i - 2, i + 3))
+        if p in rules:
+            nd[i] = "#"
+    if not nd:
         break
+    curr_min = min(nd)
+    curr_sum = sum(nd)
+    curr_pattern = sorted([k - curr_min for k in nd])
+
+    if prev_pattern is not None and prev_pattern == curr_pattern:
+        delta = curr_min - prev_min
+        remaining = 50000000000 - gen
+        print(curr_sum + delta * len(nd) * remaining)
+        break
+
+    prev_pattern = curr_pattern
+    prev_min = curr_min
+    prev_sum = curr_sum
+    d = nd

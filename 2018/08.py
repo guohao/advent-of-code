@@ -1,6 +1,7 @@
 from collections import Counter
 import sys
 
+D = input().strip()
 d = list(map(int, D.split()))
 
 t = 0

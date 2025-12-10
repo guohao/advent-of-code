@@ -2,8 +2,7 @@ from itertools import product
 import sys
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def solve(data: str, elf_ap: int):

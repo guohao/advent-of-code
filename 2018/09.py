@@ -2,6 +2,8 @@ from collections import deque
 import re
 import sys
 
+D = input().strip()
+
 
 def f(p2=None):
     pc, last_points = list(map(int, re.findall(r"-?\d+", D)))

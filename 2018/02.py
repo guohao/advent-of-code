@@ -1,16 +1,9 @@
 from collections import Counter
 import sys
 
-import re
-
-
-def join(l):
-    return "".join(map(str, l))
-
-
+L = [line.strip() for line in sys.stdin.readlines()]
 a = b = 0
 for line in L:
-    line = line.strip()
     c = Counter(line)
     if 2 in c.values():
         a += 1
@@ -24,4 +17,7 @@ for a in L:
             continue
         if sum(a[i] != b[i] for i in range(len(a))) == 1:
             print("".join(a[i] for i in range(len(a)) if a[i] == b[i]))
-            exit()
+            break
+    else:
+        continue
+    break

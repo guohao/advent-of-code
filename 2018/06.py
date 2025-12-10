@@ -3,6 +3,7 @@ from itertools import product
 import re
 import sys
 
+L = sys.stdin.readlines()
 ps = []
 for line in L:
     line = line.strip()

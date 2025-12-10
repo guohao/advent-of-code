@@ -3,9 +3,7 @@ import math
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
+L = sys.stdin.readlines()
 ps = []
 for line in L:
     nums = list(map(int, re.findall(r"-?\d+", line)))

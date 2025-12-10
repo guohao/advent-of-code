@@ -1,17 +1,8 @@
-import re
 import sys
-
-
-def join(l):
-    return "".join(map(str, l))
-
-
-from heapq import heapify
-
 import heapq
-
 import networkx as nx
 
+L = sys.stdin.readlines()
 g = nx.DiGraph()
 for line in L:
     a = line.split()[1]
@@ -27,7 +18,7 @@ for line in L:
 
 indegree = {v: d for v, d in g.in_degree() if d > 0}
 zero_indegree = [v for v, d in g.in_degree() if d == 0]
-heapify(zero_indegree)
+heapq.heapify(zero_indegree)
 
 workers = []
 

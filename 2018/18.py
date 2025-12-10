@@ -2,11 +2,7 @@ from collections import Counter
 from itertools import product
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
-
+L = sys.stdin.readlines()
 N = 10
 G = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 

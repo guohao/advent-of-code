@@ -1,13 +1,8 @@
 from collections import defaultdict
 import sys
-
-import re
-
 from functools import cache
 
-sys.path.insert(0, "..")
-from util import *
-
+D = input().strip()
 gsn = int(D)
 
 

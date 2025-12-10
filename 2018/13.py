@@ -101,5 +101,6 @@ def p2(data: str):
     return str(f"{y},{x}")
 
 
+RAW = sys.stdin.read()
 print(p1(RAW))
 print(p2(RAW))

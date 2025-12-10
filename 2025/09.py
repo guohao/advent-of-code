@@ -7,16 +7,15 @@ import heapq
 import math
 
 g = []
-prev = None
 for l in sys.stdin.readlines():
     x, y = map(int, l.strip().split(","))
     g.append((x, y))
 
 h_edges = []
 v_edges = []
-for ia in range(len(g)):
-    a = g[ia - 1]
-    b = g[ia]
+for i in range(len(g)):
+    a = g[i - 1]
+    b = g[i]
     a, b = sorted([a, b])
     if a[0] == b[0]:
         v_edges.append((a, b))
@@ -56,16 +55,11 @@ def line_in(x, y1, y2):
     return True
 
 
-r1 = 0
-
-
 def area(a, b):
     return (abs(a[0] - b[0]) + 1) * (abs(a[1] - b[1]) + 1)
 
 
-for a, b in combinations(g, 2):
-    r1 = max(area(a, b), r1)
-print(r1)
+print(max(area(a,b) for a, b in combinations(g, 2)))
 
 r2 = 0
 for a, b in combinations(g, 2):

@@ -2,8 +2,7 @@ import re
 import sys
 from itertools import product
 
-sys.path.insert(0, "..")
-from util import *
+PS = sys.stdin.read().split("\n\n")
 
 
 def join(l):

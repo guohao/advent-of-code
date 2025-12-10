@@ -1,8 +1,7 @@
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def ints(l: str, neg=True):

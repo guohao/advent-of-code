@@ -1,18 +1,7 @@
 from collections import deque
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
-
-def pairs(ls: list[str], sep: str, reverse=False):
-    ps = [(l.strip(), r.strip()) for l, r in [line.split(sep) for line in ls]]
-    if reverse:
-        return [(r, l) for l, r in ps]
-    else:
-        return ps
-
-
+L = sys.stdin.readlines()
 t = 0
 q = deque()
 pairs = {"{": "}", "(": ")", "<": ">", "[": "]"}

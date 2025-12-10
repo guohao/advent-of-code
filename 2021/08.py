@@ -1,6 +1,7 @@
 from itertools import permutations
 import sys
 
+L = sys.stdin.readlines()
 import re
 
 

@@ -1,13 +1,12 @@
 from collections import deque
 import sys
 
+D = sys.stdin.read()
 import re
 from itertools import count
 
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
 
 data = D
 g = nx.Graph()

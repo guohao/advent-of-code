@@ -1,31 +1,27 @@
 import math
 import sys
-
 import re
+from z3 import *
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
 
 
 def join(l):
     return "".join(map(str, l))
 
 
-from z3 import *
-
-
 def f(p: int):
     s = Optimize()
     size = int(math.log2(10**14)) + 1
     digits = [BitVec(f"d_{i}", size) for i in range(14)]
-    var = {r: 0 for r in "xyzw"}
+    var = {r: BitVecVal(0, size) for r in "xyzw"}
 
     pos = 0
     for i, inst in enumerate(L):
         instr, a_name, *b = inst.split()
         a = var[a_name]
         if b:
-            b = var[b[0]] if b[0] in var else int(b[0])
+            b = var[b[0]] if b[0] in var else BitVecVal(int(b[0]), size)
         c = BitVec(f"v_{i}", size)
 
         match instr:
@@ -41,7 +37,7 @@ def f(p: int):
             case "div":
                 s.add(c == a / b)
             case "eql":
-                s.add(c == If(a == b, BitVecVal(0, size), BitVecVal(1, size)))
+                s.add(c == If(a == b, BitVecVal(1, size), BitVecVal(0, size)))
         var[a_name] = c
 
     s.add([0 < d for d in digits])

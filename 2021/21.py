@@ -3,8 +3,7 @@ from itertools import permutations, combinations_with_replacement, cycle
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+D = sys.stdin.read()
 
 
 def p1():

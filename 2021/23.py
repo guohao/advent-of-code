@@ -2,10 +2,8 @@ import math
 
 import sys
 
+D = sys.stdin.read()
 from functools import cache
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def f(d: str):

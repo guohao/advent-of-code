@@ -1,14 +1,13 @@
 import re
 import sys
+
+D = sys.stdin.read()
 from collections import deque
 from itertools import permutations
 
 from functools import reduce
 
 import math
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def t(s: str):

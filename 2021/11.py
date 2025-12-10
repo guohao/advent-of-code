@@ -1,12 +1,8 @@
 from itertools import count, product
 import sys
 
-import re
-
-sys.path.insert(0, "..")
-from util import *
-
-g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line)}
+L = sys.stdin.readlines()
+g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 ans = 0
 for _ in range(100):
     flashed = set()
@@ -26,7 +22,7 @@ for _ in range(100):
     ans += len(flashed)
 print(ans)
 
-g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line)}
+g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 ans = 0
 for t in count(1):
     flashed = set()

@@ -4,6 +4,8 @@ import re
 
 from copy import deepcopy as dc
 
+RAW = sys.stdin.read()
+
 
 def rotations(s):
     s = dc(s)

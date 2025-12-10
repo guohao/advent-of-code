@@ -1,9 +1,10 @@
 import math
 import sys
 
+L = sys.stdin.readlines()
 import re
 
-g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line)}
+g = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 ans = 0
 for x, y in g:
     for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:

@@ -2,6 +2,7 @@ from collections import defaultdict
 import re
 import sys
 
+L = sys.stdin.readlines()
 g = defaultdict(int)
 for line in L:
     x1, y1, x2, y2 = list(map(int, re.findall(r"-?\d+", line)))

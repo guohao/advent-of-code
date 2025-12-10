@@ -3,6 +3,8 @@ import sys
 
 import re
 
+L = [line.strip() for line in sys.stdin.readlines()]
+
 
 def join(l):
     return "".join(map(str, l))

@@ -1,6 +1,7 @@
 from collections import defaultdict
 import sys
 
+D = sys.stdin.read()
 import re
 
 seq = list(map(int, D.split(",")))

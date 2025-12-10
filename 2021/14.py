@@ -3,9 +3,7 @@ import sys
 
 import re
 
-sys.path.insert(0, "..")
-from util import *
-
+PS = sys.stdin.read().split("\n\n")
 parts = PS
 s = parts[0]
 ms = {}

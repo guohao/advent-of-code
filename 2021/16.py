@@ -3,6 +3,8 @@ import sys
 
 import re
 
+RAW = sys.stdin.read()
+
 
 def join(l):
     return "".join(map(str, l))

@@ -2,6 +2,7 @@ import sys
 
 import re
 
+PS = sys.stdin.read().split("\n\n")
 parts = PS
 ns = list(map(int, parts[0].split(",")))
 gs = []

@@ -1,6 +1,7 @@
 import math
 import sys
 
+D = sys.stdin.read()
 import re
 
 data = D

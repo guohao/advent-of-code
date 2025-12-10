@@ -1,4 +1,22 @@
-from util import *
+import sys
+
+
+def move(p, c):
+    x, y = p
+    match c:
+        case "U":
+            x -= 1
+        case "D":
+            x += 1
+        case "L":
+            y -= 1
+        case "R":
+            y += 1
+    return x, y
+
+
+def grid(s):
+    return {(i, j): c for i, l in enumerate(s.split("\n")) for j, c in enumerate(l)}
 
 
 def p1():
@@ -44,5 +62,6 @@ def p2():
     print(ans)
 
 
+L = sys.stdin.readlines()
 p1()
 p2()

@@ -1,4 +1,6 @@
-from util import *
+import sys
+from collections import Counter
+import re
 
 
 def f(line):
@@ -10,11 +12,13 @@ def f(line):
     return 0
 
 
-print(counts(f))
+ls = sys.stdin.readlines()
 
-for line in L:
+print(sum(map(f, ls)))
+
+for line in ls:
     name, sid, _ = re.findall(r"(\w.*)-(\d+)\[(\w+)]", line)[0]
-    decode = join(
+    decode = "".join(
         chr(ord("a") + (ord(c) - ord("a") + int(sid)) % 26)
         for c in name.replace("-", "")
     )

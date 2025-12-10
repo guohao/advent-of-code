@@ -59,7 +59,7 @@ def area(a, b):
     return (abs(a[0] - b[0]) + 1) * (abs(a[1] - b[1]) + 1)
 
 
-print(max(area(a,b) for a, b in combinations(g, 2)))
+print(max(area(a, b) for a, b in combinations(g, 2)))
 
 r2 = 0
 for a, b in combinations(g, 2):

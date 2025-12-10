@@ -1,9 +1,7 @@
 import re
 import sys
 
-counts = lambda f: sum(map(f, L))
-
-from regex import regex
+L = sys.stdin.readlines()
 
 
 def f0(line):
@@ -11,23 +9,15 @@ def f0(line):
     return ns[0] * 10 + ns[-1]
 
 
-print(counts(f0))
+print(sum(f0(line) for line in L))
 
 
 def f(line):
     ws = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
     d2i = lambda x: ws.index(x) if x in ws else int(x)
-    ns = list(
-        map(
-            d2i,
-            regex.findall(
-                r"\d|one|two|three|four|five|six|seven|eight|nine",
-                line,
-                overlapped=True,
-            ),
-        )
-    )
+    pattern = r"(?=(\d|one|two|three|four|five|six|seven|eight|nine))"
+    ns = [d2i(m.group(1)) for m in re.finditer(pattern, line)]
     return ns[0] * 10 + ns[-1]
 
 
-print(counts(f))
+print(sum(f(line) for line in L))

@@ -3,9 +3,6 @@ import sys
 
 import re
 
-sys.path.insert(0, "..")
-from util import *
-
 
 def s_is(grid, ps):
     connected = {}
@@ -77,8 +74,14 @@ def loop(data: str):
     return visited
 
 
+D = sys.stdin.read()
 print(max(loop(D).values()))
 
+IG = {
+    (i, j): D.splitlines()[i][j]
+    for i in range(len(D.splitlines()))
+    for j in range(len(D.splitlines()[i]))
+}
 g = IG
 visit = loop(D)
 start = [p for p, c in g.items() if c == "S"][0]

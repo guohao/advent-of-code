@@ -1,8 +1,5 @@
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
 
 def nb4(p):
     for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
@@ -19,6 +16,8 @@ def nb4(p):
 
 sys.setrecursionlimit(10000000)
 
+L = sys.stdin.readlines()
+IG = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 DIRECTIONS = {
     ">": [(0, 1)],
     "v": [(1, 0)],

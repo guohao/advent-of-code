@@ -4,9 +4,7 @@ import re
 
 from z3 import *
 
-sys.path.insert(0, "..")
-from util import *
-
+NS = [list(map(int, re.findall(r"-?\d+", l))) for l in sys.stdin.readlines()]
 ss = NS
 ans = 0
 MIN = 200000000000000

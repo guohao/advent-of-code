@@ -4,6 +4,9 @@ import math
 import re
 import sys
 
+L = sys.stdin.readlines()
+R = len(L)
+C = len(L[0].strip())
 t = 0
 for i in range(R):
     for m in re.finditer(r"\d+", L[i]):

@@ -3,9 +3,8 @@ import sys
 
 import re
 
-sys.path.insert(0, "..")
-from util import *
-
+L = sys.stdin.readlines()
+IG = {(i, j): int(c) for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 g = {k: int(v) for k, v in IG.items()}
 hp = [(0, (1, 0), (1, 0), 1), (0, (0, 1), (0, 1), 1)]
 seen = set()

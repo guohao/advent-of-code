@@ -1,6 +1,9 @@
 import re
 import sys
 
+L = sys.stdin.readlines()
+NS = [list(map(int, re.findall(r"-?\d+", line))) for line in L]
+
 
 def ext(ints):
     if all(x == 0 for x in ints):

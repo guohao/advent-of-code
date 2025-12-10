@@ -1,9 +1,6 @@
 import math
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
 
 def nb4(p):
     for i, j in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
@@ -18,6 +15,8 @@ def nb4(p):
         yield p[0] + i, p[1] + j
 
 
+L = sys.stdin.readlines()
+IG = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 g = IG
 s = [k for k, v in g.items() if v == "S"][0]
 tv = [s]

@@ -1,7 +1,6 @@
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+PS = sys.stdin.read().split("\n\n")
 
 
 def mirror(part: str):

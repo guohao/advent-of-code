@@ -2,8 +2,8 @@ from collections import defaultdict
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+
 
 bs = []
 for line in L:

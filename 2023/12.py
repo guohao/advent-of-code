@@ -1,15 +1,14 @@
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
 
 def join(l):
     return "".join(map(str, l))
 
 
 from functools import cache
+
+L = sys.stdin.readlines()
 
 
 def solve(data: str, ext):

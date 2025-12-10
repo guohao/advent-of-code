@@ -7,6 +7,7 @@ from functools import reduce
 from itertools import count, cycle
 import math
 
+PS = sys.stdin.read().split("\n\n")
 parts = PS
 ins = cycle(parts[0])
 d = {}

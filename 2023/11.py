@@ -2,8 +2,8 @@ import sys
 
 import re
 
-sys.path.insert(0, "..")
-from util import *
+L = sys.stdin.readlines()
+IG = {(i, j): c for i, line in enumerate(L) for j, c in enumerate(line.strip())}
 
 
 def f(exp):

@@ -1,12 +1,11 @@
 from itertools import combinations
 import sys
 
+L = sys.stdin.readlines()
 import re
 
 import networkx as nx
 
-sys.path.insert(0, "..")
-from util import *
 
 graph = nx.DiGraph()
 for line in L:

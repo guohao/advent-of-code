@@ -3,6 +3,8 @@ import math
 import re
 import sys
 
+L = sys.stdin.readlines()
+
 
 def join(l):
     return "".join(map(str, l))

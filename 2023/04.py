@@ -1,5 +1,6 @@
 import sys
 
+L = sys.stdin.readlines()
 import re
 
 t = 0
@@ -11,6 +12,7 @@ for line in L:
 
 print(t)
 
+R = len(L)
 pows = [1] * R
 for i, line in enumerate(L):
     l, r = line.split("|")

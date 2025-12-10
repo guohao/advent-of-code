@@ -1,13 +1,12 @@
 import re
 import sys
+
+L = sys.stdin.readlines()
 from collections import deque
 
 from functools import reduce
 
 import math
-
-sys.path.insert(0, "..")
-from util import *
 
 
 def f(p2=None):
@@ -16,9 +15,9 @@ def f(p2=None):
     types = {}
     states = {}
     for line in L:
-        f, t = line.split(" -> ")
+        f, t = line.strip().split(" -> ")
         name = f if f[0] not in "%&" else f[1:]
-        dest[name] = t.split(", ")
+        dest[name] = [x.strip() for x in t.split(",")]
 
         if f[0] == "%":
             types[name] = "%"
@@ -35,21 +34,19 @@ def f(p2=None):
     q = deque()
 
     def send(name, pulse):
+        pc[pulse] += len(dest[name])  # 计数发送的脉冲
         for to in dest[name]:
             q.append((name, to, pulse))
 
     needs = {"sg", "dh", "db", "lm"}
     cycles = {x: 0 for x in needs}
     source = "jm"
-    for i in range(10000):
-        q.append(("", "broadcaster", 0))
+    max_iter = 1000 if not p2 else 10000
+    for i in range(max_iter):
+        pc[0] += 1  # 按钮发送的低脉冲
+        q.append(("button", "broadcaster", 0))
         while q:
             prev, curr, p = q.popleft()
-            if not p2:
-                if i == 1000:
-                    print(math.prod(pc))
-                    return
-            pc[p] += 1
             if p2:
                 if p and prev in cycles.keys() and curr == source and not cycles[prev]:
                     cycles[prev] = i + 1
@@ -68,6 +65,9 @@ def f(p2=None):
                 case "&":
                     states[curr][prev] = p
                     send(curr, not all(states[curr].values()))
+    # 处理完所有按钮后打印结果
+    if not p2:
+        print(math.prod(pc))
 
 
 f()

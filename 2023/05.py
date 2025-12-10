@@ -3,6 +3,7 @@ import sys
 
 import re
 
+PS = sys.stdin.read().split("\n\n")
 seeds = list(map(int, PS[0].split(":")[1].split()))
 parts = [part.splitlines()[1:] for part in PS[1:]]
 ans = []

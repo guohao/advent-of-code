@@ -1,6 +1,7 @@
 from collections import Counter
 import sys
 
+L = sys.stdin.readlines()
 import re
 from itertools import count
 

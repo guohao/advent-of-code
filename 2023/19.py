@@ -2,9 +2,7 @@ import math
 import re
 import sys
 
-sys.path.insert(0, "..")
-from util import *
-
+PS = sys.stdin.read().split("\n\n")
 parts = PS
 rules = parts[0].splitlines()
 

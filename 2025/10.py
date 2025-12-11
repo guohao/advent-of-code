@@ -1,6 +1,7 @@
 import sys
 from z3 import *
 
+
 def solve(l, part2=False):
     cells = l.split()
     btns = [list(map(int, x[1:-1].split(","))) for x in cells[1:-1]]
@@ -20,6 +21,7 @@ def solve(l, part2=False):
     o.minimize(Sum(x))
     return o.model().eval(Sum(x)).as_long() if o.check() == sat else 0
 
+
 ls = sys.stdin.readlines()
-print(sum(map(solve,ls)))
+print(sum(map(solve, ls)))
 print(sum(solve(l, True) for l in ls))

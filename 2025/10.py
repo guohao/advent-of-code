@@ -21,5 +21,5 @@ def solve(l, part2=False):
     return o.model().eval(Sum(x)).as_long() if o.check() == sat else 0
 
 ls = sys.stdin.readlines()
-print(sum(solve(l) for l in ls))
+print(sum(map(solve,ls)))
 print(sum(solve(l, True) for l in ls))

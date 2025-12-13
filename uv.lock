@@ -2,7 +2,8 @@ version = 1
 revision = 2
 requires-python = ">=3.10"
 resolution-markers = [
-    "python_full_version >= '3.11'",
+    "python_full_version >= '3.12'",
+    "python_full_version == '3.11.*'",
     "python_full_version < '3.11'",
 ]
 
@@ -12,6 +13,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "beautifulsoup4" },
+    { name = "exact-cover" },
     { name = "matplotlib" },
     { name = "networkx", version = "3.4.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -25,6 +27,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.0" },
+    { name = "exact-cover", specifier = ">=1.5.0" },
     { name = "matplotlib", specifier = ">=3.10.7" },
     { name = "networkx", specifier = ">=3.4.2" },
     { name = "regex", specifier = ">=2025.11.3" },
@@ -219,7 +222,8 @@ name = "contourpy"
 version = "1.3.3"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.11'",
+    "python_full_version >= '3.12'",
+    "python_full_version == '3.11.*'",
 ]
 dependencies = [
     { name = "numpy", version = "2.3.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -306,6 +310,25 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/a9/95/a3dbbb5028f35eafb79008e7522a75244477d2838f38cbb722248dabc2a8/cycler-0.12.1.tar.gz", hash = "sha256:88bb128f02ba341da8ef447245a9e138fae777f6a23943da4540077d3601eb1c", size = 7615, upload-time = "2023-10-07T05:32:18.335Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl", hash = "sha256:85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30", size = 8321, upload-time = "2023-10-07T05:32:16.783Z" },
+]
+
+[[package]]
+name = "exact-cover"
+version = "1.5.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "numpy", version = "2.3.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "setuptools" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a6/14/5b622db6f727f8a1f39b3cc4eeae2ebc8ce83038a70bf73056caf7ec3c9b/exact_cover-1.5.0.tar.gz", hash = "sha256:0321bd9c5103c9a1e66ac8430595b22f18d1faa2d9a054f75ada05a28c00cbee", size = 20352, upload-time = "2025-01-31T13:04:22.296Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7b/56/4def5e371f2d4e66f2a8e7302698d33312f430c65c21524282fecfb12daf/exact_cover-1.5.0-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:5bacca44f0b5800f1c342645206d5cb8bdf2a5139cd4c33766b1554913b5ff03", size = 28138, upload-time = "2025-01-31T12:38:23.774Z" },
+    { url = "https://files.pythonhosted.org/packages/1d/25/3993e6221876b66369aa400d2b63f307f2970755654e7b6805832149e572/exact_cover-1.5.0-cp310-cp310-manylinux_2_31_x86_64.whl", hash = "sha256:1c62a4098914adea40aae72e40ffdc20d863452826c9f616884d3290e0c7a82c", size = 48813, upload-time = "2025-01-31T12:38:21.639Z" },
+    { url = "https://files.pythonhosted.org/packages/1b/c1/4d794b8d21ac275f1bd882b5f7855a9bb0a3681b54c5f1bf279b8d0c5af0/exact_cover-1.5.0-cp310-cp310-win_amd64.whl", hash = "sha256:694aa16fab0a5fab0f6efaf21338c1c4e259a10ea6f380bac0abe03c04663621", size = 22501, upload-time = "2025-01-31T12:39:11.182Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/82/45b504b351e000467c835c3890292c2a7e51f729442c9feec456513cf699/exact_cover-1.5.0-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:267dd39c55229714e3cf286303580cb586e3328e7d1e4548b25dd61713c8bfbe", size = 28140, upload-time = "2025-01-31T12:38:06.482Z" },
+    { url = "https://files.pythonhosted.org/packages/2e/8d/27393b82deffbc6ec09926c219380d847998e18369c111e3a58c075699be/exact_cover-1.5.0-cp311-cp311-manylinux_2_31_x86_64.whl", hash = "sha256:87e1367e404a3401c8b4f150497287c05c5e6db1b43912f2191b874bb9c1c6aa", size = 49753, upload-time = "2025-01-31T12:38:14.161Z" },
+    { url = "https://files.pythonhosted.org/packages/ad/fa/0f34d30673fc09dd3b11ca6ba3138b5abf2f822340d305d63acdfdbf800f/exact_cover-1.5.0-cp311-cp311-win_amd64.whl", hash = "sha256:cd78bfb732a19501f72723c4c1d68617f8446fa2a19a265f8f7be5eeedfa2a91", size = 22500, upload-time = "2025-01-31T12:40:02.45Z" },
 ]
 
 [[package]]
@@ -574,7 +597,8 @@ name = "networkx"
 version = "3.6.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.11'",
+    "python_full_version >= '3.12'",
+    "python_full_version == '3.11.*'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/6a/51/63fe664f3908c97be9d2e4f1158eb633317598cfa6e1fc14af5383f17512/networkx-3.6.1.tar.gz", hash = "sha256:26b7c357accc0c8cde558ad486283728b65b6a95d85ee1cd66bafab4c8168509", size = 2517025, upload-time = "2025-12-08T17:02:39.908Z" }
 wheels = [
@@ -651,7 +675,8 @@ name = "numpy"
 version = "2.3.5"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.11'",
+    "python_full_version >= '3.12'",
+    "python_full_version == '3.11.*'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/76/65/21b3bc86aac7b8f2862db1e808f1ea22b028e30a225a34a5ede9bf8678f2/numpy-2.3.5.tar.gz", hash = "sha256:784db1dcdab56bf0517743e746dfb0f885fc68d948aba86eeec2cba234bdf1c0", size = 20584950, upload-time = "2025-11-16T22:52:42.067Z" }
 wheels = [
@@ -1044,7 +1069,8 @@ name = "scipy"
 version = "1.16.3"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.11'",
+    "python_full_version >= '3.12'",
+    "python_full_version == '3.11.*'",
 ]
 dependencies = [
     { name = "numpy", version = "2.3.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -1111,6 +1137,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ac/70/64b4d7ca92f9cf2e6fc6aaa2eecf80bb9b6b985043a9583f32f8177ea122/scipy-1.16.3-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:ffa6eea95283b2b8079b821dc11f50a17d0571c92b43e2b5b12764dc5f9b285d", size = 38802779, upload-time = "2025-10-28T17:37:59.393Z" },
     { url = "https://files.pythonhosted.org/packages/61/82/8d0e39f62764cce5ffd5284131e109f07cf8955aef9ab8ed4e3aa5e30539/scipy-1.16.3-cp314-cp314t-win_amd64.whl", hash = "sha256:d9f48cafc7ce94cf9b15c6bffdc443a81a27bf7075cf2dcd5c8b40f85d10c4e7", size = 39471128, upload-time = "2025-10-28T17:38:05.259Z" },
     { url = "https://files.pythonhosted.org/packages/64/47/a494741db7280eae6dc033510c319e34d42dd41b7ac0c7ead39354d1a2b5/scipy-1.16.3-cp314-cp314t-win_arm64.whl", hash = "sha256:21d9d6b197227a12dcbf9633320a4e34c6b0e51c57268df255a0942983bac562", size = 26464127, upload-time = "2025-10-28T17:38:11.34Z" },
+]
+
+[[package]]
+name = "setuptools"
+version = "80.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/18/5d/3bf57dcd21979b887f014ea83c24ae194cfcd12b9e0fda66b957c69d1fca/setuptools-80.9.0.tar.gz", hash = "sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c", size = 1319958, upload-time = "2025-05-27T00:56:51.443Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl", hash = "sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922", size = 1201486, upload-time = "2025-05-27T00:56:49.664Z" },
 ]
 
 [[package]]

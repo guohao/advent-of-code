@@ -1,32 +1,33 @@
-import re
 import sys
 from itertools import combinations
 
-L = sys.stdin.readlines()
-NS = [list(map(int, re.findall(r"\d+", line))) for line in L]
+L = list(list(map(int, l.split())) for l in sys.stdin.readlines())
 
+r1 = 0
+for l in L:
+    s = sorted(l)
+    if s != l and s[::-1] != l:
+        continue
+    for i in range(1, len(l)):
+        if not 1 <= abs(l[i] - l[i - 1]) <= 3:
+            break
+    else:
+        r1 += 1
+print(r1)
 
-def f(ns):
-    if ns == sorted(ns) or ns == sorted(ns, reverse=True):
-        for i in range(1, len(ns)):
-            if not (1 <= abs(ns[i] - ns[i - 1]) <= 3):
+r2 = 0
+for l in L:
+    valid = False
+    for l in combinations(l, len(l) - 1):
+        l = list(l)
+        s = sorted(l)
+        if s != l and s[::-1] != l:
+            continue
+        for i in range(1, len(l)):
+            if not 1 <= abs(l[i] - l[i - 1]) <= 3:
                 break
         else:
-            return 1
-    return 0
-
-
-def f2(ns):
-    for c in combinations(ns, len(ns) - 1):
-        c = list(c)
-        if c == sorted(c) or c == sorted(c, reverse=True):
-            for i in range(1, len(c)):
-                if not (1 <= abs(c[i] - c[i - 1]) <= 3):
-                    break
-            else:
-                return 1
-    return 0
-
-
-print(sum(f(ns) for ns in NS))
-print(sum(f2(ns) for ns in NS))
+            valid = True
+    if valid:
+        r2 += 1
+print(r2)
